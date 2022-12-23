@@ -5,16 +5,28 @@
     gap: 2rem;
     padding: 2.8rem;
     width: 80vw;
-}
-
-
-.imgPrincipal {
-    width: 42vw;
-    height: 25vw;
-    object-fit: cover;
-    border-radius: 6px;
     
 }
+
+@media(max-width: 880px){
+    .postDestaque {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: .5rem;
+       
+    }
+}
+
+    .imgPrincipal {
+        height: 25vw; 
+        width: 42vw;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+
+
 
 
 
@@ -27,8 +39,6 @@
     margin-top: 15px;
     color: var(--bs-gray-700);
     margin: 0;
-
-    
 }
 
 .avFazag {

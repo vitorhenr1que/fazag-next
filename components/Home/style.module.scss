@@ -7,8 +7,11 @@
     align-items: center;
     justify-content: center;
     gap: 6rem;
-    height: 100%;
-    width: 100%;
+
+    p {
+        max-width: 100%;
+        margin: 0;
+    }
 
     a {
         display: flex;
@@ -19,8 +22,8 @@
         border-radius: 20px;
 
         img {
-            max-width: 20rem;
-            width: 100%;
+            width: 20rem;
+  
         }
         
     

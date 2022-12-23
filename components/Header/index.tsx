@@ -1,6 +1,7 @@
 import styles from './style.module.scss'
 import fazaglogo from '../../public/images/logo-fazag.png'
 import Image from 'next/image'
+import Link from 'next/link'
 export function Header(){
   
     return (
@@ -8,9 +9,9 @@ export function Header(){
          <header>
         <nav className={`navbar navbar-expand-lg bg-light ${styles.navbar}`}>
             <div className={"container-md"}>
-                  <a className={"navbar-brand"}>
+                  <Link href='/' className={"navbar-brand"}>
                     <Image className={styles.fazagLogo} src={fazaglogo} width='100' alt=""></Image>
-                  </a>
+                  </Link>
                   
                   <button className={"navbar-toggler"} type={"button"} data-bs-toggle={"collapse"} data-bs-target={"#navbarNavDropdown"} aria-controls={"navbarNavDropdown"} aria-expanded={"false"} aria-label={"Toggle navigation"}>
                 <span className={"navbar-toggler-icon"}></span>

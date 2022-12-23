@@ -7,12 +7,13 @@ import AmbienteVirtual from '../../public/images/ambiente-virtual.jpg'
 import PortalAluno from '../../public/images/portal-do-aluno.jpg'
 import { PostDestaqueHome } from "./HomeAssets/PostDestaqueHome";
 import styles from './style.module.scss'
-import Script from "next/script";
+import Link from "next/dist/client/link";
+import { PostsProps } from "../../pages";
 
 
 // https://dummyimage.com/1320x350/z32/fff.png 1903x1070
 
-export default function HomeMain() {
+export default function HomeMain({posts}: PostsProps) {
   return (
     <>
       
@@ -44,9 +45,9 @@ export default function HomeMain() {
           <div className={`row ${styles.mainInfo}`}>
             <div className={"col-md-8"}>
               
-                <a href="/fazaginforma" className={styles.fazagInfo}>FAZAG INFORMA</a>
+                <Link href="/fazaginforma" className={styles.fazagInfo}>FAZAG INFORMA</Link>
                 {/* COLOCAR COMPONENTE AQUI! */}
-                <PostDestaqueHome/>
+                <PostDestaqueHome posts={posts}/>
               </div>
 
             <div className={`col ${styles.agenda}`}>AGENDA
@@ -84,3 +85,4 @@ export default function HomeMain() {
     
   )
 }
+
