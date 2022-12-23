@@ -1,0 +1,20 @@
+.botoesBox {
+
+    img {
+        width: 100%;
+    }
+    h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+    
+    }
+    &:hover > img{
+        filter:grayscale(90);
+        }
+}
+
+.pBox {
+max-width: 20rem;
+text-shadow: 2px 2px 4px black;
+color: white;
+}

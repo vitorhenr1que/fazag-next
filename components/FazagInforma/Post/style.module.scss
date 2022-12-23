@@ -1,0 +1,30 @@
+.postSecBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: .8rem;
+    flex-wrap: wrap;
+    width: 34vw;
+    
+}
+
+.postSecImage {
+    width: 34vw;
+    height: 17vw;
+    object-fit: cover;
+    border-radius: 6px;
+    
+}
+
+.postSecDate{
+    margin: 0;
+    font-size: .8rem;
+}
+
+.postSecDescription {
+    margin-top: 15px;
+    color: var(--bs-gray-700);
+    margin: 0;
+}
+

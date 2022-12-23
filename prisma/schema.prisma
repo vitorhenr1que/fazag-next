@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://fazag_admin:zszsxu5973@162.214.122.42:3306/fazag_web"
+}
+
+
+
+model Post {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  content     String
+  image       String
+  avatar      String?
+  author      String
+  published   Boolean
+  date        DateTime @default(now())
+}
