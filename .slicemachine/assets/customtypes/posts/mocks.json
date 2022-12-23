@@ -1,0 +1,54 @@
+{
+  "uid": {
+    "__TYPE__": "UIDContent",
+    "value": "clothing"
+  },
+  "title": {
+    "__TYPE__": "FieldContent",
+    "value": "sugar",
+    "type": "Text"
+  },
+  "content": {
+    "__TYPE__": "StructuredTextContent",
+    "value": [
+      {
+        "type": "heading1",
+        "content": {
+          "text": "Movement"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "text": "Qui nulla sunt nulla laborum ad incididunt eu mollit voluptate culpa veniam irure est cupidatat nulla."
+        }
+      }
+    ]
+  },
+  "image": {
+    "__TYPE__": "ImageContent",
+    "origin": {
+      "id": "main",
+      "url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
+      "width": 4380,
+      "height": 2895
+    },
+    "url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
+    "width": 4380,
+    "height": 2895,
+    "edit": {
+      "zoom": 1,
+      "crop": {
+        "x": 0,
+        "y": 0
+      },
+      "background": "transparent"
+    },
+    "thumbnails": {}
+  },
+  "author": {
+    "__TYPE__": "FieldContent",
+    "value": "almost",
+    "type": "Text"
+  }
+}

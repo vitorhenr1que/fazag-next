@@ -1,28 +1,27 @@
+import Link from 'next/dist/client/link'
 import styles from './style.module.scss'
+
 
 export interface receberVariavelProps {
     receberVariavel: {
+        id: string
         image: string
-        date: string
+        updatedAt: string
         title: string
-        description: string
+        content: string
     }
+ 
 }
 
 export function Post({receberVariavel}:receberVariavelProps){
 return (
-    
-        <div className={styles.postSecBody}>
-             
-            <a><img className={styles.postSecImage} src={receberVariavel.image} alt={"Imagem Paisagem"} /></a>
-           
-            <div className={styles.postSecContent}>
+            <Link href={`/fazaginforma/${receberVariavel.id}`}>
+            <img className={styles.postSecImage} src={receberVariavel.image} alt={"Imagem Paisagem"} />
                 <div className={styles.postSecTexts}>
-                    <p className={styles.postSecDate}>{new Date(receberVariavel.date).toLocaleString("pt-BR")}</p>
+                    <p className={styles.postSecDate}>{receberVariavel.updatedAt}</p>
                     <h4 className={styles.postSecTitle}>{receberVariavel.title}</h4>
-                    <p className={styles.postSecDescription}>{receberVariavel.description}</p>
-                </div>
+                    <p className={styles.postSecDescription}>{receberVariavel.content}</p>
             </div>
-        </div> 
+            </Link>
 )
 }

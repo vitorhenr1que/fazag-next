@@ -5,10 +5,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 
+.postListContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: start;
+    gap: 3rem;
+}
 
-
+@media(max-width: 600px){
+    .postListContainer{
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+}
 
 .cabecalho {
     display: flex;

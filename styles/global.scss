@@ -4,7 +4,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --gray-900: #121214;
+  --gray-500: #37373d;
 
+  --blue-500: #0a58ca;
+}
 
 /* FAZAG Informa */
 @media (max-width: 780px) {
@@ -25,7 +30,14 @@
   
 }
 
-
+a {
+  text-decoration: none;
+  color: var(--gray-900);
+  transition: color .2s;
+  &:hover {
+    color: var(--gray-500);
+  }
+}
 
 
  

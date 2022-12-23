@@ -1,27 +1,29 @@
 import styles from './style.module.scss'
-import estilo from '../PostList/style.module.scss'
+import Link from 'next/dist/client/link'
 
 type variavelRecebidaProps = {
         variavelRecebida: {
+        id: string
         image: string
-        date: string
+        updatedAt: string
         title: string
-        description: string
-        avatar: string 
+        content: string
+        avatar?: string 
+        author: string
         }
 }
 
-export function PostDestaque({variavelRecebida}:any){
+export function PostDestaque({variavelRecebida}:variavelRecebidaProps){
     return (
         
-            <div className={`${styles.postDestaque} ${estilo.postA}`}>
-                <a><img className={styles.imgPrincipal} src={variavelRecebida.image} alt={"Imagem Paisagem"} /></a>
-    
+            
+                <Link href={`/fazaginforma/${variavelRecebida.id}`} className={`${styles.postDestaque}`}>
+               <img className={styles.imgPrincipal} src={variavelRecebida.image} alt={"Imagem Paisagem"} />
                 <div className={styles.postContent}>
                     <div className={styles.postTexts}>
-                        <p className={styles.postDate}>{new Date(variavelRecebida.date).toLocaleString("pt-BR")}</p>
-                        <a><h2 className={styles.postTitle}>{variavelRecebida.title}</h2></a>
-                        <p className={styles.postDescription}>{variavelRecebida.description}</p>
+                        <p className={styles.postDate}>{variavelRecebida.updatedAt}</p>
+                        <h2 className={styles.postTitle}>{variavelRecebida.title}</h2>
+                        <p className={styles.postDescription}>{variavelRecebida.content}</p>
                     </div>
                     <div className={styles.author}>
                         <img className={styles.avFazag} src={variavelRecebida.avatar} alt={"avatar"} />
@@ -30,7 +32,8 @@ export function PostDestaque({variavelRecebida}:any){
     
                     </div>
                 </div>
-            </div> 
+                </Link>
+            
     )
     }
     

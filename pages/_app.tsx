@@ -1,5 +1,5 @@
-import '../styles/global.scss'
 import type { AppProps } from 'next/app'
+import '../styles/global.scss'
 import { Header } from '../components/Header'
 import Footer from '../components/Footer'
 import Script from 'next/script'
