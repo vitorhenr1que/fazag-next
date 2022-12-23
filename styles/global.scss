@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+/* FAZAG Informa */
+@media (max-width: 780px) {
+
+
+  .postDestaque {
+      flex-direction: column;
+  }
+  .author {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+  }
+  .postDescription{
+      text-align: justify;
+  }
+
+  
+}
+
+
+
+
+ 

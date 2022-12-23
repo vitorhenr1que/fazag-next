@@ -1,0 +1,44 @@
+.dropdown:hover > .dropdownMenu{
+    display: block;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+
+
+.navbarCollapse {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbarNav li {
+    margin: 10px;
+}
+
+.calend{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.entrar{
+    width: 100px;
+    padding: 7px;
+    background-color: rgb(37, 117, 223);
+    border: rgb(37, 117, 223);
+}
+
+/* Header */
+
+@media (max-width: 990px) {
+    .navbarNav {
+        align-items: center;
+    }
+    .aEntrar {
+        display: none;
+    }
+  
+  }

@@ -1,0 +1,53 @@
+.postDestaqueHome{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.pdHomeContent{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: center;
+}
+
+.pdHomeImg{
+    height: 50vh;
+    width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.pdHomeTexts{
+font-size: 1rem;
+font-weight: 400;
+}
+.pdHomeDate{
+font-size: .9rem;
+}
+.pdHomeTitle{
+font-size: 2rem;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--bs-gray-900);
+    &:hover {
+        color: var(--bs-blue);
+        transition: .5s;
+    }
+}
+.pdHomeDescription{
+margin: 0;
+}
+.pdHomeAuthor{
+margin: 0;
+    p{
+    font-size: .9rem;
+    margin: 0;
+    }
+}
+.pdHomeAv{
+width: 80px;
+}
+

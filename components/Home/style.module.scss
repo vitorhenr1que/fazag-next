@@ -1,0 +1,106 @@
+
+
+.botoesMain {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+    height: 100%;
+    width: 100%;
+
+    a {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        border-radius: 20px;
+
+        img {
+            max-width: 20rem;
+            width: 100%;
+        }
+        
+    
+    }
+}
+
+ 
+
+
+.mainInfo {
+
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+
+
+
+.agenda {
+ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.agenda .btn {
+width: 70%;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.buttonText {
+    flex: 4;
+}
+
+.eventosInstitucionais {
+    background-color: var(--bs-gray-300);
+}
+
+.phosforIcon {
+    flex: 1;
+}
+
+.calendarItem {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   color: black;
+   gap: .4rem;
+   
+}
+
+.calendarItem p {
+   
+    font-size: 1.5rem;
+    margin: 0;
+    
+}
+
+.calendarItem svg {
+   fill: #dc3545;
+}
+
+
+.fazagInfo {
+    text-decoration: none;
+    color: var(--bs-gray-900);
+}
+
+/* Agenda */
+@media(max-width: 780px){
+    .agenda .btn {
+        width: 55%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  }
+  }

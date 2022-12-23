@@ -1,0 +1,27 @@
+.postListContainer {
+    display: grid;
+    grid-template-areas: 
+    "a a a a"
+    "b b c c"
+    "d d e e";
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: start;
+    gap: 3rem;
+}
+
+.postA {
+    grid-area: a;
+}
+.postB {
+    grid-area: b;
+}
+.postC {
+    grid-area: c;
+}
+.postD {
+    grid-area: d;
+}
+.postE {
+    grid-area: e;
+}
