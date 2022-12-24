@@ -23,8 +23,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - SASS
 - JavaScript
 - TypeScript
-- ReactJS
-- Prisma
+- NextJS
+- Prismic CMS
 
 ## 🔗 Links
 
