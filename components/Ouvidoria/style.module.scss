@@ -1,0 +1,146 @@
+.DialogOverlay {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.6);
+    position: fixed;
+}
+
+.DialogContent {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    background: var(--white);
+    max-width: 550px;
+    max-height: 900px;
+    border-radius: 4px;
+    padding: 2rem;
+   
+}
+
+.DialogTitle {
+    font-size: 2rem;
+}
+
+.input {
+    padding: .5rem 1rem;
+    width: 100%;
+}
+
+.labels {
+    margin: 1rem 0 .4rem 0;
+    font-weight: bold;
+   
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .3rem;
+    margin: .3rem .5rem 0 0;
+    border: none;
+    background-color: transparent;
+    
+    .crossIcon {
+        transition: color .2s;
+        &:hover {
+            color: var(--blue-500);
+        }
+    }
+}
+
+.selectArea {
+    display: flex;
+    justify-content: space-between;
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        width: 49%;
+    }
+    select {
+        padding: .5rem 1rem;
+        width: 100%;
+    }
+}
+
+
+    .toggleGroupRoot {
+        display: flex;
+        justify-content: space-between;
+        .toggleGroupItem {
+            width: 49%;
+            padding: .5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            transition: .3s;
+        }
+        .toggleGroupItemSelected {
+            width: 49%;
+            padding: .5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            transition: .3s;
+            background: var(--blue-500);
+            color: var(--white);
+        }
+    }
+
+    .textArea {
+        width: 100%;
+    }
+
+    .enviarButton {
+
+        width: 100%;
+        border: none;
+        background: var(--blue-500);
+        padding: .5rem 1rem;
+        border-radius: 4px;
+        &:hover {
+            background: var(--blue-600);
+        }
+        span {
+            color: var(--white);
+        }
+    }
+
+
+    .btnOuvidoria {
+        padding: .4rem 4rem;
+        background: var(--bs-gray-300);
+    }
+
+    @media(max-width: 825px){
+        .DialogContent {
+            width: 90vw;
+            max-height: 900px;
+            overflow: scroll;
+        }
+    }
+
+    @media(max-width: 400px){
+        .DialogContent {
+            width: 90vw;
+            max-height: 600px;
+            overflow: scroll;
+        }
+    }
+
+    @media(max-height: 720px){
+        .DialogContent {
+            width: 90vw;
+            max-height: 600px;
+            overflow: scroll;
+        }
+    }
+
+    @media(max-height: 600px){
+        .DialogContent {
+            width: 90vw;
+            max-height: 500px;
+            overflow: scroll;
+        }
+    }
