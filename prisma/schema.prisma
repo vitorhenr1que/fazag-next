@@ -10,8 +10,6 @@ datasource db {
   url      = "mysql://fazag_admin:zszsxu5973@162.214.122.42:3306/fazag_web"
 }
 
-
-
 model Post {
   id          String   @id @default(uuid())
   title       String

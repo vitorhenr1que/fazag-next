@@ -1,53 +1,91 @@
 
 import { Cross2Icon } from "@radix-ui/react-icons";
-import { Dialog, DialogProps } from "@radix-ui/react-dialog";
-
+import * as Dialog from "@radix-ui/react-dialog";
+import styles from './style.module.scss'
+import * as ToggleGroup  from "@radix-ui/react-toggle-group";
+import { useState } from "react";
 
 export function Ouvidoria() {
+        const [procurouFAZAG, setProcurouFAZAG] = useState('sim')
+        console.log(procurouFAZAG)
         
-     /* const DialogDemo = () => (
-  <Dialog.Root>
-    <Dialog.Trigger asChild>
-      <button className="Button violet" size="large">
-        Edit profile
+        return (
+            <>
+              <Dialog.Root>
+    <Dialog.Trigger asChild >
+      <button className={`${styles.btnOuvidoria} btn btn-light`}>
+        Ouvidoria
       </button>
     </Dialog.Trigger>
     <Dialog.Portal>
-      <Dialog.Overlay className="DialogOverlay" />
-      <Dialog.Content className="DialogContent">
-        <Dialog.Title className="DialogTitle">Edit profile</Dialog.Title>
+      <Dialog.Overlay className={styles.DialogOverlay} />
+      <Dialog.Content className={styles.DialogContent}>
+        <Dialog.Title className={styles.DialogTitle}>Ouvidoria FAZAG</Dialog.Title>
         <Dialog.Description className="DialogDescription">
-          Make changes to your profile here. Click save when you're done.
+          Ajuda a FAZAG a melhorar cada vez mais.
         </Dialog.Description>
-        <fieldset className="Fieldset">
-          <label className="Label" htmlFor="name">
-            Name
-          </label>
-          <input className="Input" id="name" defaultValue="Pedro Duarte" />
-        </fieldset>
-        <fieldset className="Fieldset">
-          <label className="Label" htmlFor="username">
-            Username
-          </label>
-          <input className="Input" id="username" defaultValue="@peduarte" />
-        </fieldset>
+        <form action="" className={styles.form}>
+          
+          <label htmlFor="name" className={styles.labels}>Nome *</label>
+          <input type="text" id="name" placeholder="Nome" className={`${styles.input}`} required/>
+          
+         {/* <label htmlFor="cpf" className={styles.labels}>CPF (Opcional)</label>
+          <input type="text" id="cpf" placeholder="CPF" className={`${styles.input}`} /> */}
+
+          <label htmlFor="email" className={styles.labels}>E-mail *</label>
+          <input type="text" id="email" placeholder="E-mail" className={`${styles.input}`} required/>
+
+          <div className={styles.selectArea}>
+
+          <fieldset>
+          <label htmlFor="vinculo" className={styles.labels}>Seu Vínculo *</label>
+          <select name="vinculo" id="vinculo" className={styles.select}>
+            <option value="servidor">Servidor</option>
+            <option value="aluno">Aluno</option>
+            <option value="professor">Professor</option>
+            <option value="terceirizado">Terceirizado</option>
+            <option value="outros">Usuário/Outros</option>
+          </select>
+          </fieldset>
+
+          <fieldset>
+          <label htmlFor="motivo" className={styles.labels}>Motivo *</label>
+          <select name="motivo" id="motivo" className={styles.select} required>
+            <option value="critica">Crítica</option>
+            <option value="denuncia">Denúncia</option>
+            <option value="elogio">Elogio</option>
+            <option value="informacao">Informação</option>
+            <option value="reclamacao">Reclamação</option>
+            <option value="solicitacao">Solicitação</option>
+            <option value="sugestao">Sugestão</option>
+          </select>
+          </fieldset>
+          </div>
+
+          <fieldset>
+          <label htmlFor="procurei" className={styles.labels}>Você procurou o setor envolvido na manifestação, antes de recorrer à Ouvidoria?</label>
+            <ToggleGroup.Root className={styles.toggleGroupRoot} type="single" defaultValue="sim" onValueChange={setProcurouFAZAG}>
+              <ToggleGroup.Item value="sim" id="procurei" className={`${procurouFAZAG.includes('sim') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} title="Sim">Sim</ToggleGroup.Item>
+              <ToggleGroup.Item value="nao" className={`${procurouFAZAG.includes('nao') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} title="Não">Não</ToggleGroup.Item>
+            </ToggleGroup.Root>
+          </fieldset>
+
+          <label htmlFor="text" className={styles.labels}>Utilize o quadro abaixo para relatar seu motivo de procura:</label>
+          <textarea name="text" id="text" rows={5} className={styles.textArea}></textarea>
+        </form>
         <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
           <Dialog.Close asChild>
-            <button className="Button green">Save changes</button>
+            <button className={styles.enviarButton}><span>Enviar</span></button>
           </Dialog.Close>
         </div>
-        <Dialog.Close asChild>
-          <button className="IconButton" aria-label="Close">
-            <Cross2Icon />
+        <Dialog.Close asChild className={styles.close}>
+          <button className={styles.IconButton} aria-label="Close">
+            <Cross2Icon className={styles.crossIcon} />
           </button>
         </Dialog.Close>
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root> 
-); */
-        
-        return (
-            <>
             </>
         )
     
