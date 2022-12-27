@@ -21,3 +21,14 @@ model Post {
   published   Boolean
   date        DateTime @default(now())
 }
+
+model Ouvidoria {
+  id            String   @id @default(uuid())
+  nome          String
+  email         String
+  motivo        String
+  procurouSetor String
+  text          String
+  vinculo       String
+  data          DateTime @default(now())
+}
