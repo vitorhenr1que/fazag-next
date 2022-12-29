@@ -27,6 +27,7 @@
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.7",
     "next": "13.0.7",
+    "nodemailer": "^6.8.0",
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@prismicio/types": "^0.2.7",
+    "@types/nodemailer": "^6.4.7",
     "prisma": "^4.7.1",
     "slice-machine-ui": "^0.6.0"
   }

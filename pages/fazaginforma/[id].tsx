@@ -34,7 +34,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
     const { id }: any = params
-    const response = await getClient().getByUID('posts', id, {})
+    const response = await getClient().getByUID('posts', id, {}) 
     const posts = {
         id,
         title: response.data.title,
