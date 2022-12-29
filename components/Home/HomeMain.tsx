@@ -76,7 +76,9 @@ export default function HomeMain({posts}: PostsProps) {
               <Image className={styles.phosforIcon} size={24} />
                 <span className={styles.buttonText}>Eventos Institucionais</span>
               </button>
+
               <Ouvidoria/>
+              
               {/* OUVIDORIA AQUI */}
             </div>
           </div>

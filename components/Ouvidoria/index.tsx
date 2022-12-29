@@ -4,19 +4,23 @@ import styles from './style.module.scss'
 import * as ToggleGroup  from "@radix-ui/react-toggle-group";
 import { FormEvent, useState } from "react";
 import { api } from "../../services/api";
+import { Loading } from "./Loading";
 
 
 
 export function Ouvidoria() {
-        const [procurouFAZAG, setProcurouFAZAG] = useState('sim')
-        console.log(procurouFAZAG)
+        const [procurouFAZAG, setProcurouFAZAG] = useState('Sim')
+        const [openModal, setOpenModal] = useState(false)
+        const [loading, setLoading] = useState(false)
+
 
         async function handleSubmit(e: FormEvent){
           e.preventDefault()
+          setLoading(true)
+          
           const formData = new FormData(e.target as HTMLFormElement)
           const data = Object.fromEntries(formData)
-          console.log(data.email)
-
+          
           try {
             await api.post('/ouvidoria/create', {
               nome: data.nome,
@@ -27,15 +31,32 @@ export function Ouvidoria() {
               procurouSetor: procurouFAZAG
             })
 
+            await api.post('/ouvidoria/nodemailer', {
+              nome: data.nome,
+              email: data.email,
+              motivo: data.motivo,
+              text: data.text,
+              vinculo: data.vinculo,
+              procurouSetor: procurouFAZAG
+            }) 
+            setLoading(false)
+            
             alert('Mensagem enviada!')
+            setOpenModal(false)
           } catch(err){
-            console.log(err)
+            console.log(err, 'Erro com a validação do formulário')
           }
         }
         
         return (
             <>
-              <Dialog.Root>
+              <Dialog.Root open={openModal} onOpenChange={(open) => {
+                if(open === true){
+                  setOpenModal(true)
+                }else {
+                  setOpenModal(false)
+                }
+              }}>
     <Dialog.Trigger asChild >
       <button className={`${styles.btnOuvidoria} btn btn-light`}>
         Ouvidoria
@@ -44,6 +65,9 @@ export function Ouvidoria() {
     <Dialog.Portal>
       <Dialog.Overlay className={styles.DialogOverlay} />
       <Dialog.Content className={styles.DialogContent}>
+
+        {loading && <Loading/>}
+        
         <Dialog.Title className={styles.DialogTitle}>Ouvidoria FAZAG</Dialog.Title>
         <Dialog.Description className="DialogDescription">
           Ajuda a FAZAG a melhorar cada vez mais.
@@ -64,33 +88,33 @@ export function Ouvidoria() {
           <fieldset>
           <label htmlFor="vinculo" className={styles.labels}>Seu Vínculo <span>*</span></label>
           <select name="vinculo" id="vinculo" className={styles.select} required>
-            <option value="servidor">Servidor</option>
-            <option value="aluno">Aluno</option>
-            <option value="professor">Professor</option>
-            <option value="terceirizado">Terceirizado</option>
-            <option value="outros">Usuário/Outros</option>
+            <option value="Servidor">Servidor</option>
+            <option value="Aluno">Aluno</option>
+            <option value="Professor">Professor</option>
+            <option value="Terceirizado">Terceirizado</option>
+            <option value="Usuário/Outros">Usuário/Outros</option>
           </select>
           </fieldset>
 
           <fieldset>
           <label htmlFor="motivo" className={styles.labels}>Motivo <span>*</span></label>
           <select name="motivo" id="motivo" className={styles.select} required>
-            <option value="critica">Crítica</option>
-            <option value="denuncia">Denúncia</option>
-            <option value="elogio">Elogio</option>
-            <option value="informacao">Informação</option>
-            <option value="reclamacao">Reclamação</option>
-            <option value="solicitacao">Solicitação</option>
-            <option value="sugestao">Sugestão</option>
+            <option value="Crítica">Crítica</option>
+            <option value="Denúncia">Denúncia</option>
+            <option value="Elogio">Elogio</option>
+            <option value="Informação">Informação</option>
+            <option value="Reclamação">Reclamação</option>
+            <option value="Solicitação">Solicitação</option>
+            <option value="Sugestão">Sugestão</option>
           </select>
           </fieldset>
           </div>
 
           <fieldset>
           <label htmlFor="procurei" className={styles.labels}>Você procurou o setor envolvido na manifestação, antes de recorrer à Ouvidoria? <span>*</span></label>
-            <ToggleGroup.Root className={styles.toggleGroupRoot} type="single" defaultValue="sim" onValueChange={setProcurouFAZAG}>
-              <ToggleGroup.Item value="sim" id="procurei" className={`${procurouFAZAG.includes('sim') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} title="Sim">Sim</ToggleGroup.Item>
-              <ToggleGroup.Item value="nao" className={`${procurouFAZAG.includes('nao') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} title="Não">Não</ToggleGroup.Item>
+            <ToggleGroup.Root className={styles.toggleGroupRoot} type="single" defaultValue="Sim" onValueChange={setProcurouFAZAG}>
+              <ToggleGroup.Item value="Sim" id="procurei" className={`${procurouFAZAG.includes('Sim') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} title="Sim">Sim</ToggleGroup.Item>
+              <ToggleGroup.Item value="Não" className={`${procurouFAZAG.includes('Não') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} title="Não">Não</ToggleGroup.Item>
             </ToggleGroup.Root>
           </fieldset>
 
