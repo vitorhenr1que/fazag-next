@@ -12,7 +12,7 @@
 ## 📝 Descrição 
 
 Site Faculdade Zacarias de Góes + Sistema de blog (Autenticação de usuários, Criação de Posts)
--  [site-fazag.vercel.app](https://site-fazag.vercel.app/)
+-  [fazag-next.vercel.app](https://fazag-next.vercel.app/)
 
 ## 🚀 Tecnologias
 
