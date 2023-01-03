@@ -21,7 +21,7 @@ export function Header(){
                 <ul className={`navbar-nav ${styles.navbarNav}`}> 
                   <li className={`nav-item dropdown ${styles.dropdown}`}>
                   
-                    <a className={"nav-link dropdown-toggle active"} aria-current={"page"}>A Faculdade</a>
+                    <a className={"nav-link dropdown-toggle active"} aria-current={"page"} role={"button"} data-bs-toggle={"dropdown"}>A Faculdade</a>
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
                       <li><a className={"dropdown-item"}>Quem somos</a></li>
                       <li><a className={"dropdown-item"}>Missão, Visão e Valores</a></li>
