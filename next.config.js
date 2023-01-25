@@ -12,6 +12,10 @@ const nextConfig = {
         source: '/api/ouvidoria/create',
         destination: 'https://fazag-next.vercel.app/api/ouvidoria/create'
       },
+      {
+        source: '/api/ouvidoria/nodemailer',
+        destination: 'https://fazag-next.vercel.app/api/ouvidoria/nodemailer'
+      },
     ]
   },
 }
