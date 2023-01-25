@@ -8,6 +8,10 @@ const nextConfig = {
         source: '/api/posts/allposts',
         destination: 'https://fazag-next.vercel.app/api/posts/allposts',
       },
+      {
+        source: '/api/ouvidoria/create',
+        destination: 'https://fazag-next.vercel.app/api/ouvidoria/create'
+      },
     ]
   },
 }
