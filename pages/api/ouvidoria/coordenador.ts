@@ -17,6 +17,6 @@ if(req.method === 'POST'){
     return res.status(200).json({coord})
 } else {
 
-    return res.status(400).send('Bad Request')
+    return res.status(400).send('Bad Request.')
 }
 }
