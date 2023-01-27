@@ -20,6 +20,10 @@ const nextConfig = {
         source: '/api/ouvidoria/coordenador',
         destination: 'https://fazag-next.vercel.app/api/ouvidoria/coordenador'
       },
+      {
+        source: '/api/ouvidoria/emailcoordenador',
+        destination: 'https://fazag-next.vercel.app/api/ouvidoria/emailcoordenador'
+      },
     ]
   },
 }
