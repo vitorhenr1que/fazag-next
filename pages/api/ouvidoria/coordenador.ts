@@ -3,8 +3,9 @@ import { prisma } from "../../../services/prisma";
 
 
 export default async function (req: NextApiRequest, res: NextApiResponse){
-if(req.method === 'POST'){
     const data = req.body
+if(req.method === 'POST'){
+    
     const coord = await prisma.coordenador.create({
         data: {
             nome: data.nome,
@@ -15,6 +16,7 @@ if(req.method === 'POST'){
     })
     return res.status(200).json({coord})
 } else {
-    return res.send('erro')
+
+    return res.status(400).send('Bad Request')
 }
 }
