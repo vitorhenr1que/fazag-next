@@ -1,5 +1,7 @@
 import styles from './style.module.scss'
 import Link from 'next/dist/client/link'
+import logoFazag from '../../../public/images/logo-fazag.png'
+import Image from 'next/image'
 
 type variavelRecebidaProps = {
         variavelRecebida: {
@@ -26,7 +28,7 @@ export function PostDestaque({variavelRecebida}:variavelRecebidaProps){
                         <p className={styles.postDescription}>{variavelRecebida.content}</p>
                     </div>
                     <div className={styles.author}>
-                        <img className={styles.avFazag} src={variavelRecebida.avatar} alt={"avatar"} />
+                        <Image className={styles.avFazag} src={logoFazag} alt={"avatar"} />
                         <p><strong>FAZAG</strong></p>
                         <p>Faculdade Zacarias de Góes</p>
     
