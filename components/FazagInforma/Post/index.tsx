@@ -5,7 +5,7 @@ import styles from './style.module.scss'
 export interface receberVariavelProps {
     receberVariavel: {
         id: string
-        image: string
+        image?: string
         updatedAt: string
         title: string
         content: string
