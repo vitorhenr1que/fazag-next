@@ -41,7 +41,7 @@ console.log(posts)
 export const getStaticProps: GetStaticProps = async () => {
 
 const response = await getClient().getFirst()
-
+console.log(response)
 const posts = {
   id: response.uid,
   title: response.data.title,

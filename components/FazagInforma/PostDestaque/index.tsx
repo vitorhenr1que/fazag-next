@@ -4,7 +4,7 @@ import Link from 'next/dist/client/link'
 type variavelRecebidaProps = {
         variavelRecebida: {
         id: string
-        image: string
+        image?: string
         updatedAt: string
         title: string
         content: string

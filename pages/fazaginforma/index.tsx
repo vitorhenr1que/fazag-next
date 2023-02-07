@@ -39,9 +39,12 @@ export default function FazagInforma({response, posts}: any){
 export const getStaticProps = async () => {
 
     const response = await getClient().getByType('posts', {
-        pageSize: 9
+        orderings: {
+            field: 'document.first_publication_date',
+            direction: 'desc'
+          },
+          pageSize: 9
     })
-
     const posts = response.results.map(post => {
         return {
             id: post.uid,
