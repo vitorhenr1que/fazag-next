@@ -49,6 +49,7 @@ export function Header(){
                       <li><a className={"dropdown-item"}>Fisioterapia</a></li>
                       <li><a className={"dropdown-item"}>Nutrição</a></li>
                       <li><a className={"dropdown-item"}>Pedagogia</a></li>
+                      <li><a className={"dropdown-item"}>Psicologia</a></li>
                       <li><a className={"dropdown-item"}>Serviço Social</a></li>
                     </ul>
                   </li>
