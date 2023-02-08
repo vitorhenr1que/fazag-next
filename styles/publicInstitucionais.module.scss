@@ -1,0 +1,21 @@
+
+.container {
+    margin-top: 1rem;
+    width: 100%;
+    background-color: '#121212';
+    text-align: center;
+}
+
+.calendarItem {
+    &:hover {
+        p {
+            transition: .2s;
+            color: red;
+        }
+    }
+}
+.linksContainer {
+    display: 'flex';
+    flex-direction: 'column';
+    gap: 4rem;
+}
