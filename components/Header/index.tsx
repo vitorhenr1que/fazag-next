@@ -2,10 +2,10 @@ import styles from './style.module.scss'
 import fazaglogo from '../../public/images/logo-fazag.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import { GetStaticProps } from 'next'
-import { getClient } from '../../services/prismic'
+
+
 export function Header(){
-  
+
     return (
         <>
          <header>
@@ -25,7 +25,7 @@ export function Header(){
                   
                     <a className={"nav-link dropdown-toggle active"} aria-current={"page"} role={"button"} data-bs-toggle={"dropdown"}>A Faculdade</a>
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
-                      <li><Link href="/fazaginforma/quem-somos" className={"dropdown-item"}>Quem somos</Link></li>
+                      <li><Link href="/fazaginforma/quem-somos" className={"dropdown-item"} >Quem somos</Link></li>
                       <li><Link href="/fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir" className={"dropdown-item"}>Missão, Visão e Valores</Link></li>
                       <li><a className={"dropdown-item"}>Regimento Geral</a></li>
                       <li><a className={"dropdown-item"}>Publicações Institucionais</a></li>
