@@ -28,8 +28,7 @@ export function Header(){
                       <li><Link href="/fazaginforma/quem-somos" className={"dropdown-item"} >Quem somos</Link></li>
                       <li><Link href="/fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir" className={"dropdown-item"}>Missão, Visão e Valores</Link></li>
                       <li><a className={"dropdown-item"}>Regimento Geral</a></li>
-                      <li><a className={"dropdown-item"}>Publicações Institucionais</a></li>
-                      <li><a className={"dropdown-item"}>Ouvidoria</a></li>
+                      <li><Link href={"/publicacoes-institucionais"} className={"dropdown-item"}>Publicações Institucionais</Link></li>
                     </ul>
                   </li>
 
