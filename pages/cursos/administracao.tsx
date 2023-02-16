@@ -1,4 +1,6 @@
+import { GetStaticProps } from "next";
 import { Buttons } from "../../components/Cursos/buttons";
+import { getClient } from "../../services/prismic";
 import styles from '../../styles/cursos.module.scss'
 
 export default function Administracao(){
@@ -30,4 +32,20 @@ export default function Administracao(){
             <p>Autorizado pela Portaria No. 192, de 25 de Janeiro de 2002. Reconhecido pela Portaria Ministerial Nº 2659, de 28 de Julho de 2005.</p>
         </div>
     )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+   const response = await getClient().getByUID('posts', 'informacoes-do-curso-de-administracao', {})
+
+   const post = {
+    id: 'informacoes-do-curso-de-administracao',
+    title: response.data.title,
+    content: response.data.content
+   }
+   return {
+    props: {
+        response,
+        post,
+    }
+   }
 }
