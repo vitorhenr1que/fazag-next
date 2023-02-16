@@ -44,18 +44,18 @@ function closeToggle(){
                      <a className={"nav-link dropdown-toggle"} role={"button"} data-bs-toggle={"dropdown"} aria-expanded={"false"}>Cursos de <br/><strong>Graduação</strong></a> 
                     
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}> 
-                    <LinkHeader linkName={'Administração'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Ciências Contábeis'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Educação Física'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Engenharia Civil'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Enfermagem'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Estética'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Farmácia'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Fisioterapia'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Nutrição'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Pedagogia'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Psicologia'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Serviço Social'} url={"#"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Administração'} url={"/cursos/administracao"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Ciências Contábeis'} url={"/cursos/ciencias-contabeis"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Educação Física'} url={"/cursos/ed-fisica"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Engenharia Civil'} url={"/cursos/engenharia-civil"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Enfermagem'} url={"/cursos/enfermagem"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Estética'} url={"/cursos/estetica"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Farmácia'} url={"/cursos/farmacia"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Fisioterapia'} url={"/cursos/fisioterapia"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Nutrição'} url={"/cursos/nutricao"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Pedagogia'} url={"/cursos/pedagogia"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Psicologia'} url={"/cursos/psicologia"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Serviço Social'} url={"/cursos/servico-social"} closeToggle={closeToggle}/>
                     </ul>
                   </li>
 
@@ -77,9 +77,9 @@ function closeToggle(){
                   <li className={`nav-item dropdown ${styles.dropdown}`}> 
                     <a className={"nav-link dropdown-toggle"} role={"button"} data-bs-toggle={"dropdown"} aria-expanded={"false"}>Diferenciais</a>
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
-                        <li><Link href="/fazaginforma/bolsas-descontos-financiamentos" className={"dropdown-item"}>Bolsas e Financiamentos</Link></li>
-                        <LinkHeader linkName={'Monitoria'} url={"#"} closeToggle={closeToggle}/>
-                        <LinkHeader linkName={'Feira de Inovação'} url={"#"} closeToggle={closeToggle}/>
+                        <LinkHeader url="/fazaginforma/bolsas-descontos-financiamentos" linkName='Bolsas e Financiamentos' closeToggle={closeToggle}/>
+                        <LinkHeader linkName={'Monitoria'} url={"/fazaginforma/monitoria"} closeToggle={closeToggle}/>
+                        <LinkHeader linkName={'Feira de Inovação'} url={"/fazaginforma/feira-de-inovacao"} closeToggle={closeToggle}/>
                         <LinkHeader linkName={'Núcleo de Tec. e Manutenção Pedag.'} url={"#"} closeToggle={closeToggle}/>
                     </ul>
                   </li>

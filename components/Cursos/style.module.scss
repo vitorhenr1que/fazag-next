@@ -22,12 +22,39 @@
         &:active {
             outline: 0;
           }
+          
     }
+    
     
 }
 
 .buttonContainer {
     flex: 1;
+}
+
+
+
+.linkContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .linkDownload {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+        margin-top: 15px;
+        background-color: #464d55;
+        color: white;
+        border-radius: 0px 0px 4px 4px;
+        margin: 0;
+        &:hover {
+            color: var(--bs-btn-bg);
+        }
+    }
 }
 
 @media(max-width: 654px){

@@ -7,15 +7,22 @@
         margin: .5rem;
     }
 
-    h3 {
+    .headingOne {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+    .headingTwo {
+        margin-top: 1.5rem;
+        font-size: 1.6rem;
+   
+    }
+    .headingTree {
         margin-top: 1rem;
         font-size: 1.2rem;
+        font-weight: bold;
     }
-    .paragrafo {
+    .paragraph {
         text-align: justify;
-    }
-    .infoCourse {
-        margin-top: 1.5rem;
     }
 
 }
