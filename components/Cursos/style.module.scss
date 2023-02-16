@@ -1,0 +1,40 @@
+.buttonsContainer{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .button {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 4px;
+        background: linear-gradient(#464d55, #25292e);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1),0 3px 6px rgba(0, 0, 0, .05);
+        color: white;
+        text-align: center;
+        &:hover {
+            box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+            opacity: .85;
+          }
+        &:focus {
+            box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
+          }
+        &:active {
+            outline: 0;
+          }
+    }
+    
+}
+
+.buttonContainer {
+    flex: 1;
+}
+
+@media(max-width: 654px){
+    .buttonsContainer{
+        flex-direction: column;
+        .button {
+            width: 80vw;
+        }
+    }
+}
