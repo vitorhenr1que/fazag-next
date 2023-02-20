@@ -7,12 +7,15 @@ import styles from './style.module.scss'
 
 interface GaleriaProps {
     name: string;
-    images: (string | number | any)[];
+    images: Array<{
+        src: string,
+        height: number,
+        width: number
+    }>;
 }
 
 export default function Galeria({name, images}: GaleriaProps){
     const [index, setIndex] = useState(-1)
-    
      const currentImage = images[index]
      const handleClick = (index: number) => {setIndex(index)} 
      const handleClose = () => {setIndex(-1)}
