@@ -1,5 +1,6 @@
 import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import { Buttons } from "../../components/Cursos/Buttons";
 import { getClient } from "../../services/prismic";
 import styles from '../../styles/cursos.module.scss'
@@ -8,7 +9,9 @@ export default function Curso({post, response}: any){
     console.log(response)
     return (
         <div className={`${styles.container} container`}>
-
+            <Head>
+                <title>{post.title} | FAZAG</title>
+            </Head>
             <h1>{post.title}</h1>
             <Buttons curso={post.id} title={post.title}/>
             <PrismicRichText field={post.content} components={

@@ -71,7 +71,7 @@ function closeToggle(){
                   </li>
 
                   <li className={"nav-item"}> 
-                    <a className={"nav-link"}>Aluno FAZAG</a>
+                    <a className={"nav-link"} href="http://sistemajaguar.com.br/">Aluno FAZAG</a>
                   </li>
 
                   <li className={`nav-item dropdown ${styles.dropdown}`}> 
