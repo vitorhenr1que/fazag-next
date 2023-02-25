@@ -30,7 +30,7 @@ export function FormaIngressar() {
                 <p className={styles.paragrafo}>
                     <strong>Transfira seu curso para a nossa Faculdade</strong>
                     <span>Junte os documentos necessários para se transferir para a FAZAG</span>
-                    <a href='#'>(Confira a documentação aqui)</a>
+                    <a href='/fazaginforma/veja-a-lista-de-documentos-necessarios'>(Confira a documentação aqui)</a>
                 </p>
                 </div>
                 <div className={`${styles.formasDeIngressoContentItem} ${styles.itemD}`}>
@@ -41,7 +41,7 @@ export function FormaIngressar() {
                     <span>1 - Escolha o curso, preencha o formulário de inscrição em nosso site.</span>
                     <span>2 - Junte os documentos necessários.</span>
                     <span>3 - Entregue a documentação na secretaria e boa sorte.</span>
-                    <a href='#'>(Confira a documentação aqui)</a>
+                    <a href='/fazaginforma/veja-a-lista-de-documentos-necessarios'>(Confira a documentação aqui)</a>
                 </p>
                 </div>
                 <div className={`${styles.formasDeIngressoContentItem} ${styles.itemE}`}>
@@ -52,7 +52,7 @@ export function FormaIngressar() {
                     <span>1 - Escolha o curso, preencha o formulário de inscrição em nosso site.</span>
                     <span>2 - Junte os documentos necessários para ingressar com sua nota do ENEM.</span>
                     <span>3 - Entregue a documentação na secretaria e boa sorte.</span>
-                    <a href='#'>(Confira a documentação aqui)</a>
+                    <a href='/fazaginforma/veja-a-lista-de-documentos-necessarios'>(Confira a documentação aqui)</a>
                 </p>
                 </div>
             </div>
