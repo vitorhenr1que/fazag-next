@@ -78,7 +78,16 @@ export default function HomeMain({posts}: PostsProps) {
 
               <Ouvidoria/>
               
-              {/* OUVIDORIA AQUI */}
+              <div className={styles.eMEContainer}>
+                <a className={styles.spanMEC} href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MjU2OA==">
+                  <span>Consulte aqui o cadastro da</span>
+                  <span>instituição no sistema e-MEC</span>
+                </a>
+                <a className={styles.mecQrCode} href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MjU2OA==">
+                  <img src="/images/mecqrcode.png" alt="qrcode" />
+                </a>
+              </div>
+
             </div>
           </div>
         </div>

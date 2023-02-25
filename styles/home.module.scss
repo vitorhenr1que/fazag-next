@@ -4,3 +4,8 @@
   gap: 5rem;
 }
 
+@media (max-width: 736px){
+  .mainContainer {
+    gap: 3rem
+  }
+}
