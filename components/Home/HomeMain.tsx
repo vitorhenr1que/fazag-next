@@ -1,4 +1,5 @@
-import { Calendar, Image } from "phosphor-react";
+import { Calendar, Image as Photo } from "phosphor-react";
+import Image from 'next/image'
 import { Slide } from "./HomeAssets/Slide";
 import { ButtonsMain } from "./HomeAssets/ButtonsMain";
 import { FormaIngressar } from './HomeAssets/FormaIngressar'
@@ -72,7 +73,7 @@ export default function HomeMain({posts}: PostsProps) {
                 </a>
               </div>
               <button className={`btn btn-light ${styles.eventosInstitucionais}`}>
-              <Image className={styles.phosforIcon} size={24} />
+              <Photo className={styles.phosforIcon} size={24} />
                 <Link href="/eventos-institucionais" className={styles.buttonText}>Eventos Institucionais</Link>
               </button>
 
@@ -84,7 +85,7 @@ export default function HomeMain({posts}: PostsProps) {
                   <span>instituição no sistema e-MEC</span>
                 </a>
                 <a className={styles.mecQrCode} href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MjU2OA==">
-                  <img src="/images/mecqrcode.png" alt="qrcode" />
+                  <Image width={190} height={290} src={"/images/mecqrcode.png"} alt={"qrcode"} />
                 </a>
               </div>
 
