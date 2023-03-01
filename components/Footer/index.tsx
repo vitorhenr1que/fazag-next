@@ -8,6 +8,8 @@ import facebook from '../../public/images/icons/facebook.svg'
 import instagram from '../../public/images/icons/instagram.svg'
 import whatsapp from '../../public/images/icons/whatsapp.svg'
 import logofazag from '../../public/images/logo-fazag-branca.png'
+import Link from 'next/link'
+
 
 export default function Footer() {
     return (
@@ -15,38 +17,38 @@ export default function Footer() {
             <div className={`container ${styles.footerHeader}`}>
                 <div className={styles.divFooter}>
                     <span>A FAZAG</span>
-                    <a href="fazaginforma/quem-somos">Quem somos</a>
-                    <a href="fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir">Missão, Visão e Valores</a>
-                    <a href="#">Regimento Geral</a>
-                    <a href="publicacoes-institucionais">Publicações Insitucionais</a>
+                    <Link href="fazaginforma/quem-somos">Quem somos</Link>
+                    <Link href="fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir">Missão, Visão e Valores</Link>
+                    <Link href="#">Regimento Geral</Link>
+                    <Link href="publicacoes-institucionais">Publicações Insitucionais</Link>
                 </div>
                 <div className={styles.divFooter}>
                     <span>CURSOS</span>
-                    <a href="cursos/administracao">Administração</a>
-                    <a href="cursos/ciencias-contabeis">Ciências Contábeis</a>
-                    <a href="cursos/educacao-fisica">Educação Física</a>
-                    <a href="cursos/enfermagem">Enfermagem</a>
-                    <a href="cursos/engenharia-civil">Engenharia Civil</a>
-                    <a href="cursos/estetica">Estética</a>
-                    <a href="cursos/farmacia">Farmácia</a>
-                    <a href="cursos/fisioterapia">Fisioterapia</a>
-                    <a href="cursos/nutricao">Nutrição</a>
-                    <a href="cursos/pedagogia">Pedagogia</a>
-                    <a href="cursos/psicologia">Psicologia</a>
-                    <a href="cursos/servico-social">Serviço Social</a>
+                    <Link href="cursos/administracao">Administração</Link>
+                    <Link href="cursos/ciencias-contabeis">Ciências Contábeis</Link>
+                    <Link href="cursos/educacao-fisica">Educação Física</Link>
+                    <Link href="cursos/enfermagem">Enfermagem</Link>
+                    <Link href="cursos/engenharia-civil">Engenharia Civil</Link>
+                    <Link href="cursos/estetica">Estética</Link>
+                    <Link href="cursos/farmacia">Farmácia</Link>
+                    <Link href="cursos/fisioterapia">Fisioterapia</Link>
+                    <Link href="cursos/nutricao">Nutrição</Link>
+                    <Link href="cursos/pedagogia">Pedagogia</Link>
+                    <Link href="cursos/psicologia">Psicologia</Link>
+                    <Link href="cursos/servico-social">Serviço Social</Link>
                 </div>
                 <div className={styles.divFooterBlock}>
                     <div className={styles.divFooter}>
                         <span>CONTEUDOS</span>
-                        <a href="publicacoes-institucionais">Calendário Acadêmico</a>
-                        <a href="eventos-institucionais">Eventos Institucionais</a>
-                        <a href="fazaginforma/cpa">CPA</a>
-                        <a href="fazaginforma/monitoria">Monitoria</a>
+                        <Link href="publicacoes-institucionais">Calendário Acadêmico</Link>
+                        <Link href="eventos-institucionais">Eventos Institucionais</Link>
+                        <Link href="fazaginforma/cpa">CPA</Link>
+                        <Link href="fazaginforma/monitoria">Monitoria</Link>
                     </div>
                     <div className={styles.divFooter}>
                         <span>SUPORTE</span>
-                        <a href="#">Perguntas Frequentes</a>
-                        <a href="#">Contato</a>
+                        <Link href="#">Perguntas Frequentes</Link>
+                        <Link href="#">Contato</Link>
                     </div>
                 </div>
                 <div className={styles.divFooterBlock}>
@@ -64,7 +66,7 @@ export default function Footer() {
                     </div>
                     <div className={styles.divFooterButton}>
                         <span>Acesse o Portal da FAZAG</span>
-                        <a className='btn btn-primary' href="http://sistemajaguar.com.br">Entrar</a>
+                        <Link className='btn btn-primary' href="http://sistemajaguar.com.br">Entrar</Link>
                     </div>
                 </div>
             </div>
@@ -72,7 +74,7 @@ export default function Footer() {
             <div className={`${styles.lowFooter} container`}>
             <hr/>
             <div className={styles.divLowFooter}>
-                <a href="/"><Image width={100} src={logofazag} alt={'Logo FAZAG'} quality={100}/></a>
+                <Link href="/"><Image width={100} src={logofazag} alt={'Logo FAZAG'} quality={100}/></Link>
                 <span>Copyright © 2002-2023 Sociedade Educacional Zacarias de Góes LTDA. Todos os direitos reservados.</span>
             </div>
             

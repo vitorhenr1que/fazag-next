@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './style.module.scss'
 
 interface SocialIconProps{
@@ -8,6 +9,6 @@ interface SocialIconProps{
 
 export function SocialIcon({buttonColor, logo, link}: SocialIconProps){
     return (
-        <a className={styles.icon} style={{background: `${buttonColor}`}} href={link} target={'_blank'}>{logo}</a>
+        <Link className={styles.icon} style={{background: `${buttonColor}`}} href={link} target={'_blank'} rel={'noreferrer'}>{logo}</Link>
     )
 }
