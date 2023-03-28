@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useEffect } from 'react'
 import { LinkHeader } from './LinkHeader'
+import { LinkHeaderDownload } from './LinkHeaderDownload'
 
 export function Header(){
 
@@ -32,7 +33,7 @@ function closeToggle(){
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
                       <LinkHeader linkName={'Quem somos'} url={"/fazaginforma/quem-somos"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Missão, Visão e Valores'} url={"/fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir"} closeToggle={closeToggle}/>
-                      <LinkHeader linkName={'Regimento Geral'} url={"#"} closeToggle={closeToggle}/>
+                      <LinkHeaderDownload linkName={'Regimento Geral'} url={"/static/regulamentos/regulamentogeral.pdf"} download={"Regulamento Geral.pdf"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Publicações Institucionais'} url={"/publicacoes-institucionais"} closeToggle={closeToggle}/>
                       
                     </ul>
@@ -70,8 +71,12 @@ function closeToggle(){
                     </ul>
                   </li>
 
-                  <li className={"nav-item"}> 
-                    <a className={"nav-link"} href="http://sistemajaguar.com.br/">Aluno FAZAG</a>
+                  <li className={`nav-item dropdown ${styles.dropdown}`}> 
+                    <a className={"nav-link dropdown-toggle"} role={"button"} data-bs-toggle={"dropdown"} aria-expanded={"false"}>Aluno FAZAG</a>
+                    <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
+                      <LinkHeader linkName={'Ambiente Virtual de Aprendizagem'} url={"https://moodle.fazag.edu.br"} closeToggle={closeToggle}/>
+                      <LinkHeader linkName={'Portal do Aluno'} url={"http://sistemajaguar.com.br"} closeToggle={closeToggle}/>
+                    </ul>
                   </li>
 
                   <li className={`nav-item dropdown ${styles.dropdown}`}> 

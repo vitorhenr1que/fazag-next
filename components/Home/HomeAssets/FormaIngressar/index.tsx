@@ -20,11 +20,11 @@ export function FormaIngressar() {
                <h4>VESTIBULAR ONLINE</h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed eligendi voluptas dolorem, sequi voluptatum, blanditiis enim qui minima totam quidem harum non necessitatibus! Voluptatum porro dolor, possimus ullam quo aliquid!</p>
                 </div>
-                <div className={`${styles.formasDeIngressoContentItem} ${styles.itemB}`}>
+                {/*<div className={`${styles.formasDeIngressoContentItem} ${styles.itemB}`}>
                 <Image src={vestoffline} alt="" />
                 <h4>VESTIBULAR TRADICIONAL</h4>
                 <p>O vestibular tradicional é aquele em que são divulgadas as datas relacionadas com o período de inscrição, datas das provas, matrículas, etc. Geralmente a FAZAG divulga um edital e/ou manual do candidato onde podem ser encontradas todas as informações referentes ao exame. As provas podem ser objetivas ou dissertativas, mas normalmente possuem uma redação.</p>
-                </div>
+                </div>*/}
                 <div className={`${styles.formasDeIngressoContentItem} ${styles.itemC}`}>
                 <Image src={transferency} alt="" />
                 <h4>TRANSFERÊNCIA</h4>
