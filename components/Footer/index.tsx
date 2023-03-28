@@ -19,7 +19,7 @@ export default function Footer() {
                     <span>A FAZAG</span>
                     <Link href="fazaginforma/quem-somos">Quem somos</Link>
                     <Link href="fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir">Missão, Visão e Valores</Link>
-                    <Link href="#">Regimento Geral</Link>
+                    <Link href="/static/regulamentos/regulamentogeral.pdf" download={"Regulamento Geral.pdf"}>Regimento Geral</Link>
                     <Link href="publicacoes-institucionais">Publicações Insitucionais</Link>
                 </div>
                 <div className={styles.divFooter}>
