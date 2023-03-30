@@ -137,14 +137,23 @@
     
 }
 
-@media(max-width: 417px){
-    .fazagInfo {
-        font-size: 2.5rem;
+@media(max-width: 991px){
+    .mainInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .fazagInfo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
+    
 }
 
-@media(max-width: 350px){
+@media(max-width: 500px){
     .fazagInfo {
         font-size: 2rem;
     }
 }
+

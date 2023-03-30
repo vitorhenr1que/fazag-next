@@ -18,6 +18,8 @@ justify-content: center;
     object-fit: cover;
 }
 
+
+
 .pdHomeTexts{
 font-size: 1rem;
 font-weight: 400;
@@ -51,3 +53,21 @@ margin: 0;
 width: 80px;
 }
 
+@media(max-width: 991px){
+    .pdHomeDescription {
+        text-align: justify;
+    }
+}
+
+@media(max-width: 500px){
+    .pdHomeImg {
+        height: 15vh;
+    }
+    .pdHomeTitle {
+        font-size: 1.5rem;
+    }
+    .pdHomeDescription {
+        text-align: justify;
+        font-size: .9rem;
+    }
+}
