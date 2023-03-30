@@ -44,7 +44,7 @@ export default function HomeMain({posts}: PostsProps) {
 
         <div className={`container ${styles.blocos}`}>
           <div className={`row ${styles.mainInfo}`}>
-            <div className={"col-md-8"}>
+            <div className={`col-md-8 ${styles.fazagInfoContainer}`}>
               
                 <Link href="/fazaginforma" className={styles.fazagInfo}>FAZAG INFORMA</Link>
                 {/* COLOCAR COMPONENTE AQUI! */}
