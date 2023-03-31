@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRef, useEffect } from 'react'
 import { LinkHeader } from './LinkHeader'
 import { LinkHeaderDownload } from './LinkHeaderDownload'
-import { LinkHeaderNavLinky } from './LinkHeaderNavLink'
+import { LinkHeaderNavLink } from './LinkHeaderNavLink'
 
 export function Header(){
 
