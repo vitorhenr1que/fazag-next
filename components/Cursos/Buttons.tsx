@@ -21,7 +21,7 @@ return (
         </div>
         </div>
 
-        <div className={styles.buttonContainer}>
+        {/*<div className={styles.buttonContainer}>
         <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapsePPC" role="button" aria-expanded="false" aria-controls="collapsePPC">PPC</a>
         <div className="collapse" id="collapsePPC">
             <div className={styles.linkContainer}>
@@ -31,7 +31,7 @@ return (
                 </a>
             </div>
         </div>
-        </div>
+        </div>*/}
         
         <div className={styles.buttonContainer}>
         <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapseMatriz" role="button" aria-expanded="false" aria-controls="collapseMatriz">Matriz Curricular</a>
