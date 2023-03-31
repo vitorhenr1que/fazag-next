@@ -5,6 +5,7 @@ import * as ToggleGroup  from "@radix-ui/react-toggle-group";
 import { FormEvent, useState } from "react";
 import { api } from "../../services/api";
 import { Loading } from "./Loading";
+import { Headset } from "phosphor-react";
 
 
 
@@ -59,7 +60,8 @@ export function Ouvidoria() {
               }}>
     <Dialog.Trigger asChild >
       <button className={`${styles.btnOuvidoria} btn btn-light`}>
-        Ouvidoria
+        <Headset size={24} className={styles.icon}/>
+        <span>Ouvidoria</span>
       </button>
     </Dialog.Trigger>
     <Dialog.Portal>
