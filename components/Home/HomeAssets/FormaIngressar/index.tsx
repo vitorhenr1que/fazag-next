@@ -18,7 +18,7 @@ export function FormaIngressar() {
                 <div className={`${styles.formasDeIngressoContentItem} ${styles.itemA}`}>
                <Image src={vestonline} alt="" />
                <h4>VESTIBULAR ONLINE</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed eligendi voluptas dolorem, sequi voluptatum, blanditiis enim qui minima totam quidem harum non necessitatibus! Voluptatum porro dolor, possimus ullam quo aliquid!</p>
+                <p>Com a comodidade e flexibilidade que a internet oferece, você pode realizar sua prova de onde quiser e no horário que melhor se encaixa na sua rotina.</p>
                 </div>
                 {/*<div className={`${styles.formasDeIngressoContentItem} ${styles.itemB}`}>
                 <Image src={vestoffline} alt="" />
