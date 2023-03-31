@@ -89,7 +89,7 @@ function closeToggle(){
                     </ul>
                   </li>
                   <li className={"nav-item"}> 
-                   <a className={"nav-link"}>CPA</a>
+                  <LinkHeader linkName={'CPA'} url={"/fazaginforma/cpa"} closeToggle={closeToggle}/>
                     
                   </li>
                   <li>
