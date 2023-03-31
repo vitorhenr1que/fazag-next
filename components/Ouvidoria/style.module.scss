@@ -112,8 +112,14 @@
 
 
     .btnOuvidoria {
-        padding: .4rem 4rem;
         background: var(--bs-gray-300);
+        span {
+            flex: 4;
+            text-align: center;
+        }
+        .icon {
+            flex: 1;
+        }
     }
 
     @media(max-width: 825px){
