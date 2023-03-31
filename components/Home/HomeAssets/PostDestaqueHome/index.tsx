@@ -9,7 +9,7 @@ export function PostDestaqueHome({posts}: PostsProps){
 
 
     return (
-        
+        <>
             <Link href={`/fazaginforma/${posts.id}`} className={styles.postDestaqueHome}>
                 <Image width={1080} quality={100} height={1080} alt={""} className={styles.pdHomeImg} src={posts?.image}/>
 
@@ -21,12 +21,13 @@ export function PostDestaqueHome({posts}: PostsProps){
                         <p className={styles.pdHomeDescription}>{posts?.content}</p>
                     </div>
                     <div className={styles.pdHomeAuthor}>
-                        <img className={styles.pdHomeAv} src={posts?.avatar} alt={""} />
-                        <p><strong>FAZAG</strong></p>
+                        
+                        <div><p>FAZAG</p></div>
                         <p>{posts?.author}</p>
     
                     </div>
                 </div>
             </Link> 
+            </>
     )
     }

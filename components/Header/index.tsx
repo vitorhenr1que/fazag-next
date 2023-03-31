@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRef, useEffect } from 'react'
 import { LinkHeader } from './LinkHeader'
 import { LinkHeaderDownload } from './LinkHeaderDownload'
+import { LinkHeaderNavLinky } from './LinkHeaderNavLink'
 
 export function Header(){
 
@@ -88,13 +89,13 @@ function closeToggle(){
                         <LinkHeader linkName={'Núcleo de Tec. e Manutenção Pedag.'} url={"#"} closeToggle={closeToggle}/>
                     </ul>
                   </li>
-                  <li className={"nav-item"}> 
-                  <LinkHeader linkName={'CPA'} url={"/fazaginforma/cpa"} closeToggle={closeToggle}/>
+
+                  <li className='nav-link'>
                     
+                      <LinkHeaderNavLink linkName={'CPA'} url={"/fazaginforma/cpa"} closeToggle={closeToggle}/>
+
                   </li>
-                  <li>
                  
-                  </li>
                 </ul>
                 <a className={`navbar-brand ${styles.aEntrar}`} href="http://sistemajaguar.com.br">
                 <button className={`btn btn-primary entrar ${styles.entrar}`}>
