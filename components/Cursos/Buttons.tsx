@@ -7,13 +7,72 @@ interface ButtonsProps {
 }
 
 export function Buttons(props: ButtonsProps){
-return (
+if(props.curso === 'ed-fisica'){ {/* se for o curso de Educação Física */}
+    return (
+        <div className={styles.buttonsContainer}>
+            <div className={styles.buttonContainer}>
+            <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapseGrade" role="button" aria-expanded="false" aria-controls="collapseGrade">Grade e Corpo Docente</a>
+            <div className="collapse" id="collapseGrade">
+                <div className={styles.linkContainer}>
+                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}l.pdf`} download={`grade-${props.curso}.pdf`} >
+                        <FileArrowDown size={28} />
+                        <span>Grade de {props.title} Licenciatura</span>
+                    </a>
+                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}b.pdf`} download={`grade-${props.curso}.pdf`} >
+                        <FileArrowDown size={28} />
+                        <span>Grade de {props.title} Bacharelado</span>
+                    </a>
+                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}c.pdf`} download={`grade-${props.curso}.pdf`} >
+                        <FileArrowDown size={28} />
+                        <span>Grade de {props.title} Complementação</span>
+                    </a>
+                </div>
+            </div>
+            </div>
+    
+            {/*<div className={styles.buttonContainer}>
+            <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapsePPC" role="button" aria-expanded="false" aria-controls="collapsePPC">PPC</a>
+            <div className="collapse" id="collapsePPC">
+                <div className={styles.linkContainer}>
+                    <a className={styles.linkDownload} href={`/static/ppc${props.curso}.pdf`} download={`ppc-${props.curso}.pdf`} >
+                        <FileArrowDown size={28} />
+                        <span>PPC de {props.title}</span>
+                    </a>
+                </div>
+            </div>
+            </div>*/}
+            
+            <div className={styles.buttonContainer}>
+            <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapseMatriz" role="button" aria-expanded="false" aria-controls="collapseMatriz">Matriz Curricular</a>
+            <div className="collapse" id="collapseMatriz">
+                <div className={styles.linkContainer}>
+                    <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}l.pdf`} download={`matriz-${props.curso}.pdf`} >
+                        <FileArrowDown size={28} />
+                        <span>Matriz de {props.title} Licenciatura</span>
+                        </a>
+                        <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}b.pdf`} download={`matriz-${props.curso}.pdf`} >
+                        <FileArrowDown size={28} />
+                        <span>Matriz de {props.title} Bacharelado</span>
+                        </a>
+                        <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}c.pdf`} download={`matriz-${props.curso}.pdf`} >
+                        <FileArrowDown size={28} />
+                        <span>Matriz de {props.title} Complementação</span>
+                        </a>
+                </div>
+            </div>
+            </div>
+    
+        </div>
+    )
+}
+        {/* Demais Cursos */}
+return ( 
     <div className={styles.buttonsContainer}>
         <div className={styles.buttonContainer}>
         <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapseGrade" role="button" aria-expanded="false" aria-controls="collapseGrade">Grade e Corpo Docente</a>
         <div className="collapse" id="collapseGrade">
             <div className={styles.linkContainer}>
-                <a className={styles.linkDownload} href={`/static/grade${props.curso}.pdf`} download={`grade-${props.curso}.pdf`} >
+                <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}.pdf`} download={`grade-${props.curso}.pdf`} >
                     <FileArrowDown size={28} />
                     <span>Grade de {props.title}</span>
                 </a>
@@ -37,14 +96,16 @@ return (
         <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapseMatriz" role="button" aria-expanded="false" aria-controls="collapseMatriz">Matriz Curricular</a>
         <div className="collapse" id="collapseMatriz">
             <div className={styles.linkContainer}>
-                <a className={styles.linkDownload} href={`/static/matriz${props.curso}.pdf`} download={`matriz-${props.curso}.pdf`} >
+                <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}.pdf`} download={`matriz-${props.curso}.pdf`} >
                     <FileArrowDown size={28} />
                     <span>Matriz de {props.title}</span>
                     </a>
             </div>
+            
         </div>
         </div>
 
     </div>
 )
+
 }
