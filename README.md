@@ -7,12 +7,13 @@
 ![1](https://user-images.githubusercontent.com/85037374/191057968-1f8aa18c-e51a-4573-b791-bcb26ef17b7b.png)
 
 
+
 <br>
 
 ## 📝 Descrição 
 
 Site Faculdade Zacarias de Góes + Sistema de blog (Autenticação de usuários, Criação de Posts)
--  [fazag-next.vercel.app](https://fazag-next.vercel.app/)
+-  [fazag.edu.br](https://fazag.edu.br/)
 
 ## 🚀 Tecnologias
 
