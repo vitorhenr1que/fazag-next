@@ -42,15 +42,7 @@ const nextConfig = {
       },
       {
         source: '/fazag-informa',
-        destination: 'https://www.fazag.edu.br/fazaginforma'
-      },
-      {
-        source: '/fazag-informa',
         destination: 'https://fazag.edu.br/fazaginforma'
-      },
-      {
-        source: '/iniciacao-cientifica/',
-        destination: 'https://fazag.edu.br'
       }
     ]
   },
