@@ -41,15 +41,15 @@ const nextConfig = {
         destination: 'https://fazag-next.vercel.app/api/ouvidoria/emailcoordenador'
       },
       {
-        source: 'http://www.fazag.edu.br/fazag-informa',
+        source: '/fazag-informa',
         destination: 'https://www.fazag.edu.br/fazaginforma'
       },
       {
-        source: 'https://fazag.edu.br/fazag-informa',
+        source: '/fazag-informa',
         destination: 'https://fazag.edu.br/fazaginforma'
       },
       {
-        source: 'http://www.fazag.edu.br/iniciacao-cientifica/index.php?option=com_content&view=featured&Itemid=140',
+        source: '/iniciacao-cientifica/',
         destination: 'https://fazag.edu.br'
       }
     ]
