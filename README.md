@@ -1,5 +1,5 @@
 <h1 align="center">
-  Website Faculdade Zacarias de Góes ( Em andamento )
+  Website Faculdade Zacarias de Góes
 </h1>
 
 <br>
@@ -12,7 +12,7 @@
 
 ## 📝 Descrição 
 
-Site Faculdade Zacarias de Góes + Sistema de blog (Autenticação de usuários, Criação de Posts)
+Site Faculdade Zacarias de Góes + Sistema de blog (Criação de Posts)
 -  [fazag.edu.br](https://fazag.edu.br/)
 
 ## 🚀 Tecnologias
