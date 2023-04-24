@@ -6,6 +6,30 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = {
     [KeyType in keyof T]: T[KeyType];
 };
+/** Content for Images documents */
+interface ImagesDocumentData {
+    /**
+     * image field in *Images*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: images.image
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    image: prismicT.ImageField<never>;
+}
+/**
+ * Images document from Prismic
+ *
+ * - **API ID**: `images`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ImagesDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<ImagesDocumentData>, "images", Lang>;
 /** Content for Posts documents */
 interface PostsDocumentData {
     /**
@@ -63,12 +87,12 @@ interface PostsDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type PostsDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<PostsDocumentData>, "posts", Lang>;
-export type AllDocumentTypes = PostsDocument;
+export type AllDocumentTypes = ImagesDocument | PostsDocument;
 declare module "@prismicio/client" {
     interface CreateClient {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { PostsDocumentData, PostsDocument, AllDocumentTypes };
+        export type { ImagesDocumentData, ImagesDocument, PostsDocumentData, PostsDocument, AllDocumentTypes };
     }
 }

@@ -10,6 +10,8 @@ if(req.method === 'POST'){
         await transporter.sendMail({
            ...mailOptions,
            subject: '🗣️ Ouvidoria | Nova mensagem 🗣️',
+           cc: 'ouvidoria.fazag@gmail.com',
+           bcc: 'caroll_moutinho@hotmail.com',
            text: data.text,
            replyTo: data.email,
            html: `
