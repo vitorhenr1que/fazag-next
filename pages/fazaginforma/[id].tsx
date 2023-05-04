@@ -60,6 +60,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             month: 'long',
             year: 'numeric'
     })}
+    
 
     return {
         props: {
