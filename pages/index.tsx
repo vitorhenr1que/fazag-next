@@ -31,7 +31,7 @@ export default function Home({posts, linkImgModal}: PostsProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.mainContainer}>
-        {/*<Modal image={linkImgModal}/>*/}
+        <Modal image={linkImgModal}/>
         <HomeMain posts={posts}/>
         
       </main>
