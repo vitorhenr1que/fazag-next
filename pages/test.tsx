@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next"
+import { GetServerSideProps, GetStaticProps } from "next"
 import { getClient } from "../services/prismic"
 import * as prismic from '@prismicio/client' 
 import { Modal } from "../components/Home/Modal"
@@ -12,7 +12,9 @@ export default function Test({imageModal}: any){
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+
+
+export const getServerSideProps: GetServerSideProps = async () => {
  const response = await getClient().getByUID('images', 'modal', {})
  const responseTwo = await getClient().getByType('posts', {
   predicates: [
