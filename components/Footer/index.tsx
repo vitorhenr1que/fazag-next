@@ -17,10 +17,10 @@ export default function Footer() {
             <div className={`container ${styles.footerHeader}`}>
                 <div className={styles.divFooter}>
                     <span>A FAZAG</span>
-                    <Link href="fazaginforma/quem-somos">Quem somos</Link>
-                    <Link href="fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir">Missão, Visão e Valores</Link>
+                    <Link href="/fazaginforma/quem-somos">Quem somos</Link>
+                    <Link href="/fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir">Missão, Visão e Valores</Link>
                     <Link href="/static/regulamentos/regulamentogeral.pdf" download={"Regulamento Geral.pdf"}>Regimento Geral</Link>
-                    <Link href="publicacoes-institucionais">Publicações Insitucionais</Link>
+                    <Link href="/publicacoes-institucionais">Publicações Insitucionais</Link>
                 </div>
                 <div className={styles.divFooter}>
                     <span>CURSOS</span>
@@ -40,10 +40,10 @@ export default function Footer() {
                 <div className={styles.divFooterBlock}>
                     <div className={styles.divFooter}>
                         <span>CONTEUDOS</span>
-                        <Link href="publicacoes-institucionais">Calendário Acadêmico</Link>
-                        <Link href="eventos-institucionais">Eventos Institucionais</Link>
-                        <Link href="fazaginforma/cpa">CPA</Link>
-                        <Link href="fazaginforma/monitoria">Monitoria</Link>
+                        <Link href="/publicacoes-institucionais">Calendário Acadêmico</Link>
+                        <Link href="/eventos-institucionais">Eventos Institucionais</Link>
+                        <Link href="/fazaginforma/cpa">CPA</Link>
+                        <Link href="/fazaginforma/monitoria">Monitoria</Link>
                     </div>
                     <div className={styles.divFooter}>
                         <span>SUPORTE</span>
