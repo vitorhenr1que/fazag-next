@@ -20,28 +20,28 @@ export default function HomeMain({posts}: PostsProps) {
       
 
        <Slide/>
-
+       <div className="container">
         <section className={styles.botoesMain}>
-          <ButtonsMain 
+        {/*<ButtonsMain 
           url="http"
           title="Agende sua prova" 
           description="Aqui você também pode realizar a sua prova sem precisar sair de casa."
-          src={AgendeProva}/>
+          src={AgendeProva}/>*/}
           
           <ButtonsMain 
           url="https://moodle.fazag.edu.br"
           title="Ambiente Virtual" 
-          description="Aqui você também pode realizar a sua prova sem precisar sair de casa."
+          description="Acesse cursos, aulas e conteúdos online no AVA da FAZAG."
           src={AmbienteVirtual}/>
           
           <ButtonsMain 
           url="http://sistemajaguar.com.br"
           title="Portal do Aluno" 
-          description="Aqui você também pode realizar a sua prova sem precisar sair de casa."
+          description="Acesse suas notas, comprovante de matrícula, certificados e muito mais."
           src={PortalAluno}/>
 
         </section>
-
+        </div>
         <div className={`container ${styles.blocos}`}>
           <div className={`row ${styles.mainInfo}`}>
             <div className={`col-md-8 ${styles.fazagInfoContainer}`}>

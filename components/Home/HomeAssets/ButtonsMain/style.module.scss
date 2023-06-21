@@ -1,5 +1,5 @@
 .botoesBox {
-
+    width: 44%;
     img {
         width: 100%;
         transition: filter .3s;
@@ -20,3 +20,8 @@ text-shadow: 2px 2px 4px black;
 color: white;
 }
 
+@media(max-width: 769px){
+  .pBox {
+    max-width: 12rem;
+  }
+}
