@@ -1,11 +1,10 @@
 
 
 .botoesMain {
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 6rem;
 
     p {
@@ -22,7 +21,8 @@
         border-radius: 20px;
 
         img {
-            width: 20rem;
+            height: 13rem;
+            object-fit: cover;
   
         }
         
@@ -138,6 +138,9 @@
 }
 
 @media(max-width: 991px){
+    .botoesMain {
+        flex-wrap: nowrap;
+    }
     .mainInfo {
         display: flex;
         flex-direction: column;
