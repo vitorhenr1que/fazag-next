@@ -15,6 +15,8 @@ import { Ouvidoria } from "../Ouvidoria";
 // https://dummyimage.com/1320x350/z32/fff.png 1903x1070
 
 export default function HomeMain({posts}: PostsProps) {
+
+  
   return (
     <>
       
@@ -22,6 +24,7 @@ export default function HomeMain({posts}: PostsProps) {
        <Slide/>
        <div className="container">
         <section className={styles.botoesMain}>
+        
         {/*<ButtonsMain 
           url="http"
           title="Agende sua prova" 
@@ -52,7 +55,7 @@ export default function HomeMain({posts}: PostsProps) {
               </div>
 
             <div className={`col ${styles.agenda}`}>AGENDA
-
+            
               <button className="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <Calendar className={styles.phosforIcon} size={24}/>
                 <span className={styles.buttonText}>Calendario Acadêmico</span>

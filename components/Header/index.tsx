@@ -99,7 +99,6 @@ function closeToggle(){
                 </ul>
                 <a className={`navbar-brand ${styles.aEntrar}`} href="http://sistemajaguar.com.br">
                 <button className={`btn btn-primary entrar ${styles.entrar}`}>
-                      <img src="" alt="" />
                       Entrar</button>
                 </a>
                 
