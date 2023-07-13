@@ -7,8 +7,49 @@ datasource db {
   url      = "mysql://fazag_admin:zszsxu5973@162.214.122.42:3306/fazag_web"
 }
 
+model Coordenador {
+  id    String   @id
+  nome  String
+  email String
+  curso String
+  text  String
+  data  DateTime @default(now())
+}
+
+model Leads {
+  id     String   @id
+  nome   String
+  email  String
+  tel    String
+  course String
+  data   DateTime @default(now())
+}
+
+model Matriculas {
+  id            String @id
+  nome          String
+  email         String
+  tel           String
+  cidade        String
+  como_soube    String
+  form_ingresso String
+  curso         String
+  redacao       String
+}
+
+model Ouvidoria {
+  id            String   @id
+  nome          String
+  email         String
+  motivo        String
+  procurouSetor String
+  text          String
+  vinculo       String
+  data          DateTime @default(now())
+}
+
 model Post {
-  id          String   @id @default(uuid())
+  id          String   @id
   title       String
   description String?
   content     String
@@ -19,22 +60,7 @@ model Post {
   date        DateTime @default(now())
 }
 
-model Ouvidoria {
-  id            String   @id @default(uuid())
-  nome          String
-  email         String
-  motivo        String
-  procurouSetor String
-  text          String
-  vinculo       String
-  data          DateTime @default(now())
-}
-
-model Coordenador {
-  id    String   @id @default(uuid())
-  nome  String
-  email String
-  curso String
-  text  String
-  data  DateTime @default(now())
-}
+//Ao criar um novo model
+// 1- Antes de tudo - npx prisma db pull
+// 2- Após criar os models - npx prisma generate
+// 3- npx prisma db push

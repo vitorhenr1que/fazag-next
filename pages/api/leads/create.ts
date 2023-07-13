@@ -3,24 +3,21 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../services/prisma";
 
 
-
 export default async function (req: NextApiRequest, res: NextApiResponse){
 
-    const data: any = req.body
+    const data = req.body
 
 if(req.method === 'POST'){
-    const createOuvidoria = await prisma.ouvidoria.create({
+    const leadsCreate = await prisma.leads.create({
         data: {
             nome: data.nome,
-            email: data.email,
-            motivo: data.motivo,
-            procurouSetor: data.procurouSetor,
-            text: data.text,
-            vinculo: data.vinculo
+            course: data.course,
+            tel: data.tel,
+            email: data.email
         }
     })
 
-    return res.status(201).json({createOuvidoria})
+    return res.status(201).json(leadsCreate)
 } else {
    return res.send('erro')
 }
