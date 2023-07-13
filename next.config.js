@@ -41,6 +41,22 @@ const nextConfig = {
         destination: 'https://fazag-next.vercel.app/api/ouvidoria/emailcoordenador'
       },
       {
+        source: '/api/leads/create',
+        destination: 'https://fazag-next.vercel.app/api/leads/create',
+      },
+      {
+        source: '/api/leads/leadsmail',
+        destination: 'https://fazag-next.vercel.app/api/leads/leadsmail',
+      },
+      {
+        source: '/api/matriculas/create',
+        destination: 'https://fazag-next.vercel.app/api/leads/create',
+      },
+      {
+        source: '/api/matriculas/matriculasmail',
+        destination: 'https://fazag-next.vercel.app/api/matriculas/matriculasmail',
+      },
+      {
         source: '/fazag-informa',
         destination: 'https://fazag.edu.br/fazaginforma'
       }
