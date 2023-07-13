@@ -11,6 +11,9 @@ export default function Curso({post, response}: any){
         <div className={`${styles.container} container`}>
             <Head>
                 <title>{post.title} | FAZAG</title>
+                <meta name="description">
+                    Faculdade em Valença - Bahia
+                </meta>
             </Head>
             <h1>{post.title}</h1>
             <Buttons curso={post.id} title={post.title}/>

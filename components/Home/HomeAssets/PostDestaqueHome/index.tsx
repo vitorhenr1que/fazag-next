@@ -7,7 +7,6 @@ import Image from "next/image";
 
 export function PostDestaqueHome({posts}: PostsProps){
 
-
     return (
         <>
             <Link href={`/fazaginforma/${posts.id}`} className={styles.postDestaqueHome}>
