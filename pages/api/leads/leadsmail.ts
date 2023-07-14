@@ -1,11 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { mailOptions, transporter } from "../../../services/nodemailder";
 
-
 export default async function (req: NextApiRequest, res: NextApiResponse) {
+
+
 
 if(req.method === 'POST'){
 
+    
     const data: any = req.body
     const course = data.course[0].toUpperCase() + data.course.substring(1)
     const courseLowerCase = data.course.toLowerCase()
