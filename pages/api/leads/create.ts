@@ -5,7 +5,7 @@ import { prisma } from "../../../services/prisma";
 
 export default async function (req: NextApiRequest, res: NextApiResponse){
 
-    const data = req.body
+    const data: any = req.body
 
 if(req.method === 'POST'){
     const leadsCreate = await prisma.leads.create({

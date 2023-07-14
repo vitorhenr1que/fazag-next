@@ -18,6 +18,7 @@ if(req.method === 'POST'){
             como_soube: data.como_soube,
             form_ingresso: data.form_ingresso,
             curso: data.curso, //Deixei "curso" e não "course"
+            redacao: data.redacao
         }
     })
 
