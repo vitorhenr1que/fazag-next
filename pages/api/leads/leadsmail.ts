@@ -3,17 +3,23 @@ import { mailOptions, transporter } from "../../../services/nodemailder";
 
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
+
 if(req.method === 'POST'){
+
     const data = req.body
     const course = data.course[0].toUpperCase() + data.course.substring(1)
     const courseLowerCase = data.course.toLowerCase()
+    const {from} = mailOptions
+    console.log('from', from)
+    console.log('course', course)
+    console.log('lowerCase', courseLowerCase)
+    console.log('dataEmail: ', data.email)
     try {
         await transporter.sendMail({
-           ...mailOptions,
+           from: from,
+           to: data.email,
+           text: '',
            subject: `🗣️ FAZAG | Matriz Curricular do curso de ${course}`,
-           text: data.text,
-           replyTo: data.email,
-           cc: data.emailCoordenador,
            html: `<div style=" padding: 50px 10px;
            background: #121212;
            font-family:'Open Sans','Roboto','Helvetica Neue','Helvetica','Arial', sans-serif;
@@ -56,9 +62,10 @@ if(req.method === 'POST'){
                <div>
            
                </div>
-           </div>`,
+           </div>`
            
         })
+
         return res.status(200).json({success: true})
        }catch(err){
            console.log(err)

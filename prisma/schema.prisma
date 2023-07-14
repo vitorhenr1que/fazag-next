@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Coordenador {
-  id    String   @id
+  id    String   @id @default(uuid())
   nome  String
   email String
   curso String
@@ -17,7 +17,7 @@ model Coordenador {
 }
 
 model Leads {
-  id     String   @id
+  id     String   @id @default(uuid())
   nome   String
   email  String
   tel    String
@@ -26,7 +26,7 @@ model Leads {
 }
 
 model Matriculas {
-  id            String @id
+  id            String @id @default(uuid())
   nome          String
   email         String
   tel           String
@@ -38,7 +38,7 @@ model Matriculas {
 }
 
 model Ouvidoria {
-  id            String   @id
+  id            String   @id @default(uuid())
   nome          String
   email         String
   motivo        String
@@ -49,7 +49,7 @@ model Ouvidoria {
 }
 
 model Post {
-  id          String   @id
+  id          String   @id @default(uuid())
   title       String
   description String?
   content     String
