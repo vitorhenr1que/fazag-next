@@ -59,8 +59,3 @@ model Post {
   published   Boolean
   date        DateTime @default(now())
 }
-
-//Ao criar um novo model
-// 1- Antes de tudo - npx prisma db pull
-// 2- Após criar os models - npx prisma generate
-// 3- npx prisma db push
