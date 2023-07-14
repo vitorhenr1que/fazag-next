@@ -18,6 +18,22 @@ const nextConfig = {
       },
     ],
   },
+
+  async headers() {
+    return [
+        {
+            // matching all API routes
+            source: "/api/:path*",
+            headers: [
+                { key: "Access-Control-Allow-Credentials", value: "true" },
+                { key: "Access-Control-Allow-Origin", value: "*" }, // Colocar site específico que pode fazer requisições
+                { key: "Access-Control-Allow-Methods", value: "GET,DELETE,PATCH,POST,PUT,OPTIONS" },
+                { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-API-KEY,  X-Requested-With, Accept, Authorization, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, ETag, Vary, Connection, Keep-Alive" },
+            ]
+        }
+    ]
+},
+
   async rewrites() {
     return [
       {
@@ -61,7 +77,7 @@ const nextConfig = {
         destination: 'https://fazag.edu.br/fazaginforma'
       }
     ]
-  },
+  }
 }
 
 module.exports = nextConfig
