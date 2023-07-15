@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { mailOptions, transporter } from "../../../services/nodemailder";
-import bannermail from '../../../public/images/bannermail.png'
 export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 
@@ -38,7 +37,7 @@ if(req.method === 'POST'){
            margin-top: 1rem;
            margin-bottom: 1rem;">
            <a href="/">
-                <img src="https://lh3.googleusercontent.com/drive-viewer/AITFw-zirvJVwISkrYOpH9dMHiIJU9gs7dOn41NiHCWgVjqG8xisyGcBpbhaoOoDqO0GzCUZqow0GXvGoFJKNmKH6h4S8sy67g=w889-h969" style="border-radius: 16px;" alt="Logo da Fazag" width=600px />
+                <img src="https://www.fazag.edu.br/images/bannermail.png" style="border-radius: 16px;" alt="Logo da Fazag" width=600px />
            </a>
                
            
