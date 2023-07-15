@@ -38,28 +38,22 @@ if(req.method === 'POST'){
            margin-top: 1rem;
            margin-bottom: 1rem;">
            <a href="/">
-                <img src="${bannermail}" alt="Logo da Fazag" width=600px />
+                <img src="https://lh3.googleusercontent.com/drive-viewer/AITFw-zirvJVwISkrYOpH9dMHiIJU9gs7dOn41NiHCWgVjqG8xisyGcBpbhaoOoDqO0GzCUZqow0GXvGoFJKNmKH6h4S8sy67g=w889-h969" style="border-radius: 16px;" alt="Logo da Fazag" width=600px />
            </a>
                
            
-               <h1>Matriz Curricular | ${course}</h1>
+               <h1 style="font-size: 36px;">Matriz Curricular | ${course}</h1>
                </div>
                
-               <p>Olá<strong> ${data.nome}</strong>, baixe a matriz do seu curso abaixo:</p>
-               <p>Estamos à disposição para esclarecer qualquer dúvida relacionada à faculdade ou ao curso.</p>
+               <p style="font-size: 16px;">Olá<strong> ${data.nome}</strong>, baixe a matriz do seu curso abaixo:</p>
+               <p style="font-size: 16px;">Estamos à disposição para esclarecer qualquer dúvida relacionada à faculdade ou ao curso.</p>
                <div style="
-               position: relative;
                margin-top: 3rem;
                width: 100%;
                height: 50px;
+               text-align: center;
                ">
                     <a href="https://fazag.edu.br/static/matrizes/${courseLowerCase}.pdf" style="
-                        position: absolute;
-                        margin: 0 auto;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
                         cursor: pointer;
                         text-decoration: none;
                         text-align: center;
