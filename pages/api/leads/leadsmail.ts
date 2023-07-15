@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { mailOptions, transporter } from "../../../services/nodemailder";
-
+import bannermail from '../../../public/images/bannermail.png'
 export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 
@@ -23,7 +23,7 @@ if(req.method === 'POST'){
            text: '',
            subject: `🗣️ FAZAG | Matriz Curricular do curso de ${course}`,
            html: `<div style=" padding: 50px 10px;
-           background: #121212;
+           background: #ececec;
            font-family:'Open Sans','Roboto','Helvetica Neue','Helvetica','Arial', sans-serif;
            color: #757575;">
                <div style="max-width: 600px;
@@ -37,27 +37,46 @@ if(req.method === 'POST'){
            text-align: center;
            margin-top: 1rem;
            margin-bottom: 1rem;">
-               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKVUkhi1d74Fvy0zYLwNECJ_RZRyL17BqVc7WkNElKsKTK3Dx05TXoldW6hw8tdsxxIyg&usqp=CAU" alt="Logo da Fazag" width=150px />
+           <a href="/">
+                <img src="${bannermail}" alt="Logo da Fazag" width=600px />
+           </a>
+               
            
                <h1>Matriz Curricular | ${course}</h1>
                </div>
                
                <p>Olá<strong> ${data.nome}</strong>, baixe a matriz do seu curso abaixo:</p>
                <p>Estamos à disposição para esclarecer qualquer dúvida relacionada à faculdade ou ao curso.</p>
-               <a href="https://fazag.edu.br/static/matrizes/${courseLowerCase}.pdf" style="
-                   cursor: pointer;
-                   text-decoration: none;
-                   text-align: center;
-                   background: #479eff;
-                   padding: 1rem;
-                   border-radius: 50px;
-                   width: 45%;
-                   color: #fff;
-                   font-weight: 600;
-                   font-size: 1rem;
-                   transition: .2s;
-                   border: none;
-               ">Baixar matriz curricular</a>
+               <div style="
+               position: relative;
+               margin-top: 3rem;
+               width: 100%;
+               height: 50px;
+               ">
+                    <a href="https://fazag.edu.br/static/matrizes/${courseLowerCase}.pdf" style="
+                        position: absolute;
+                        margin: 0 auto;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        cursor: pointer;
+                        text-decoration: none;
+                        text-align: center;
+                        background: #479eff;
+                        padding: 1rem;
+                        border-radius: 50px;
+                        width: 45%;
+                        color: #fff;
+                        font-weight: 600;
+                        font-size: 1rem;
+                        transition: .2s;
+                        border: none;
+                    ">Baixar matriz curricular</a>
+               </div>
+                
+               
+               
            
                </div>
            
