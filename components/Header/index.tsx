@@ -36,6 +36,7 @@ function closeToggle(){
                       <LinkHeader linkName={'Missão, Visão e Valores'} url={"/fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir"} closeToggle={closeToggle}/>
                       <LinkHeaderDownload linkName={'Regimento Geral'} url={"/static/regulamentos/regulamentogeral.pdf"} download={"Regulamento Geral.pdf"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Publicações Institucionais'} url={"/publicacoes-institucionais"} closeToggle={closeToggle}/>
+                      <LinkHeaderDownload linkName={'Organograma'} url={"/static/organograma.pdf"} download={"Organograma FAZAG.pdf"} closeToggle={closeToggle}/>
                       
                     </ul>
                   </li>
