@@ -22,6 +22,7 @@ model Leads {
   email  String
   tel    String
   course String
+  contacted Boolean @default(false)
   data   DateTime @default(now())
 }
 
