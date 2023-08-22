@@ -197,6 +197,17 @@ interface ImagesDocumentData {
      *
      */
     image: prismicT.ImageField<never>;
+    /**
+     * link field in *Images*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: images.link
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    link: prismicT.LinkField;
 }
 /**
  * Images document from Prismic
