@@ -16,9 +16,17 @@ export interface PostsProps {
     author?: string,
   },
   linkImgModal?: string,
+  altImgModal?: string,
+  modalLink?: {
+    link_type: string,
+    name?: string,
+    kind?: string,
+    url?: string,
+    size?: string
+  }
 }
 
-export default function Home({posts, linkImgModal}: PostsProps) {
+export default function Home({posts, linkImgModal, altImgModal, modalLink}: PostsProps) {
 
   return (
     
@@ -27,7 +35,7 @@ export default function Home({posts, linkImgModal}: PostsProps) {
         <title>Inicio | FAZAG</title>
       </Head>
       <main className={styles.mainContainer}>
-        <Modal image={linkImgModal}/>
+        <Modal image={linkImgModal} alt={altImgModal} modalLink={modalLink}/>
         <HomeMain posts={posts}/>
         
       </main>
@@ -60,11 +68,16 @@ const postsImg = {
   image: responseModal.data.image.url,
 }
 const linkImgModal = responseModal.data.image.url
-
+const altImgModal = responseModal.data.image.alt
+const modalLink = responseModal.data.link
+console.log(responseModal.data)
+console.log(altImgModal)
 return {
   props: {
     posts: posts[0],
-    linkImgModal
+    linkImgModal,
+    altImgModal,
+    modalLink
   }
 }
 }
