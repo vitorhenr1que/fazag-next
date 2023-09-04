@@ -64,9 +64,7 @@ const posts = response.results.map(post => {
 })
 
 const responseModal = await getClient().getByUID('images', 'modal', {})
-const postsImg = {
-  image: responseModal.data.image.url,
-}
+
 const linkImgModal = responseModal.data.image.url
 const altImgModal = responseModal.data.image.alt
 const modalLink = responseModal.data.link
