@@ -17,25 +17,13 @@ model Coordenador {
 }
 
 model Leads {
-  id     String   @id @default(uuid())
-  nome   String
-  email  String
-  tel    String
-  course String
-  contacted Boolean @default(false)
-  data   DateTime @default(now())
-}
-
-model Matriculas {
-  id            String @id @default(uuid())
-  nome          String
-  email         String
-  tel           String
-  cidade        String
-  como_soube    String
-  form_ingresso String
-  curso         String
-  redacao       String
+  id        String   @id @default(uuid())
+  nome      String
+  email     String
+  tel       String
+  course    String
+  contacted Boolean  @default(false)
+  data      DateTime @default(now())
 }
 
 model Ouvidoria {
@@ -59,4 +47,20 @@ model Post {
   author      String
   published   Boolean
   date        DateTime @default(now())
+}
+
+model Vagas {
+  id                 String @id
+  administracao      Int
+  ciencias_contabeis Int
+  educacao_fisica    Int
+  enfermagem         Int
+  engenharia_civil   Int
+  estetica           Int
+  farmacia           Int
+  fisioterapia       Int
+  nutricao           Int
+  pedagogia          Int
+  psicologia         Int
+  servico_social     Int
 }

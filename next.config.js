@@ -46,6 +46,14 @@ const nextConfig = {
         destination: 'https://fazag-next.vercel.app/api/ouvidoria/create'
       },
       {
+        source: '/api/vagas/vagas',
+        destination: 'https://fazag-next.vercel.app/api/vagas/vagas'
+      },
+      {
+        source: '/api/vagas/alterar',
+        destination: 'https://fazag-next.vercel.app/api/vagas/alterar'
+      },
+      {
         source: '/api/ouvidoria/nodemailer',
         destination: 'https://fazag-next.vercel.app/api/ouvidoria/nodemailer'
       },
