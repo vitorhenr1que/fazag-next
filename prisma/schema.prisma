@@ -50,17 +50,18 @@ model Post {
 }
 
 model Vagas {
-  id                 String @id
-  administracao      Int
-  ciencias_contabeis Int
-  educacao_fisica    Int
-  enfermagem         Int
-  engenharia_civil   Int
-  estetica           Int
-  farmacia           Int
-  fisioterapia       Int
-  nutricao           Int
-  pedagogia          Int
-  psicologia         Int
-  servico_social     Int
+  id                           String @id @default(uuid())
+  administracao                Int
+  ciencias_contabeis           Int
+  educacao_fisica_bacharelado  Int
+  educacao_fisica_licenciatura Int
+  enfermagem                   Int
+  engenharia_civil             Int
+  estetica                     Int
+  farmacia                     Int
+  fisioterapia                 Int
+  nutricao                     Int
+  pedagogia                    Int
+  psicologia                   Int
+  servico_social               Int
 }

@@ -6,7 +6,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse){
 
     const getNumberVencace = await prisma.vagas.findUnique({
         where: {
-            id: '74a46aa1-da7c-4723-ac13-fe14ffeeaf47'
+            id: 'b90b0686-f9fa-4d3f-a8f9-35c5223346fa'
         },
         select: data
     })
