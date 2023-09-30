@@ -2,7 +2,7 @@ import { prisma } from "../../../services/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function (req: NextApiRequest, res: NextApiResponse){
-    const { course } = req.body
+    const  course  = req.body
 
     const getNumberVencace = await prisma.vagas.findUnique({
         where: {
