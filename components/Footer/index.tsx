@@ -74,7 +74,7 @@ export default function Footer() {
             <div className={`${styles.lowFooter} container`}>
             <hr/>
             <div className={styles.divLowFooter}>
-                <Link href="/"><Image width={100} src={logofazag} alt={'Logo FAZAG'} quality={100}/></Link>
+                <Link href="/"><Image width={150} src={logofazag} alt={'Logo FAZAG'} quality={100}/></Link>
                 <span>Copyright © 2002-2023 Sociedade Educacional Zacarias de Góes LTDA. Todos os direitos reservados.</span>
             </div>
             
