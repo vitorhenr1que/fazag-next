@@ -82,6 +82,10 @@ const nextConfig = {
         destination: 'https://fazag-next.vercel.app/api/matriculas/matriculasmail',
       },
       {
+        source: '/api/revalidate',
+        destination: 'https://fazag-next.vercel.app/api/revalidate',
+      },
+      {
         source: '/fazag-informa',
         destination: 'https://fazag.edu.br/fazaginforma'
       }
