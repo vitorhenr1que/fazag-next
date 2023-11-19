@@ -16,6 +16,7 @@ if(req.method === 'POST'){
         await transporter.sendMail({
            from: from,
            to: to,
+           replyTo: data.email,
            text: '',
            subject: `🗣️ FAZAG | Nova Inscrição | ${data.course}`,
            html: `    <div style=" padding: 8px 10px;
