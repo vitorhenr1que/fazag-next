@@ -65,3 +65,15 @@ model Vagas {
   psicologia                   Int
   servico_social               Int
 }
+
+model Inscricao {
+  id       String @id @default(uuid())
+  nome     String
+  telefone String
+  email    String
+  cidade   String
+  conheceu String
+  ingresso String
+  curso    String
+  createdAt DateTime @default(now())
+}

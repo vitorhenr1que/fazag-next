@@ -37,7 +37,7 @@ if(req.method === 'POST'){
            margin-top: 1rem;
            margin-bottom: 1rem;">
            <a href="/">
-                <img src="https://lh3.googleusercontent.com/drive-viewer/AITFw-zirvJVwISkrYOpH9dMHiIJU9gs7dOn41NiHCWgVjqG8xisyGcBpbhaoOoDqO0GzCUZqow0GXvGoFJKNmKH6h4S8sy67g=w889-h969" style="border-radius: 16px;" alt="Logo da Fazag" width=600px />
+                <img src="https://lh3.googleusercontent.com/u/1/drive-viewer/AK7aPaDJO8VwabIeD60vIG-qznmjsVbUtvaXDZ5hhyKis-h_SAvDSYbszSxK4x6WR74raAwKMLXSjVOjLgbsdwZBEiplbRaQqA=w3028-h1708" style="border-radius: 16px;" alt="Logo da Fazag" width=600px />
            </a>
                
            
