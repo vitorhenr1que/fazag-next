@@ -49,7 +49,7 @@ function closeToggle(){
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}> 
                     <LinkHeader linkName={'Administração'} url={"/cursos/administracao"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Ciências Contábeis'} url={"/cursos/ciencias-contabeis"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Educação Física'} url={"/cursos/ed-fisica"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Educação Física'} url={"/cursos/educacao-fisica"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Engenharia Civil'} url={"/cursos/engenharia-civil"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Enfermagem'} url={"/cursos/enfermagem"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Estética'} url={"/cursos/estetica"} closeToggle={closeToggle}/>
