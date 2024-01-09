@@ -68,8 +68,7 @@ const responseModal = await getClient().getByUID('images', 'modal', {})
 const linkImgModal = responseModal.data.image.url
 const altImgModal = responseModal.data.image.alt
 const modalLink = responseModal.data.link
-console.log(responseModal.data)
-console.log(altImgModal)
+
 return {
   props: {
     posts: posts[0],
