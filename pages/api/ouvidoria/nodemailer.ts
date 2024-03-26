@@ -11,7 +11,7 @@ if(req.method === 'POST'){
            ...mailOptions,
            subject: '🗣️ Ouvidoria | Nova mensagem 🗣️',
            cc: 'ouvidoria.fazag@gmail.com',
-           bcc: 'caroll_moutinho@hotmail.com',
+           //bcc: 'caroll_moutinho@hotmail.com',
            text: data.text,
            replyTo: data.email,
            html: `
