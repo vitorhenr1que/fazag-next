@@ -131,6 +131,25 @@ return (
             </div>
             </div>
         </div>
+        <div className={styles.publicacao}> {/* Seleção de Artigos Científicos para a Revista Científica */}
+        <p className="d-inline-flex gap-1">
+            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#selecao-cientifica" role="button" aria-expanded="false" aria-controls="selecao-cientifica">
+                Seleção de Artigos Científicos para a Revista Científica
+            </a>
+        </p>
+
+            <div className="collapse" id={`selecao-cientifica`}>
+            <div className={`card card-body ${styles.cardBody}`}>
+        <PublicacaoInstitucional 
+
+            downloadName='Edital Seleção de Artigos Científicos para a Revista Científica'
+            destination='static/pic/editalselecao.pdf' 
+            label='Edital'
+            svgPath={pdfSvg}
+            />
+            </div>
+            </div>
+        </div>
 
        
         </div>
