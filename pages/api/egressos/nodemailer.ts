@@ -9,10 +9,11 @@ if(req.method === 'POST'){
     try {
         await transporter.sendMail({
            ...mailOptions,
-           subject: '🗣️ Coordenador FAZAG | Nova mensagem 🗣️',
+           subject: '🗣️ Egressos | Nova mensagem 🗣️',
+           cc: 'ouvidoria.fazag@gmail.com',
+           //bcc: 'caroll_moutinho@hotmail.com',
            text: data.text,
            replyTo: data.email,
-           cc: data.emailCoordenador,
            html: `
            <div style=" padding: 50px 10px;
            background: #fca253;
@@ -31,7 +32,7 @@ if(req.method === 'POST'){
        margin-bottom: 1rem;">
                <img src="https://www.fazag.edu.br/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-fazag.64827973.png&w=256&q=75" alt="Logo da Fazag" width=150px />
    
-               <h1>Mensagem | Coordenadores</h1>
+               <h1>Mensagem | Egressos</h1>
                </div>
                
                <p><strong>Nome: </strong>
