@@ -67,13 +67,25 @@ model Vagas {
 }
 
 model Inscricao {
-  id       String @id @default(uuid())
-  nome     String
-  telefone String
-  email    String
-  cidade   String
-  conheceu String
-  ingresso String
-  curso    String
+  id        String   @id @default(uuid())
+  nome      String
+  telefone  String
+  email     String
+  cidade    String
+  conheceu  String
+  ingresso  String
+  curso     String
   createdAt DateTime @default(now())
+}
+
+model Egressos {
+  id         String   @id @default(uuid())
+  postName   String?
+  nome       String
+  email      String
+  curso      String
+  text       String
+  imageUrl   String
+  createdAt  DateTime @default(now())
+  publicated Boolean  @default(false)
 }

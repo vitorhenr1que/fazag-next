@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 import * as ToggleGroup  from "@radix-ui/react-toggle-group";
 import { FormEvent, useState } from "react";
 import { api } from "../../services/api";
-import { Loading } from "./Loading";
+import { Loading } from "../Loading";
 import { Headset } from "phosphor-react";
 
 

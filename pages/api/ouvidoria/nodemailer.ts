@@ -30,7 +30,7 @@ if(req.method === 'POST'){
        text-align: center;
        margin-top: 1rem;
        margin-bottom: 1rem;">
-               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKVUkhi1d74Fvy0zYLwNECJ_RZRyL17BqVc7WkNElKsKTK3Dx05TXoldW6hw8tdsxxIyg&usqp=CAU" alt="Logo da Fazag" width=150px />
+               <img src="https://www.fazag.edu.br/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-fazag.64827973.png&w=256&q=75" alt="Logo da Fazag" width=150px />
    
                <h1>Mensagem | Ouvidoria</h1>
                </div>

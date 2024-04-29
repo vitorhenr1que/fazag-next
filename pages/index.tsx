@@ -5,6 +5,9 @@ import { getClient } from '../services/prismic'
 import styles from '../styles/home.module.scss'
 import { Modal } from '../components/Home/Modal'
 
+
+
+
 export interface PostsProps {
   posts: {
     id: string,
@@ -26,20 +29,21 @@ export interface PostsProps {
   }
 }
 
+
+
 export default function Home({posts, linkImgModal, altImgModal, modalLink}: PostsProps) {
 
   return (
     
-    <>
+<>
       <Head>
         <title>Inicio | FAZAG</title>
       </Head>
       <main className={styles.mainContainer}>
         <Modal image={linkImgModal} alt={altImgModal} modalLink={modalLink}/>
         <HomeMain posts={posts}/>
-        
       </main>
-    </>
+</>
   )
 }
 
