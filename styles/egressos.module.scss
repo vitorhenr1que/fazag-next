@@ -55,3 +55,51 @@
         height: 40vh;
     }
 }
+
+.containerOqE {
+    padding: 1rem;
+    h3 {
+        margin-bottom: 2rem;
+    }
+    p {
+        text-align: justify;
+    }
+}
+.ulOqE {
+    display: flex;
+    :nth-child(3){
+        justify-content: flex-end;
+        margin-left: auto;
+    }
+}
+
+.modalA {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    
+}
+
+.navLink {
+    font-weight: 500;
+}
+
+@media(max-width: 500px){
+    .ulOqE {
+        .modalB{
+            display: none;
+        }
+    }
+}
+
+@media(min-width: 501px){
+    .modalA{
+        display: none;
+    }
+}
+
+@media(min-width: 769px){
+    .postImage{
+        height: 30vh;
+    }
+}

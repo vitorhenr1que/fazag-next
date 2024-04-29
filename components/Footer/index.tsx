@@ -1,4 +1,3 @@
-import { FacebookLogo, InstagramLogo, WhatsappLogo, YoutubeLogo } from 'phosphor-react'
 import Image from 'next/image'
 import { SocialIcon } from './SocialIcon'
 import styles from './style.module.scss'
@@ -48,7 +47,7 @@ export default function Footer() {
                     <div className={styles.divFooter}>
                         <span>SUPORTE</span>
                         <Link href="#">Perguntas Frequentes</Link>
-                        <Link href="#">Contato</Link>
+                        <Link href="/fazaginforma/contato">Contato</Link>
                     </div>
                 </div>
                 <div className={styles.divFooterBlock}>

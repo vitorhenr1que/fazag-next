@@ -9,3 +9,9 @@
         object-fit: cover;
     }
 }
+
+@media(max-width: 769px){
+    .imageDestaque{
+        height: 30vh;
+    }
+}
