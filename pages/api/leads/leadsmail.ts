@@ -37,7 +37,7 @@ if(req.method === 'POST'){
            margin-top: 1rem;
            margin-bottom: 1rem;">
            <a href="/">
-                <img src="https://lh3.googleusercontent.com/u/1/drive-viewer/AK7aPaDJO8VwabIeD60vIG-qznmjsVbUtvaXDZ5hhyKis-h_SAvDSYbszSxK4x6WR74raAwKMLXSjVOjLgbsdwZBEiplbRaQqA=w3028-h1708" style="border-radius: 16px;" alt="Logo da Fazag" width=600px />
+                <img src="https://www.fazag.edu.br/images/bannermail.png" style="border-radius: 16px;" alt="Logo da Fazag" width=600px />
            </a>
                
            
@@ -55,7 +55,7 @@ if(req.method === 'POST'){
                height: 50px;
                text-align: center;
                ">
-                    <a href="https://fazag.edu.br/static/matrizes/${courseLowerCase}.pdf" style="
+                    <a href="https://fazag.edu.br/static/matrizes/${data.courseId}.pdf" style="
                         cursor: pointer;
                         text-decoration: none;
                         text-align: center;
