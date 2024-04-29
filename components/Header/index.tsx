@@ -49,7 +49,7 @@ function closeToggle(){
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}> 
                     <LinkHeader linkName={'Administração'} url={"/cursos/administracao"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Ciências Contábeis'} url={"/cursos/ciencias-contabeis"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Educação Física'} url={"/cursos/ed-fisica"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Educação Física'} url={"/cursos/educacao-fisica"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Engenharia Civil'} url={"/cursos/engenharia-civil"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Enfermagem'} url={"/cursos/enfermagem"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Estética'} url={"/cursos/estetica"} closeToggle={closeToggle}/>
@@ -85,7 +85,7 @@ function closeToggle(){
                   <li className={`nav-item dropdown ${styles.dropdown}`}> 
                     <a className={"nav-link dropdown-toggle"} role={"button"} data-bs-toggle={"dropdown"} aria-expanded={"false"}>Diferenciais</a>
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
-                        <LinkHeader url="/fazaginforma/bolsas-descontos-financiamentos" linkName='Bolsas e Financiamentos' closeToggle={closeToggle}/>
+                        {/*<LinkHeader url="/fazaginforma/bolsas-descontos-financiamentos" linkName='Bolsas e Financiamentos' closeToggle={closeToggle}/>*/}
                         <LinkHeader linkName={'Monitoria'} url={"/fazaginforma/monitoria"} closeToggle={closeToggle}/>
                         <LinkHeader linkName={'Feira de Inovação'} url={"/fazaginforma/feira-de-inovacao"} closeToggle={closeToggle}/>
                         <LinkHeader linkName={'Núcleo de Tec. e Manutenção Pedag.'} url={"#"} closeToggle={closeToggle}/>

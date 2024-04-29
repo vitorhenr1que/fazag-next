@@ -7,7 +7,25 @@
     text-align: center;
 }
 
-.calendarItem {
+.publicacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btnPrimary {
+    width: 300px;
+}
+
+.cardBody {
+    width: 300px;
+    margin-bottom: 1rem;
+}
+
+.publicationItem {
+    align-items: center;
+    justify-content: center;
     &:hover {
         p {
             transition: .2s;
@@ -19,4 +37,15 @@
     display: 'flex';
     flex-direction: 'column';
     gap: 4rem;
+}
+
+@media (max-width: 300px){
+    .btnPrimary {
+        width: 250px;
+    }
+    
+    .cardBody {
+        width: 250px;
+        margin-bottom: 1rem;
+    }
 }

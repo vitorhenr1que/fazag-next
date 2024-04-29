@@ -10,12 +10,10 @@ import Link from "next/link";
 export function Modal({image, alt, modalLink}: any) {
 
         const [openModal, setOpenModal] = useState(false)
-        console.log(modalLink)
         useEffect(() => { // O modal do radix da erro de Hidratação se começar com o valor "true" de início
             setOpenModal(true) // por isso foi preciso alterar no momento que a página abre
         }, [])
        
-
 
         
         return (

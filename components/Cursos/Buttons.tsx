@@ -7,22 +7,22 @@ interface ButtonsProps {
 }
 
 export function Buttons(props: ButtonsProps){
-if(props.curso === 'ed-fisica'){ {/* se for o curso de Educação Física */}
+if(props.curso === 'educacao-fisica'){ {/* se for o curso de Educação Física */}
     return (
         <div className={styles.buttonsContainer}>
             <div className={styles.buttonContainer}>
             <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapseGrade" role="button" aria-expanded="false" aria-controls="collapseGrade">Grade e Corpo Docente</a>
             <div className="collapse" id="collapseGrade">
                 <div className={styles.linkContainer}>
-                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}l.pdf`} download={`grade-${props.curso}.pdf`} >
+                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}-licenciatura.pdf`} download={`grade-${props.curso}.pdf`} >
                         <FileArrowDown size={28} />
                         <span>Grade de {props.title} Licenciatura</span>
                     </a>
-                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}b.pdf`} download={`grade-${props.curso}.pdf`} >
+                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}-bacharelado.pdf`} download={`grade-${props.curso}.pdf`} >
                         <FileArrowDown size={28} />
                         <span>Grade de {props.title} Bacharelado</span>
                     </a>
-                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}c.pdf`} download={`grade-${props.curso}.pdf`} >
+                    <a className={styles.linkDownload} href={`/static/horarios/grade-${props.curso}-complementacao.pdf`} download={`grade-${props.curso}.pdf`} >
                         <FileArrowDown size={28} />
                         <span>Grade de {props.title} Complementação</span>
                     </a>
@@ -46,15 +46,15 @@ if(props.curso === 'ed-fisica'){ {/* se for o curso de Educação Física */}
             <a type="button" className={styles.button} data-bs-toggle="collapse" href="#collapseMatriz" role="button" aria-expanded="false" aria-controls="collapseMatriz">Matriz Curricular</a>
             <div className="collapse" id="collapseMatriz">
                 <div className={styles.linkContainer}>
-                    <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}l.pdf`} download={`matriz-${props.curso}.pdf`} >
+                    <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}-licenciatura.pdf`} download={`matriz-${props.curso}.pdf`} >
                         <FileArrowDown size={28} />
                         <span>Matriz de {props.title} Licenciatura</span>
                         </a>
-                        <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}b.pdf`} download={`matriz-${props.curso}.pdf`} >
+                        <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}-bacharelado.pdf`} download={`matriz-${props.curso}.pdf`} >
                         <FileArrowDown size={28} />
                         <span>Matriz de {props.title} Bacharelado</span>
                         </a>
-                        <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}c.pdf`} download={`matriz-${props.curso}.pdf`} >
+                        <a className={styles.linkDownload} href={`/static/matrizes/${props.curso}-complementacao.pdf`} download={`matriz-${props.curso}.pdf`} >
                         <FileArrowDown size={28} />
                         <span>Matriz de {props.title} Complementação</span>
                         </a>
