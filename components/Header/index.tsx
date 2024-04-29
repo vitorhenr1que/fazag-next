@@ -67,9 +67,11 @@ function closeToggle(){
                     <a className={"nav-link dropdown-toggle"} href={"#"} role={"button"} data-bs-toggle={"dropdown"} aria-expanded={"false"}>Cursos de <br/><strong>Pós-Graduação</strong></a> 
                     
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
+                    <LinkHeader linkName={'Controladoria e Perícia Contábil'} url={"#"} closeToggle={closeToggle}/>
                     <LinkHeader linkName={'Enfermagem em Obstetrícia'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Gestão Estratégica de Pessoas'} url={"#"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Educação Inclusiva'} url={"#"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Enfermagem em Terapia Intensiva (UTI)'} url={"#"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Psicologia Organizacional e Gestão de Pessoas'} url={"#"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Serviço Social e Seguridade Social'} url={"#"} closeToggle={closeToggle}/>
                     </ul>
                   </li>
 
