@@ -81,6 +81,7 @@ function closeToggle(){
                       <LinkHeader linkName={'Ambiente Virtual de Aprendizagem'} url={"https://moodle.fazag.edu.br"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Portal do Aluno'} url={"http://sistemajaguar.com.br"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Inscreva-se'} url={'https://matriculas.fazag.edu.br'} target={'_blank'} closeToggle={closeToggle}/>
+                      {/*<LinkHeader linkName={'Egressos'} url={'/egressos'} closeToggle={closeToggle}/>*/}
                     </ul>
                   </li>
 
