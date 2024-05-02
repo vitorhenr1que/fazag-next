@@ -46,7 +46,7 @@ export default function Footer() {
                     </div>
                     <div className={styles.divFooter}>
                         <span>SUPORTE</span>
-                        <Link href="#">Perguntas Frequentes</Link>
+                        {/*<Link href="#">Perguntas Frequentes</Link>*/}
                         <Link href="/fazaginforma/contato">Contato</Link>
                     </div>
                 </div>
