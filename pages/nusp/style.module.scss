@@ -1,0 +1,37 @@
+.container{
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    .imageContainer{
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 2rem;
+        .imageNusp{
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    
+    .textContainer{
+        flex: 1;
+
+        
+        .pDiv{
+            p {
+                margin-top: 2rem;
+                text-align: justify;
+            }
+        }
+    }
+}
+@media(max-width: 576px){
+        
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+    .imageNusp{
+        height: 50%;
+    }
+}
