@@ -89,3 +89,13 @@ model Egressos {
   createdAt  DateTime @default(now())
   publicated Boolean  @default(false)
 }
+
+model Nusp {
+  id           String   @id @default(uuid())
+  nome         String
+  email        String
+  vinculo      String
+  horario      String
+  dataAgendada String
+  createdAt    DateTime @default(now())
+}
