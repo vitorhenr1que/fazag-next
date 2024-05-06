@@ -81,7 +81,7 @@ function closeToggle(){
                       <LinkHeader linkName={'Ambiente Virtual de Aprendizagem'} url={"https://moodle.fazag.edu.br"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Portal do Aluno'} url={"http://sistemajaguar.com.br"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Inscreva-se'} url={'https://matriculas.fazag.edu.br'} target={'_blank'} closeToggle={closeToggle}/>
-                      {/*<LinkHeader linkName={'Egressos'} url={'/egressos'} closeToggle={closeToggle}/>*/}
+                      <LinkHeader linkName={'Egressos'} url={'/egressos'} closeToggle={closeToggle}/>
                     </ul>
                   </li>
 
@@ -91,7 +91,8 @@ function closeToggle(){
                         {/*<LinkHeader url="/fazaginforma/bolsas-descontos-financiamentos" linkName='Bolsas e Financiamentos' closeToggle={closeToggle}/>*/}
                         <LinkHeader linkName={'Monitoria'} url={"/fazaginforma/monitoria"} closeToggle={closeToggle}/>
                         <LinkHeader linkName={'Feira de Inovação'} url={"/fazaginforma/feira-de-inovacao"} closeToggle={closeToggle}/>
-                        <LinkHeader linkName={'Núcleo de Tec. e Manutenção Pedag.'} url={"#"} closeToggle={closeToggle}/>
+                        {/*<LinkHeader linkName={'Núcleo de Tec. e Manutenção Pedag.'} url={"#"} closeToggle={closeToggle}/>*/}
+                        <LinkHeader linkName={'NUSP'} url={"/nusp"} closeToggle={closeToggle}/>
                     </ul>
                   </li>
 
