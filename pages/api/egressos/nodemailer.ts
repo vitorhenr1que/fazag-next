@@ -10,7 +10,7 @@ if(req.method === 'POST'){
         await transporter.sendMail({
            ...mailOptions,
            subject: '🗣️ Egressos | Nova mensagem 🗣️',
-           cc: 'ouvidoria.fazag@gmail.com',
+           cc: 'ouvidoria@fazag.edu.br',
            //bcc: 'caroll_moutinho@hotmail.com',
            text: data.text,
            replyTo: data.email,

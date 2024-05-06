@@ -13,7 +13,7 @@ if(req.method === 'POST'){
            text: data.text,
            replyTo: data.email,
            cc: data.emailCoordenador,
-           bcc: 'ouvidoria.fazag@gmail.com',
+           bcc: 'ouvidoria@fazag.edu.br',
            html: `
            <div style=" padding: 50px 10px;
            background: #fca253;

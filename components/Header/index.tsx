@@ -35,6 +35,7 @@ function closeToggle(){
                       <LinkHeader linkName={'Quem somos'} url={"/fazaginforma/quem-somos"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Missão, Visão e Valores'} url={"/fazaginforma/a-faculdade-zacarias-de-goes-tem-como-missao-contribuir"} closeToggle={closeToggle}/>
                       <LinkHeaderDownload linkName={'Regimento Geral'} url={"/static/regulamentos/regulamentogeral.pdf"} download={"Regulamento Geral.pdf"} closeToggle={closeToggle}/>
+                      <LinkHeader linkName={'Biblioteca'} url={"/biblioteca"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Publicações Institucionais'} url={"/publicacoes-institucionais"} closeToggle={closeToggle}/>
                       <LinkHeaderDownload linkName={'Organograma'} url={"/static/organograma.pdf"} download={"Organograma FAZAG.pdf"} closeToggle={closeToggle}/>
                       
@@ -101,6 +102,7 @@ function closeToggle(){
                       <LinkHeaderNavLink linkName={'CPA'} url={"/fazaginforma/cpa"} closeToggle={closeToggle}/>
 
                   </li>
+
                  
                 </ul>
                 <a className={`navbar-brand ${styles.aEntrar}`} href="http://sistemajaguar.com.br">
