@@ -1,0 +1,55 @@
+.container{
+    .imageBiblioteca{
+       width: 100%;
+       height: 25vw;
+       object-fit: cover;
+    }
+    .containerBib{
+        padding: 2rem;
+        p {
+            text-align: justify;
+        }
+    }
+    .cardsContainer{
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        .divTitle{
+            background-color: var(--blue-300);
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+        }
+        .containerCard{
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+}
+
+@media(max-width: 900px){
+    .containerCard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+
+@media(max-width: 1196px){
+    .containerCard {
+        gap: 2rem;
+    }
+    
+}
+
+@media(max-width: 574px){
+    
+    .imageBiblioteca{
+        width: 100%;
+        height: 60vw !important;
+        object-fit: cover;
+     }
+}

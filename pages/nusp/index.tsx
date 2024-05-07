@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styles from './style.module.scss'
+import styles from '../../styles/nusp.module.scss'
 import nusp from '../../public/images/nusp.jpg'
 import { ModalNusp } from '../../components/Nusp'
 
