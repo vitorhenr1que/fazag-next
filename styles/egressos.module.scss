@@ -49,8 +49,7 @@
         }
     }
     .postImage{
-        object-fit: cover;
-        object-position: top;
+        object-fit: contain;
         border-radius: 16px;
         width: 90%;
         height: 40vh;
