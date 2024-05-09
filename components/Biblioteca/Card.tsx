@@ -7,7 +7,7 @@ interface CardProps{
     image: StaticImageData,
     paragraph: string,
     link: string,
-    download?: string
+    download?: string, 
 }
 
 export function Card({title, image, paragraph, link, ...rest}: CardProps){
