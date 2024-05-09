@@ -7,7 +7,6 @@ import curatoria from '../../public/images/curatoria.jpg'
 import dspace from '../../public/images/dspace.jpg'
 import OJS from '../../public/images/OJS.jpg'
 import revista from '../../public/images/revista.png'
-import { CardDownload } from '../../components/Biblioteca/CardDownload'
 
 export default function Biblioteca(){
     return(
@@ -42,6 +41,7 @@ export default function Biblioteca(){
                     image={curatoria}
                     paragraph='Navegação intuitiva e de qualquer dispositivo. Rica fonte de conhecimento acadêmico, abrangendo um vasto leque de disciplinas e especializações.'
                 />
+
             </div>
 
             <div className={styles.divTitle}>
@@ -50,7 +50,7 @@ export default function Biblioteca(){
             <div className={styles.containerCard}>
                 <Card title='Repositório Digital' link='http://zacarias-vlc.conecttelecom.com.br:8080/xmlui/' image={dspace} paragraph='Uma plataforma de repositório digital que serve para ajudar instituições a gerenciar, preservar e fornecer acesso a uma ampla variedade de conteúdos digitais, como artigos acadêmicos, documentos de pesquisa, conjuntos de dados, imagens e muito mais.'/>
                 <Card title='Revista Científica' link='http://zacarias-vlc.conecttelecom.com.br:8081/ojs/index.php/fazag/login' image={OJS} paragraph='O Open Journal Systems é uma plataforma de gerenciamento e publicação de revistas eletrônicas. O OJS oferece uma gama de ferramentas para facilitar o fluxo de trabalho editorial, desde a submissão inicial até a publicação final.'/>
-                <CardDownload title='1ª Edição da Revista FAZAG' link='static/revista_fazag_vol_1.pdf' image={revista} paragraph='Explore as fronteiras do conhecimento acadêmico com o Volume 1 da Revista da Faculdade FAZAG. Prepare-se para uma jornada intelectual enriquecedora enquanto celebramos o pensamento crítico e a excelência acadêmica na FAZAG.' downloadName='Revista FAZAG - Volume 1'/>
+                <Card title='1ª Edição da Revista FAZAG' link='static/revista_fazag_vol_1.pdf' download='Revista FAZAG - Volume 1' image={revista} paragraph='Explore as fronteiras do conhecimento acadêmico com o Volume 1 da Revista da Faculdade FAZAG. Prepare-se para uma jornada intelectual enriquecedora enquanto celebramos o pensamento crítico e a excelência acadêmica na FAZAG.' />
             </div>
                 
             </section>
