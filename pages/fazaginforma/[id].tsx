@@ -21,7 +21,7 @@ export default function PostsDinamicos({response, posts}: any){
                const img = <img src={node.url} className={styles.image} width={1000} height={500} alt={node.alt ? node.alt : ''}/>
                return (
                 <p key={key} className={styles.imageBlock}>
-                    { node.linkTo ? (
+                    n{ ode.linkTo ? (
                     <PrismicLink field={node.linkTo}> {img} </PrismicLink>
                     ) : (
                         img
