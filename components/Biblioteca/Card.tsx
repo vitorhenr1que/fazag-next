@@ -7,21 +7,22 @@ interface CardProps{
     image: StaticImageData,
     paragraph: string,
     link: string,
+    download?: string
 }
 
-export function Card({title, image, paragraph, link}: CardProps){
+export function Card({title, image, paragraph, link, ...rest}: CardProps){
    return (
             <div className={styles.cardContainer}> 
-                <Link href={`${link}`} target='_blank' className={styles.linkTitle}>       
+                <Link href={`${link}`} target='_blank' className={styles.linkTitle} {...rest}>       
                     <span className={styles.cardTitle}>{title}</span>
                 </Link>
-            <Link href={`${link}`} target='_blank' className={styles.divImageCard}>
+            <Link href={`${link}`} target='_blank' className={styles.divImageCard} {...rest}>
                 <Image src={image} className={styles.cardImage} alt='Imagem da Biblioteca'/>
             </Link>
             <span className={styles.paragraph}>
                 {paragraph}
             </span>
-            <Link href={`${link}`} target='_blank' className={styles.link}>
+            <Link href={`${link}`} target='_blank' className={styles.link} {...rest}>
                 Acesse Aqui
             </Link>
             </div>
