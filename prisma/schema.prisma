@@ -12,7 +12,7 @@ model Coordenador {
   nome  String
   email String
   curso String
-  text  String
+  text  String   @db.Text
   data  DateTime @default(now())
 }
 
@@ -32,7 +32,7 @@ model Ouvidoria {
   email         String
   motivo        String
   procurouSetor String
-  text          String
+  text          String   @db.Text
   vinculo       String
   data          DateTime @default(now())
 }
@@ -84,7 +84,7 @@ model Egressos {
   nome       String
   email      String
   curso      String
-  text       String
+  text       String   @db.Text
   imageUrl   String
   createdAt  DateTime @default(now())
   publicated Boolean  @default(false)
@@ -96,6 +96,6 @@ model Nusp {
   email        String
   vinculo      String
   horario      String
-  dataAgendada String
   createdAt    DateTime @default(now())
+  dataAgendada String
 }
