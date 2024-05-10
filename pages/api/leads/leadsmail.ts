@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { mailOptions, transporter } from "../../../services/nodemailder";
+import { mailOptions, transporter } from "../../../services/nodemailerPs";
 export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 
