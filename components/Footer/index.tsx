@@ -65,7 +65,7 @@ export default function Footer() {
                     </div>
                     <div className={styles.divFooterButton}>
                         <span>Acesse o Portal da FAZAG</span>
-                        <Link className='btn btn-primary' href="http://sistemajaguar.com.br">Entrar</Link>
+                        <Link className='btn btn-primary' href="https://fazag.sistemajaguar.com.br">Entrar</Link>
                     </div>
                 </div>
             </div>
