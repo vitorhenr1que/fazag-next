@@ -38,7 +38,7 @@ export default function HomeMain({posts}: PostsProps) {
           src={AmbienteVirtual}/>
           
           <ButtonsMain 
-          url="http://sistemajaguar.com.br"
+          url="https://fazag.sistemajaguar.com.br"
           title="Portal do Aluno" 
           description="Acesse suas notas, comprovante de matrícula, certificados e muito mais."
           src={PortalAluno}/>
