@@ -99,3 +99,15 @@ model Nusp {
   createdAt    DateTime @default(now())
   dataAgendada String
 }
+
+model Vocacional {
+  id         String   @id @default(uuid())
+  nome       String
+  email      String
+  tel String
+  courseOne  String
+  courseTwo  String
+  courseTree String
+  createdAt  DateTime @default(now())
+  contacted  Boolean  @default(false)
+}
