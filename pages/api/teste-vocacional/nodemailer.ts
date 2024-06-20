@@ -58,7 +58,7 @@ margin-bottom: 1rem;">
             <h2 style="color: #0044cc;">2. ${data.courseTwo}</h2>
             <p>${courses[data.courseTwo]}</p>
             
-            <h2 style="color: #0044cc;">2. ${data.courseTree}</h2>
+            <h2 style="color: #0044cc;">3. ${data.courseTree}</h2>
             <p>${courses[data.courseTree]}</p>
             
             <h2 style="color: #0044cc;">Próximos Passos</h2>
