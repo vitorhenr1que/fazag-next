@@ -37,7 +37,7 @@ function closeToggle(){
                       <LinkHeaderDownload linkName={'Regimento Geral'} url={"/static/regulamentos/regulamentogeral.pdf"} download={"Regulamento Geral.pdf"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Biblioteca'} url={"/biblioteca"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Publicações Institucionais'} url={"/publicacoes-institucionais"} closeToggle={closeToggle}/>
-                      <LinkHeaderDownload linkName={'Organograma'} url={"/static/organograma.pdf"} download={"Organograma FAZAG.pdf"} closeToggle={closeToggle}/>
+                      <LinkHeader linkName={'Organograma'} url={"/organograma"} closeToggle={closeToggle}/>
                       
                     </ul>
                   </li>
