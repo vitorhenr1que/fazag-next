@@ -109,12 +109,12 @@ return (
             <div className={`card card-body ${styles.cardBody}`}>
         <PublicacaoInstitucional 
 
-            downloadName='Edital PIC 20241'
-            destination='static/pic/editalpic20241.pdf' 
-            label='Edital Iniciação Científica 2024.1'
+            downloadName='Edital PIC'
+            destination='static/pic/editalpic.pdf' 
+            label='Edital Iniciação Científica'
             svgPath={pdfSvg}
             />
-            <hr/>
+            {/*<hr/>
         <PublicacaoInstitucional 
             downloadName='Formulário do Aluno'
             destination='static/pic/formalunopic.pdf' 
@@ -127,7 +127,7 @@ return (
             destination='static/pic/formprofessorpic.pdf' 
             label='Formulário do Professor' 
             svgPath={pdfSvg}
-            />
+            />*/}
             </div>
             </div>
         </div>
