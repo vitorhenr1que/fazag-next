@@ -114,20 +114,6 @@ return (
             label='Edital Iniciação Científica'
             svgPath={pdfSvg}
             />
-            {/*<hr/>
-        <PublicacaoInstitucional 
-            downloadName='Formulário do Aluno'
-            destination='static/pic/formalunopic.pdf' 
-            label='Formulário do Aluno' 
-            svgPath={pdfSvg}
-            />
-            <hr/>
-        <PublicacaoInstitucional 
-            downloadName='Formulário do Professor'
-            destination='static/pic/formprofessorpic.pdf' 
-            label='Formulário do Professor' 
-            svgPath={pdfSvg}
-            />*/}
             </div>
             </div>
         </div>
@@ -144,6 +130,26 @@ return (
 
             downloadName='Edital Seleção de Artigos Científicos para a Revista Científica'
             destination='static/pic/editalselecao.pdf' 
+            label='Edital'
+            svgPath={pdfSvg}
+            />
+            </div>
+            </div>
+        </div>
+
+        <div className={styles.publicacao}> {/* Monitoria */}
+        <p className="d-inline-flex gap-1">
+            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#monitoria" role="button" aria-expanded="false" aria-controls="monitoria">
+                Monitoria
+            </a>
+        </p>
+
+            <div className="collapse" id={`monitoria`}>
+            <div className={`card card-body ${styles.cardBody}`}>
+        <PublicacaoInstitucional 
+
+            downloadName='Edital Monitoria'
+            destination='static/monitoria/editalmonitoria.pdf' 
             label='Edital'
             svgPath={pdfSvg}
             />
