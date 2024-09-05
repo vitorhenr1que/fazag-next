@@ -62,18 +62,18 @@ export function ModalNusp() {
         function getDate(){
             const data = new Date()
             const diaDaSemana = data.getDay()
-            if(diaDaSemana === 2 || diaDaSemana === 3){
+            if(diaDaSemana === 1){ // mais dias: if(diaDaSemana === 2 || diaDaSemana === 3)
                 return new Date()
             }
-            let diasAteTerca = 2 - diaDaSemana
-            if(diasAteTerca <= 0){
-                diasAteTerca += 7
+            let diasAteDataInicial = 1 - diaDaSemana // o 1 é o valor da semana que quer que apareça marcado por padrão
+            if(diasAteDataInicial <= 0){
+                diasAteDataInicial += 7
             }
-            return new Date(data.setDate(data.getDate() + diasAteTerca))
+            return new Date(data.setDate(data.getDate() + diasAteDataInicial))
         }
 
 
-        const daysAccepted = [2 , 3]
+        const daysAccepted = [1] // 1-seg 2-ter 3-qua... ex: [1, 2, 3]
 
         function disableDay(date: Date){ // O DayPicker vai fazer um map com Data do calendário
             const DayOfWeek = date.getDay() // vai pegar em número o dia da semana de 0 a 6 (domingo a sábado)
