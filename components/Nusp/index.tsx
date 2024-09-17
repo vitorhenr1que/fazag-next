@@ -37,8 +37,6 @@ export function ModalNusp() {
 
         function VerifyHour(hour: string){
           const test = !!testArr.filter((index) => index.horario.includes(hour))[0]
-          console.log('esse é o test: ', test)
-          
           return test
         }
 
@@ -118,7 +116,11 @@ export function ModalNusp() {
         async function handleSubmit(e: FormEvent){
             e.preventDefault()
             setLoading(true)
-            
+            if (horario === ""){
+              setLoading(false)
+              return alert("O horário da sessão precisa ser selecionado.")
+
+            }
             const formData = new FormData(e.target as HTMLFormElement)
             const data = Object.fromEntries(formData)
             console.log('Data aqui: ', data)
@@ -170,7 +172,6 @@ export function ModalNusp() {
             }
             VerifyDateHour()
             SetHorario("")
-            console.log('testArr', testArr)
           },[daysSelected])
 
 
