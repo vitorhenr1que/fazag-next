@@ -34,6 +34,17 @@ export function ModalNusp() {
         const [testArr, SetTestArr] = useState<testArrProps[]>([])
         const [isReserved, setIsReserved] = useState([])
 
+        function VerifyDateSplit(){ //para resolver problema de alguns computadores não conter a vírgula da array
+         
+          if(daysSelected.toLocaleString().length > 19){
+            console.log('Pegou a vírgula')
+            return daysSelected.toLocaleString().split(',')[0]
+          } 
+          else {
+            console.log('Pegou o espaço')
+            return daysSelected.toLocaleString().split(' ')[0]
+          }
+        }
 
         function VerifyHour(hour: string){
           const test = !!testArr.filter((index) => index.horario.includes(hour))[0]
@@ -130,7 +141,7 @@ export function ModalNusp() {
                 email: data.email,
                 horario: horario,
                 vinculo: data.vinculo,
-                dataAgendada: daysSelected.toLocaleString().split(',')[0]
+                dataAgendada: VerifyDateSplit()
               })
   
               await api.post('/nusp/nodemailer', {
@@ -139,7 +150,7 @@ export function ModalNusp() {
                 horario: horario,
                 text: data.text,
                 vinculo: data.vinculo,
-                dataAgendada: daysSelected.toLocaleString().split(',')[0]
+                dataAgendada: VerifyDateSplit()
               }) 
               setLoading(false)
               
@@ -154,11 +165,13 @@ export function ModalNusp() {
 
 //useEffect
           useEffect(()=> {
+            
             async function VerifyDateHour(){
+              
               setLoadingHour(true)
               try{
                 const response = await api.post('/nusp/find', {
-                  dataAgendada: daysSelected.toLocaleString().split(',')[0]
+                  dataAgendada: VerifyDateSplit()
                 })
 
                 SetTestArr(response.data)
