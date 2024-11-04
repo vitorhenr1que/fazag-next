@@ -12,6 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await res.revalidate('/')
       await res.revalidate('/egressos')
       await res.revalidate('/fazaginforma')
+      await res.revalidate('/cursos')
       return res.json({ revalidated: true })
     } catch (err) {
       // If there was an error, Next.js will continue
