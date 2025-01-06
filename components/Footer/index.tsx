@@ -7,6 +7,10 @@ import facebook from '../../public/images/icons/facebook.svg'
 import instagram from '../../public/images/icons/instagram.svg'
 import whatsapp from '../../public/images/icons/whatsapp.svg'
 import logofazag from '../../public/images/logo-fazag-branca.png'
+import educamais from '../../public/images/educamais.png'
+import querobolsa from '../../public/images/querobolsa.png'
+import motivabolsas from '../../public/images/motivabolsas.png'
+
 import Link from 'next/link'
 
 
@@ -66,6 +70,20 @@ export default function Footer() {
                     <div className={styles.divFooterButton}>
                         <span>Acesse o Portal da FAZAG</span>
                         <Link className='btn btn-primary' href="https://fazag.sistemajaguar.com.br">Entrar</Link>
+                    </div>
+                    <div className={styles.divFooterSocial}>
+                        <span>PARCEIROS DE BOLSA</span>
+                        <div className={styles.partnersContainer}>
+                            <Link className={styles.partnerLink} href={'https://www.educamaisbrasil.com.br/'} target='_blank'>
+                                <Image src={educamais} alt='Educa Mais Brasil' quality={100} width={45} height={45}/>
+                            </Link>
+                            <Link className={styles.partnerLink} href={'https://www.motivabolsas.com.br/'} target='_blank'>
+                                <Image src={motivabolsas} alt='Motiva Bolsas' quality={100} width={45} height={45}/>
+                            </Link>
+                            <Link className={styles.partnerLink} href={'https://querobolsa.com.br/'} target='_blank'>
+                                <Image src={querobolsa} alt='Quero Bolsas' quality={100} width={45} height={45}/>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

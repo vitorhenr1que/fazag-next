@@ -78,6 +78,15 @@
             font-size: .9rem;
         }
     }
+    .partnersContainer{
+        display: flex;
+        gap: .7rem;
+        .partnerLink{
+            img{
+                border-radius: 4px;
+            }
+        }
+    }
 }
 
  /* Footer */
