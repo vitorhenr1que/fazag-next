@@ -16,8 +16,8 @@ interface DataProps {
 export default async function (req: NextApiRequest, res: NextApiResponse){
 
     const data: DataProps = req.body
-
-if(req.method === 'POST'){
+    console.log(req.method)
+if(req.method === 'POST' || req.method === 'post' ){
     const novoinscrito = await prisma.inscricao.create({
         data: {
             nome: data.nome,
