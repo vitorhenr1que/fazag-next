@@ -52,7 +52,7 @@ return (
             </div>
         </div>
 
-        <div className={styles.publicacao}> {/* Curso de Férias */}
+        {/* <div className={styles.publicacao}> // Curso de Férias 
         <p className="d-inline-flex gap-1">
             <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#cursoferias" role="button" aria-expanded="false" aria-controls="cursoferias">
                 Curso de Férias
@@ -69,7 +69,7 @@ return (
                     />
             </div>
             </div>
-        </div>
+        </div> */}
         <div className={styles.publicacao}> {/* Logo Institucional */}
         <p className="d-inline-flex gap-1">
             <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#logo-institucional" role="button" aria-expanded="false" aria-controls="logo-institucional">
@@ -111,7 +111,15 @@ return (
 
             downloadName='Edital PIC'
             destination='static/pic/editalpic.pdf' 
-            label='Edital Iniciação Científica'
+            label='Edital'
+            svgPath={pdfSvg}
+            />
+            <hr />
+            <PublicacaoInstitucional 
+
+            downloadName='Formulário de Inscrição - PIC'
+            destination='static/pic/formalunopic.pdf' 
+            label='Formulário'
             svgPath={pdfSvg}
             />
             </div>
@@ -151,6 +159,13 @@ return (
             downloadName='Edital Monitoria'
             destination='static/monitoria/editalmonitoria.pdf' 
             label='Edital'
+            svgPath={pdfSvg}
+            />
+            <hr />
+            <PublicacaoInstitucional 
+            downloadName='Regulamento de Monitoria'
+            destination='static/monitoria/regulamento-monitoria.pdf' 
+            label='Regulamento'
             svgPath={pdfSvg}
             />
             </div>
