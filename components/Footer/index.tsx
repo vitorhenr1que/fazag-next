@@ -58,7 +58,7 @@ export default function Footer() {
                     <div className={styles.divFooterSocial}>
                         <span>REDES SOCIAIS</span>
                         <div className={styles.iconContainer}>
-                        <SocialIcon logo={<Image src={whatsapp} alt={'WhatsApp'}/>} buttonColor='linear-gradient(45deg, #25D366 20%, #128C7E )' link='https://wa.me/5575982296725' />
+                        <SocialIcon logo={<Image src={whatsapp} alt={'WhatsApp'}/>} buttonColor='linear-gradient(45deg, #25D366 20%, #128C7E )' link='https://wa.me/5575981048077' />
                         <SocialIcon logo={<Image src={instagram} alt={'Instagram'}/>} buttonColor='linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)' link="https://instagram.com/faculdade_fazag" />
                         <SocialIcon logo={<Image src={facebook} alt={'Facebook'}/>} buttonColor='#3b5998' link='https://facebook.com/fazag' />
                         <SocialIcon logo={<Image src={moodle} alt={'Moodle'}/>} buttonColor='linear-gradient(45deg, #f38e17, #dd851d 45%)' link='https://moodle.fazag.edu.br' />
