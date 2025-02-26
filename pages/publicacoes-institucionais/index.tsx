@@ -168,6 +168,13 @@ return (
             label='Regulamento'
             svgPath={pdfSvg}
             />
+            <hr />
+            <PublicacaoInstitucional 
+            downloadName='Lista de Aprovados Monitoria'
+            destination='static/monitoria/aprovados-monitoria.pdf' 
+            label='Aprovados'
+            svgPath={pdfSvg}
+            />
             </div>
             </div>
         </div>
