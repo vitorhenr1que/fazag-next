@@ -51,6 +51,7 @@ return (
             </div>
             </div>
         </div>
+       
 
         {/* <div className={styles.publicacao}> // Curso de Férias 
         <p className="d-inline-flex gap-1">
@@ -179,6 +180,30 @@ return (
             </div>
         </div>
 
+        <div className={styles.publicacao}> {/* NEABI */}
+        <p className="d-inline-flex gap-1">
+            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#neabi" role="button" aria-expanded="false" aria-controls="neabi">
+                NEABI
+            </a>
+        </p>
+            <div className="collapse" id={`neabi`}>
+            <div className={`card card-body ${styles.cardBody}`}>
+                <PublicacaoInstitucional 
+                    downloadName='Edital NEABI'
+                    destination='static/neabi/edital-neabi.pdf' 
+                    label='Edital' 
+                    svgPath={pdfSvg}
+                    />
+                    <hr/>
+                    <PublicacaoInstitucional 
+                    downloadName='Portaria NEABI'
+                    destination='static/neabi/portaria-neabi.pdf' 
+                    label='Portaria' 
+                    svgPath={pdfSvg}
+                    />
+            </div>
+            </div>
+        </div>
        
         </div>
     </div>
