@@ -205,6 +205,31 @@ return (
             </div>
         </div>
        
+        <div className={styles.publicacao}> {/* FAZAÇÃO */}
+        <p className="d-inline-flex gap-1">
+            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#fazacao" role="button" aria-expanded="false" aria-controls="fazacao">
+                FAZAÇÃO
+            </a>
+        </p>
+            <div className="collapse" id={`fazacao`}>
+            <div className={`card card-body ${styles.cardBody}`}>
+                <PublicacaoInstitucional 
+                    downloadName='Logo PNG'
+                    destination='static/fazacao/logo-fazacao-2025.png' 
+                    label='Logo PNG' 
+                    svgPath={pdfSvg}
+                    />
+                    <hr/>
+                    <PublicacaoInstitucional 
+                    downloadName='Logo PDF'
+                    destination='static/fazacao/logo-fazacao-2025.pdf' 
+                    label='Logo PDF' 
+                    svgPath={pdfSvg}
+                    />
+            </div>
+            </div>
+        </div>
+
         </div>
     </div>
     
