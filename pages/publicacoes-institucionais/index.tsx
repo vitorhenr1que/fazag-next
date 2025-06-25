@@ -230,6 +230,24 @@ return (
             </div>
         </div>
 
+        <div className={styles.publicacao}> {/* BOLSA TRANSFORMAR */}
+        <p className="d-inline-flex gap-1">
+            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#btransformar" role="button" aria-expanded="false" aria-controls="btransformar">
+                BOLSA TRANSFORMAR
+            </a>
+        </p>
+            <div className="collapse" id={`btransformar`}>
+            <div className={`card card-body ${styles.cardBody}`}>
+                <PublicacaoInstitucional 
+                    downloadName='Edital'
+                    destination='static/regulamentos/edital-bolsa-transofrmar-2025.pdf' 
+                    label='Edital' 
+                    svgPath={pdfSvg}
+                    />
+            </div>
+            </div>
+        </div>
+
         </div>
     </div>
     
