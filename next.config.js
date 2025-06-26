@@ -17,6 +17,11 @@ const nextConfig = {
         port: '',
         pathname: '/fazag/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'lh6.googleusercontent.com',
+        
+      },
     ],
   },
 
