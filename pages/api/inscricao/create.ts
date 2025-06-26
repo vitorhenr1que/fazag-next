@@ -10,6 +10,7 @@ interface DataProps {
     email: string
     ingresso: string
     tel: string
+    bolsa: string
     
 }
 
@@ -26,7 +27,8 @@ if(req.method === 'POST' || req.method === 'post' ){
             curso: data.course,
             email: data.email,
             ingresso: data.ingresso,
-            telefone: data.tel
+            telefone: data.tel,
+            bolsa: data.bolsa
         }
     })
 

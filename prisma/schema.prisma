@@ -75,6 +75,7 @@ model Inscricao {
   conheceu  String
   ingresso  String
   curso     String
+  bolsa String?
   createdAt DateTime @default(now())
 }
 
@@ -104,10 +105,10 @@ model Vocacional {
   id         String   @id @default(uuid())
   nome       String
   email      String
-  tel String
   courseOne  String
   courseTwo  String
   courseTree String
   createdAt  DateTime @default(now())
   contacted  Boolean  @default(false)
+  tel        String
 }
