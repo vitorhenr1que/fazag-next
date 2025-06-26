@@ -64,7 +64,7 @@ if(req.method === 'POST'){
                 <strong>Curso desejado:</strong> ${data.course}
             </div>
             <div style="font-size: 16px; margin-top: 16px;">
-                <strong>Curso desejado:</strong> ${data.bolsa}
+                <strong>Parceiro de Bolsa:</strong> ${data.bolsa}
             </div>
                </div>
 
