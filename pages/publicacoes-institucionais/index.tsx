@@ -36,16 +36,16 @@ return (
             <div className="collapse" id={`calendario-academico`}>
             <div className={`card card-body ${styles.cardBody}`}>
                 <PublicacaoInstitucional 
-                    downloadName='Calendário Acadêmico 20242'
-                    destination='static/calendario/calendario20242.pdf' 
-                    label='Calendário Acadêmico 2024.2' 
+                    downloadName='Calendário Acadêmico 20251'
+                    destination='static/calendario/calendario20251.pdf' 
+                    label='Calendário Acadêmico 2025.1' 
                     svgPath={pdfSvg}
                     />
                     <hr/>
                     <PublicacaoInstitucional 
-                    downloadName='Calendário Acadêmico 20251'
-                    destination='static/calendario/calendario20251.pdf' 
-                    label='Calendário Acadêmico 2025.1' 
+                    downloadName='Calendário Acadêmico 20252'
+                    destination='static/calendario/calendario20252.pdf' 
+                    label='Calendário Acadêmico 2025.2' 
                     svgPath={pdfSvg}
                     />
             </div>
