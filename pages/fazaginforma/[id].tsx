@@ -27,6 +27,7 @@ export default function PostsDinamicos({response, posts}: any){
                         img
                     )
                 }
+                <span className={styles.imgLegenda}>{node.alt}</span>
                 </p>
                )
             }
