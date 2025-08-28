@@ -32,7 +32,7 @@ export default async function handler(
       params: {
         secret: process.env.REVALIDATE_TOKEN
       }
-    })
+    }) 
 
 
     res.status(200).json({
