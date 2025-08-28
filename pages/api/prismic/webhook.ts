@@ -1,5 +1,7 @@
 // pages/api/prismic/webhook.ts
+import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { api } from "../../../services/api";
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,15 +28,15 @@ export default async function handler(
   try {
     // Aqui você pode escolher as rotas a revalidar manualmente
     // Por exemplo, apenas a homepage e o blog:
-    await res.revalidate('/')
-    await res.revalidate('/egressos')
-    await res.revalidate('/fazaginforma')
-    await res.revalidate('/cursos/administracao')
+    await api.get('revalidate', {
+      params: {
+        secret: process.env.REVALIDATE_TOKEN
+      }
+    })
 
 
     res.status(200).json({
       revalidated: true,
-      paths: ["/", "/egressos", "/fazaginforma", '/cursos/administracao'],
       now: Date.now(),
     });
   } catch (err) {
