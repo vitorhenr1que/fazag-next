@@ -6,8 +6,6 @@ import styles from '../styles/home.module.scss'
 import { Modal } from '../components/Home/Modal'
 
 
-
-
 export interface PostsProps {
   posts: {
     id: string,
@@ -54,7 +52,7 @@ export const getStaticProps: GetStaticProps = async () => {
         field: 'document.first_publication_date',
         direction: 'desc'
       },
-      pageSize: 1
+      pageSize: 1,
 })
 const posts = response.results.map(post => {
     return {
