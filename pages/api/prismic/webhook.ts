@@ -99,6 +99,9 @@ export default async function handler(
     return;
   }
 
+  console.log(`Response: -> ${res}`)
+  console.log(`Request: -> ${req}`)
+  
   // 1) valida secret
   const secret = getSecret(req);
   if (!secret || secret !== process.env.PRISMIC_ACCESS_TOKEN) {
