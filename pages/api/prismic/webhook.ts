@@ -29,11 +29,11 @@ export default async function handler(
     await res.revalidate('/')
     await res.revalidate('/egressos')
     await res.revalidate('/fazaginforma')
-    await res.revalidate('/cursos')
+    await res.revalidate('/cursos/')
 
     res.status(200).json({
       revalidated: true,
-      paths: ["/", "/egressos", "/fazaginforma", "/cursos"],
+      paths: ["/", "/egressos", "/fazaginforma", "/cursos/"],
       now: Date.now(),
     });
   } catch (err) {
