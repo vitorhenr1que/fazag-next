@@ -10,6 +10,25 @@ return (
 
         <div className={styles.linksContainer}>
         <hr />
+        <div className={styles.publicacao}> {/* SICFAZ */}
+            <p className="d-inline-flex gap-1">
+                <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#sicfaz" role="button" aria-expanded="false" aria-controls="sicfaz">
+                    SICFAZ 2025
+                </a>
+            </p>
+
+                <div className="collapse" id={`sicfaz`}>
+                <div className={`card card-body ${styles.cardBody}`}>
+                <PublicacaoInstitucional 
+                    downloadName='Edital de Monitoria SICFAZ 2025'
+                    destination='static/sicfaz/edital-monitoria-sicfaz.pdf' 
+                    label='Edital de Monitoria' 
+                    svgPath={pdfSvg}
+                    />
+                </div>
+                </div>
+        </div>
+
         <div className={styles.publicacao}> {/* Regulamentos Institucionais */}
             <p className="d-inline-flex gap-1">
                 <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#regulamentos" role="button" aria-expanded="false" aria-controls="regulamentos">
