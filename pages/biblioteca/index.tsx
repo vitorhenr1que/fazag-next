@@ -31,7 +31,8 @@ export default function Biblioteca(){
             <div className={styles.containerCard}>
                 <Card 
                     title='Minha Biblioteca' 
-                    link='https://portal.dli.minhabiblioteca.com.br/Login.aspx?key=FAZAGValenca'
+                    // link='https://portal.dli.minhabiblioteca.com.br/Login.aspx?key=FAZAGValenca'
+                    link='https://sso.minhabiblioteca.com.br/Login.aspx?key=UNITESTE'
                     image={minhabiblioteca}
                     paragraph='Milhares de títulos técnicos, acadêmicos e científicos de diversas áreas do conhecimento. plataforma intuitiva e fácil de usar. Totalmente online.'
                     />
