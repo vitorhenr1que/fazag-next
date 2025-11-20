@@ -7,7 +7,6 @@ import axios from "axios";
 export default async function (req: NextApiRequest, res: NextApiResponse){
 
     const data: any = req.body
-    console.log('ESSE É A DATA: ', data)
 
 if(req.method === 'POST'){
    
@@ -35,7 +34,6 @@ if(req.method === 'POST'){
 
         const match = AuthURL.data.match(/<AuthenticatedUrl>(.*?)<\/AuthenticatedUrl>/);
         const url = match ? match[1] : null;
-        console.log('URL -->> ', url);
 
 
     return res.status(201).json({url})

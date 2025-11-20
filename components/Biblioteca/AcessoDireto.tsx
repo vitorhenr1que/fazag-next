@@ -4,6 +4,7 @@ import styles from './style.module.scss'
 import Link from 'next/link'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Loading } from '../Loading'
 
 interface CardProps{
     title: string,
@@ -33,9 +34,10 @@ export function AcessoDireto({title, image, paragraph, ...rest}: CardProps){
             <span className={styles.paragraph}>
                 {paragraph}
             </span>
-            <Link href={`${urlBiblioteca}`} target='_blank' className={styles.link} {...rest}>
+            {urlBiblioteca !== '' ? <Link href={`${urlBiblioteca}`} target='_blank' className={styles.link} {...rest}>
                 Acesse Aqui
-            </Link>
+            </Link> : <Loading/>}
+            
             </div>
     )
 }
