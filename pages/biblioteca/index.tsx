@@ -7,6 +7,7 @@ import curatoria from '../../public/images/curatoria.jpg'
 import dspace from '../../public/images/dspace.jpg'
 import OJS from '../../public/images/OJS.jpg'
 import revista from '../../public/images/revista.png'
+import { AcessoDireto } from '../../components/Biblioteca/AcessoDireto'
 
 export default function Biblioteca(){
     return(
@@ -29,13 +30,18 @@ export default function Biblioteca(){
                 <h3>Acervo Digital</h3>
             </div>
             <div className={styles.containerCard}>
-                <Card 
+                {/* <Card 
                     title='Minha Biblioteca' 
                     // link='https://portal.dli.minhabiblioteca.com.br/Login.aspx?key=FAZAGValenca'
                     link='https://sso.minhabiblioteca.com.br/Login.aspx?key=UNITESTE'
                     image={minhabiblioteca}
                     paragraph='Milhares de títulos técnicos, acadêmicos e científicos de diversas áreas do conhecimento. plataforma intuitiva e fácil de usar. Totalmente online.'
-                    />
+                    /> */}
+                <AcessoDireto
+                title='Minha Biblioteca' 
+                 image={minhabiblioteca}
+                 paragraph='Milhares de títulos técnicos, acadêmicos e científicos de diversas áreas do conhecimento. plataforma intuitiva e fácil de usar. Totalmente online.'
+                 />
                 <Card 
                     title='Curatoria Editora'
                     link='https://moodle.fazag.edu.br/mod/lti/launch.php?id=2'
