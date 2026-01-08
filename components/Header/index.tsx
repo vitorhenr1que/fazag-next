@@ -105,8 +105,8 @@ function closeToggle(){
 
                  
                 </ul>
-                 <a className={`navbar-brand ${styles.aEntrar}`} href="https://fazag.sistemajaguar.com.br"> 
-                {/* <a className={`navbar-brand ${styles.aEntrar}`} href="https://portais.qualinfonet.com.br/fazag/"> */}
+                 {/* <a className={`navbar-brand ${styles.aEntrar}`} href="https://fazag.sistemajaguar.com.br">  */}
+                 <a className={`navbar-brand ${styles.aEntrar}`} href="https://portais.qualinfonet.com.br/fazag/">
                 <button className={`btn btn-primary entrar ${styles.entrar}`}>
                       Entrar</button>
                 </a>
