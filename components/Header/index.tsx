@@ -80,7 +80,7 @@ function closeToggle(){
                     <a className={"nav-link dropdown-toggle"} role={"button"} data-bs-toggle={"dropdown"} aria-expanded={"false"}>Aluno FAZAG</a>
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}>
                       <LinkHeader linkName={'Ambiente Virtual de Aprendizagem'} url={"https://moodle.fazag.edu.br"} closeToggle={closeToggle}/>
-                      <LinkHeader linkName={'Portal do Aluno'} url={"https://fazag.sistemajaguar.com.br"} closeToggle={closeToggle}/>
+                      <LinkHeader linkName={'Portal do Aluno'} url={"https://portais.qualinfonet.com.br/fazag/"} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Inscreva-se'} url={'https://matriculas.fazag.edu.br'} target={'_blank'} closeToggle={closeToggle}/>
                       <LinkHeader linkName={'Egressos'} url={'/egressos'} closeToggle={closeToggle}/>
                     </ul>
