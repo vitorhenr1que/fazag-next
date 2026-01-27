@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://fazag_admin:zszsxu5973@162.214.122.42:3306/fazag_web"
 }
 
 model Coordenador {
