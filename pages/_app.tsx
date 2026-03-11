@@ -3,17 +3,17 @@ import '../styles/global.scss'
 import { Header } from '../components/Header'
 import Footer from '../components/Footer'
 import Script from 'next/script'
-
-
-
+import { useRouter } from 'next/router'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const showLayout = router.pathname !== '/consulta-diploma';
+
   return (
     <>
-
-    <Header/>
+    {showLayout && <Header/>}
     <Component {...pageProps} />
-    <Footer/>
+    {showLayout && <Footer/>}
 
   <Script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -23,5 +23,4 @@ export default function App({ Component, pageProps }: AppProps) {
      
     </>
   )
-
 }
