@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Coordenador {
+  id    String   @id @default(uuid())
+  nome  String
+  email String
+  curso String
+  text  String   @db.Text
+  data  DateTime @default(now())
+}
+
+model Leads {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String
+  tel       String
+  course    String
+  contacted Boolean  @default(false)
+  data      DateTime @default(now())
+}
+
+model Ouvidoria {
+  id            String   @id @default(uuid())
+  nome          String
+  email         String
+  motivo        String
+  procurouSetor String
+  text          String   @db.Text
+  vinculo       String
+  data          DateTime @default(now())
+}
+
+model Post {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  content     String
+  image       String
+  avatar      String?
+  author      String
+  published   Boolean
+  date        DateTime @default(now())
+}
+
+model Vagas {
+  id                           String @id @default(uuid())
+  administracao                Int
+  ciencias_contabeis           Int
+  educacao_fisica_bacharelado  Int
+  educacao_fisica_licenciatura Int
+  enfermagem                   Int
+  engenharia_civil             Int
+  estetica                     Int
+  farmacia                     Int
+  fisioterapia                 Int
+  nutricao                     Int
+  pedagogia                    Int
+  psicologia                   Int
+  servico_social               Int
+}
+
+model Inscricao {
+  id        String   @id @default(uuid())
+  nome      String
+  telefone  String
+  email     String
+  cidade    String
+  conheceu  String
+  ingresso  String
+  curso     String
+  bolsa String?
+  createdAt DateTime @default(now())
+}
+
+model Egressos {
+  id         String   @id @default(uuid())
+  postName   String?
+  nome       String
+  email      String
+  curso      String
+  text       String   @db.Text
+  imageUrl   String
+  createdAt  DateTime @default(now())
+  publicated Boolean  @default(false)
+}
+
+model Nusp {
+  id           String   @id @default(uuid())
+  nome         String
+  email        String
+  vinculo      String
+  horario      String
+  createdAt    DateTime @default(now())
+  dataAgendada String
+}
+
+model Vocacional {
+  id         String   @id @default(uuid())
+  nome       String
+  email      String
+  courseOne  String
+  courseTwo  String
+  courseTree String
+  createdAt  DateTime @default(now())
+  contacted  Boolean  @default(false)
+  tel        String
+}
