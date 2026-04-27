@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const showLayout = router.pathname !== '/consulta-diploma';
+  const showLayout = !['/consulta-diploma', '/consulta-historico'].includes(router.pathname);
 
   return (
     <>

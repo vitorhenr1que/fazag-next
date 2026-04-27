@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from '../../styles/consulta-diploma.module.scss';
 
-export default function ConsultaDiploma() {
+export default function ConsultaHistorico() {
     const router = useRouter();
-    const [iframeSrc, setIframeSrc] = useState("https://fazag.assinamos.com.br/iframe/diploma/");
+    const [iframeSrc, setIframeSrc] = useState("https://fazag.assinamos.com.br/iframe/historico-escolar/");
 
     useEffect(() => {
         if (!router.isReady) return;
@@ -13,16 +13,16 @@ export default function ConsultaDiploma() {
         const { cod } = router.query;
         if (cod) {
             const codValue = Array.isArray(cod) ? cod[0] : cod;
-            // Append the validation code to the iframe source
-            setIframeSrc(`https://fazag.assinamos.com.br/iframe/diploma/${codValue}`);
+            // O manual solicita anexar o código ao final da URL do iframe
+            setIframeSrc(`https://fazag.assinamos.com.br/iframe/historico-escolar/${codValue}`);
         }
     }, [router.isReady, router.query]);
 
     return (
         <div className={styles.pageWrapper}>
             <Head>
-                <title>Consulta Diploma Digital | FAZAG</title>
-                <meta name="description" content="Portal de consulta de diplomas digitais da Faculdade Fazag." />
+                <title>Consulta Histórico Escolar | FAZAG</title>
+                <meta name="description" content="Portal de consulta de histórico escolar da Faculdade Fazag." />
             </Head>
 
             {/* Blurred Background */}
@@ -35,7 +35,7 @@ export default function ConsultaDiploma() {
                         src={iframeSrc}
                         width="100%"
                         height="550px"
-                        title="Consulta Diploma Digital"
+                        title="Consulta histórico escolar"
                         className={styles.iframe}
                     >
                     </iframe>
