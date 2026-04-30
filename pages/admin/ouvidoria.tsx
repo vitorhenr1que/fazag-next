@@ -163,13 +163,14 @@ export default function AdminOuvidoria() {
       { threshold: 0.1 }
     );
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
+    const currentTarget = observerTarget.current;
+    if (currentTarget) {
+      observer.observe(currentTarget);
     }
 
     return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
       }
     };
   }, [loadMore, hasMore, fetchingMore]);
@@ -268,7 +269,7 @@ export default function AdminOuvidoria() {
                 <MagnifyingGlass size={16} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#64748b' }} />
               </div>
               <small style={{ color: '#64748b', fontSize: '0.75rem', marginTop: '0.25rem', display: 'block' }}>
-                Use <strong>*</strong> para "E" e <strong>+</strong> para "OU"
+                Use <strong>*</strong> para &quot;E&quot; e <strong>+</strong> para &quot;OU&quot;
               </small>
             </div>
 
