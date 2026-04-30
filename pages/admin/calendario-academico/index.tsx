@@ -21,7 +21,8 @@ import {
   CheckCircle,
   Clock,
   SignOut,
-  Layout
+  Layout,
+  Trash
 } from 'phosphor-react';
 import axios from 'axios';
 import { useAuth } from '../../../contexts/AuthContext';
@@ -126,6 +127,21 @@ export default function CalendarioAdmin() {
     setSelectedDay(null);
   };
 
+  const handleDeleteEvent = () => {
+    if (!selectedDay) return;
+
+    const newMonths = [...months];
+    const month = newMonths[selectedDay.monthIndex];
+    const eventIndex = month.events.findIndex(e => e.day === selectedDay.day);
+
+    if (eventIndex > -1) {
+      month.events.splice(eventIndex, 1);
+      setMonths(newMonths);
+    }
+    
+    setSelectedDay(null);
+  };
+
   const publishToSite = async () => {
     setIsPublishing(true);
     try {
@@ -176,6 +192,11 @@ export default function CalendarioAdmin() {
               onClick={() => handleDayClick(monthIndex, d)}
             >
               {d}
+              {event && (
+                <span className={styles.eventTooltip}>
+                  {event.text}
+                </span>
+              )}
             </div>
           );
         })}
@@ -260,7 +281,7 @@ export default function CalendarioAdmin() {
             disabled={isPublishing}
           >
             <FloppyDisk size={20} />
-            {isPublishing ? 'Publicando...' : 'Publicar no Site'}
+            {isPublishing ? 'Salvando...' : 'Salvar Alterações'}
           </button>
 
           <button className={styles.logoutBtn} onClick={handleLogout} title="Sair do painel">
@@ -355,6 +376,12 @@ export default function CalendarioAdmin() {
             </div>
 
             <div className={styles.modalActions}>
+              {months.length > 0 && selectedDay && months[selectedDay.monthIndex].events.some(e => e.day === selectedDay.day) && (
+                <button className={`${styles.button} ${styles.danger}`} onClick={handleDeleteEvent}>
+                  <Trash size={18} />
+                  Excluir
+                </button>
+              )}
               <button className={`${styles.button} ${styles.secondary}`} onClick={() => setSelectedDay(null)}>
                 Cancelar
               </button>
