@@ -16,18 +16,22 @@ import {
 import { api } from '../../services/api';
 import { format } from 'date-fns';
 import { 
-  BarChart, 
+  BarChart as RechartsBarChart, 
   Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  ResponsiveContainer, 
-  PieChart, 
+  ResponsiveContainer as RechartsResponsiveContainer, 
+  PieChart as RechartsPieChart, 
   Pie, 
   Cell
 } from 'recharts';
 import * as Dialog from '@radix-ui/react-dialog';
+
+const ResponsiveContainer = RechartsResponsiveContainer as any;
+const PieChart = RechartsPieChart as any;
+const BarChart = RechartsBarChart as any;
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
 const PAGE_SIZE = 15;
