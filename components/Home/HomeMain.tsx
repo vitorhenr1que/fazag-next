@@ -57,9 +57,9 @@ export default function HomeMain({posts}: PostsProps) {
 
             <div className={`col ${styles.agenda}`}>AGENDA
             
-              <button className="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <button className={styles.agendaBtn} type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <Calendar className={styles.phosforIcon} size={24}/>
-                <span className={styles.buttonText}>Calendario Acadêmico</span>
+                <span className={styles.buttonText}>Calendário Acadêmico</span>
               </button>
 
 
@@ -78,12 +78,12 @@ export default function HomeMain({posts}: PostsProps) {
                 </a>
 
               </div>
-              <button className={`btn btn-light ${styles.eventosInstitucionais}`}>
-              <Photo className={styles.phosforIcon} size={24} />
-                <Link href="/eventos-institucionais" className={styles.buttonText}>Eventos Institucionais</Link>
-              </button>
+              <Link href="/eventos-institucionais" className={styles.eventosBtn}>
+                <Photo className={styles.phosforIcon} size={24} />
+                <span className={styles.buttonText}>Eventos Institucionais</span>
+              </Link>
 
-              <Ouvidoria/>
+              <Ouvidoria className={styles.btnOuvidoria_custom}/>
               
               <div className={styles.eMEContainer}>
                 <a className={styles.spanMEC} href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MjU2OA==">

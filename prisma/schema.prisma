@@ -101,6 +101,12 @@ model Nusp {
   dataAgendada String
 }
 
+model NuspSettings {
+  id            String   @id @default("settings")
+  availableDays String   @default("3") // Comma-separated days of week (0-6)
+  updatedAt     DateTime @updatedAt
+}
+
 model Vocacional {
   id         String   @id @default(uuid())
   nome       String
@@ -111,4 +117,23 @@ model Vocacional {
   createdAt  DateTime @default(now())
   contacted  Boolean  @default(false)
   tel        String
+}
+
+model AcademicCalendar {
+  id        String   @id @default(uuid())
+  year      Int
+  semester  String
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([year, semester], name: "year_semester")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
 }

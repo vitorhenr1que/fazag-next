@@ -10,6 +10,7 @@ import { ptBR } from 'date-fns/locale'
 import 'react-day-picker/dist/style.css'
 import * as  ToggleGroup from "@radix-ui/react-toggle-group";
 import { LoadingDiv } from "../Loading/LoadingDiv";
+import { User, Envelope, IdentificationBadge, ChatText, Clock, CalendarBlank } from 'phosphor-react';
 
 interface testArrProps {
 
@@ -29,10 +30,11 @@ export function ModalNusp() {
         const [openModal, setOpenModal] = useState(false)
         const [loading, setLoading] = useState(false)
         const [loadingHour, setLoadingHour] = useState(false)
-        const [daysSelected, setDaysSelected] = useState<Date>(getDate) // se DayPicker fosse mode="multiple" receberia <Date[]> 
+        const [daysSelected, setDaysSelected] = useState<Date>(new Date()) 
         const [horario, SetHorario] = useState("")
         const [testArr, SetTestArr] = useState<testArrProps[]>([])
         const [isReserved, setIsReserved] = useState([])
+        const [daysAccepted, setDaysAccepted] = useState<number[]>([3])
 
         function VerifyDateSplit(){ //para resolver problema de alguns computadores não conter a vírgula da array
          
@@ -52,37 +54,50 @@ export function ModalNusp() {
         }
 
         function ToggleGroupA(){
-
-
-          
           return (
-              <>
-              <label htmlFor="procurei" className={styles.labels}>Escolha o horário da sua sessão: <span>*</span></label>
-                  <ToggleGroup.Root className={styles.toggleGroupRoot} type="single" defaultValue="Sim" onValueChange={SetHorario} >
-                    <ToggleGroup.Item value="19" className={`${horario.includes('19') ? styles.toggleGroupItemSelected : styles.toggleGroupItem}`} disabled={VerifyHour('19')} title="19">19:00</ToggleGroup.Item>
-                    <ToggleGroup.Item value="20" className={`${horario.includes('20') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} disabled={VerifyHour('20')} title="20">20:00</ToggleGroup.Item>
-                    <ToggleGroup.Item value="21" className={`${horario.includes('21') ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} disabled={VerifyHour('21')} title="21">21:00</ToggleGroup.Item>
+              <div className={styles.toggleContainer}>
+                  <label className={styles.labels}>
+                    <Clock size={18} weight="bold" />
+                    Escolha o horário: <span>*</span>
+                  </label>
+                  <ToggleGroup.Root className={styles.toggleGroupRoot} type="single" onValueChange={SetHorario} value={horario}>
+                    <ToggleGroup.Item value="19" className={`${horario === '19' ? styles.toggleGroupItemSelected : styles.toggleGroupItem}`} disabled={VerifyHour('19')} title="19">
+                      <span className={styles.timeLabel}>19:00</span>
+                      {VerifyHour('19') && <span className={styles.bookedLabel}>Indisponível</span>}
+                    </ToggleGroup.Item>
+                    <ToggleGroup.Item value="20" className={`${horario === '20' ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} disabled={VerifyHour('20')} title="20">
+                      <span className={styles.timeLabel}>20:00</span>
+                      {VerifyHour('20') && <span className={styles.bookedLabel}>Indisponível</span>}
+                    </ToggleGroup.Item>
+                    <ToggleGroup.Item value="21" className={`${horario === '21' ? styles.toggleGroupItemSelected : styles.toggleGroupItem} `} disabled={VerifyHour('21')} title="21">
+                      <span className={styles.timeLabel}>21:00</span>
+                      {VerifyHour('21') && <span className={styles.bookedLabel}>Indisponível</span>}
+                    </ToggleGroup.Item>
                   </ToggleGroup.Root>
-              </>
-      
+              </div>
           )
       }
 
-        function getDate(){
+        function getNextAvailableDate(allowedDays: number[]) {
             const data = new Date()
+            if (allowedDays.length === 0) return data;
+            
             const diaDaSemana = data.getDay()
-            if(diaDaSemana === 3){ // mais dias: if(diaDaSemana === 2 || diaDaSemana === 3)
+            
+            if (allowedDays.includes(diaDaSemana)) {
                 return new Date()
             }
-            let diasAteDataInicial = 3 - diaDaSemana // o 1 é o valor da semana que quer que apareça marcado por padrão
-            if(diasAteDataInicial <= 0){
-                diasAteDataInicial += 7
-            }
-            return new Date(data.setDate(data.getDate() + diasAteDataInicial))
+            
+            let minDiff = 7;
+            allowedDays.forEach(day => {
+                let diff = day - diaDaSemana;
+                if (diff <= 0) diff += 7;
+                if (diff < minDiff) minDiff = diff;
+            });
+            
+            return new Date(data.setDate(data.getDate() + minDiff));
         }
 
-
-        const daysAccepted = [3] // 1-seg 2-ter 3-qua... ex: [1, 2, 3]
 
         function disableDay(date: Date){ // O DayPicker vai fazer um map com Data do calendário
             const DayOfWeek = date.getDay() // vai pegar em número o dia da semana de 0 a 6 (domingo a sábado)
@@ -136,7 +151,7 @@ export function ModalNusp() {
             const data = Object.fromEntries(formData)
             console.log('Data aqui: ', data)
             try {
-              await api.post('/nusp/create', {
+              const response = await api.post('/nusp/create', {
                 nome: data.nome,
                 email: data.email,
                 horario: horario,
@@ -156,7 +171,10 @@ export function ModalNusp() {
               
               alert('Mensagem enviada!')
               setOpenModal(false)
-            } catch(err){
+            } catch(err: any){
+              setLoading(false)
+              const errorMessage = err.response?.data?.error || 'Erro ao realizar agendamento. Tente novamente.';
+              alert(errorMessage)
               console.log(err, 'Erro com a validação do formulário')
             }
           }
@@ -164,6 +182,22 @@ export function ModalNusp() {
 
 
 //useEffect
+          useEffect(() => {
+            async function fetchSettings() {
+                try {
+                    const response = await api.get('/nusp/settings');
+                    const days = response.data.availableDays.split(',').filter((d: string) => d !== '').map(Number);
+                    setDaysAccepted(days);
+                    
+                    const initialDate = getNextAvailableDate(days);
+                    setDaysSelected(initialDate);
+                } catch (err) {
+                    console.error('Error fetching NUSP settings:', err);
+                }
+            }
+            fetchSettings();
+          }, []);
+
           useEffect(()=> {
             
             async function VerifyDateHour(){
@@ -218,53 +252,95 @@ export function ModalNusp() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           
-          <label htmlFor="name" className={styles.labels}>Nome <span>*</span></label>
-          <input type="text" name="nome" id="name" placeholder="Nome" className={`${styles.input}`} required/>
-          
-         {/* <label htmlFor="cpf" className={styles.labels}>CPF (Opcional)</label>
-          <input type="text" id="cpf" placeholder="CPF" className={`${styles.input}`} /> */}
+          <div className={styles.inputGrid}>
+            <div className={styles.field}>
+              <label htmlFor="name" className={styles.labels}>
+                <User size={18} weight="bold" />
+                Nome <span>*</span>
+              </label>
+              <input type="text" name="nome" id="name" placeholder="Seu nome completo" className={styles.input} required/>
+            </div>
+            
+            <div className={styles.field}>
+              <label htmlFor="email" className={styles.labels}>
+                <Envelope size={18} weight="bold" />
+                E-mail <span>*</span>
+              </label>
+              <input type="email" name="email" id="email" placeholder="exemplo@email.com" className={styles.input} required/>
+            </div>
+          </div>
 
-          <label htmlFor="email" className={styles.labels}>E-mail <span>*</span></label>
-          <input type="text" name="email" id="email" placeholder="E-mail" className={`${styles.input}`} required/>
-
-          <div className={styles.selectArea}>
-            <fieldset>
-            <label htmlFor="vinculo" className={styles.labels}>Seu Vínculo <span>*</span></label>
+          <div className={styles.field}>
+            <label htmlFor="vinculo" className={styles.labels}>
+              <IdentificationBadge size={18} weight="bold" />
+              Seu Vínculo <span>*</span>
+            </label>
             <select name="vinculo" id="vinculo" className={styles.select} required>
+              <option value="" disabled selected>Selecione seu vínculo</option>
               <option value="Servidor">Servidor</option>
               <option value="Aluno">Aluno</option>
               <option value="Professor">Professor</option>
               <option value="Terceirizado">Terceirizado</option>
               <option value="Usuário/Outros">Usuário/Outros</option>
             </select>
-            </fieldset>
-        </div>
+          </div>
 
-          <div className={styles.dateContainer}>
-            <DayPicker 
-            mode="single"
-            selected={daysSelected}
-            onDayClick={handleDaySelected}
-            disabled={disableDay}
-            locale={ptBR}
-            
-            formatters={{formatDay, formatCaption, formatWeekNumber}}
-            />
-            
-            
-            <div className={styles.hourContainer}>
-              {loadingHour ? <LoadingDiv/> : <ToggleGroupA/>}
-
-        </div>
-            </div>
+          <div className={styles.schedulingSection}>
+            {daysAccepted.length > 0 ? (
+              <div className={styles.schedulingGrid}>
+                <div className={styles.calendarArea}>
+                  <label className={styles.labels}>
+                    <CalendarBlank size={18} weight="bold" />
+                    Data da Sessão <span>*</span>
+                  </label>
+                  <DayPicker 
+                    mode="single"
+                    selected={daysSelected}
+                    onDayClick={handleDaySelected}
+                    disabled={disableDay}
+                    locale={ptBR}
+                    formatters={{formatDay, formatCaption, formatWeekNumber}}
+                  />
+                </div>
+                
+                <div className={styles.hourArea}>
+                  {loadingHour ? <LoadingDiv/> : <ToggleGroupA/>}
+                </div>
+              </div>
+            ) : (
+              <div className={styles.noDatesMessage}>
+                <CalendarBlank size={32} weight="light" />
+                <p>No momento, não há datas disponíveis para agendamento.</p>
+              </div>
+            )}
+          </div>
             
             
           
 
 
-          <label htmlFor="text" className={styles.labels}>Breve relato da demanda: <span>*</span></label>
-          <textarea name="text" id="text" rows={5} className={styles.textArea} required></textarea>
-          <button className={styles.enviarButton} type='submit'><span>Enviar</span></button>
+          <div className={styles.field}>
+            <label htmlFor="text" className={styles.labels}>
+              <ChatText size={18} weight="bold" />
+              Breve relato da demanda <span>*</span>
+            </label>
+            <textarea 
+              name="text" 
+              id="text" 
+              rows={4} 
+              className={styles.textArea} 
+              placeholder="Conte-nos brevemente o motivo do agendamento..."
+              required
+            ></textarea>
+          </div>
+
+          <button 
+            className={styles.enviarButton} 
+            type='submit' 
+            disabled={daysAccepted.length === 0 || loading}
+          >
+            <span>{loading ? 'Processando...' : daysAccepted.length > 0 ? 'Confirmar Agendamento' : 'Indisponível'}</span>
+          </button>
         </form>
         
         <Dialog.Close asChild className={styles.close}>

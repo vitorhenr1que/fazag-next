@@ -43,30 +43,77 @@
 
 
 .agenda {
- 
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 1.5rem;
-    button {
-        width: 70%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+}
 
+.agendaBtn, .eventosBtn, .btnOuvidoria_custom {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0.95;
+    }
+}
+
+.btnOuvidoria_custom {
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #dee2e6;
+
+    &:hover {
+        background-color: #e2e6ea;
+        color: #212529;
+    }
+}
+
+.agendaBtn {
+    background-color: #dc3545; // Bootstrap Danger
+    color: white;
+
+    &:hover {
+        background-color: #bb2d3b;
+        color: white;
+    }
+}
+
+.eventosBtn {
+    background-color: #f8f9fa; // Bootstrap Light
+    color: #212529;
+    border: 1px solid #dee2e6;
+
+    &:hover {
+        background-color: #e2e6ea;
+        color: #212529;
     }
 }
 
 .buttonText {
     flex: 4;
+    text-align: left;
+    margin-left: 0.5rem;
 }
 
-.eventosInstitucionais {
-    background-color: var(--bs-gray-300);
-}
 
 .phosforIcon {
     flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .calendarItem {
@@ -122,13 +169,10 @@
 }
 /* Agenda */
 @media(max-width: 780px){
-    .agenda .btn {
-        width: 55%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  }
-  }
+    .agendaBtn, .eventosBtn, .btnOuvidoria_custom {
+        width: 60%;
+    }
+}
 
   @media(max-width: 737px){
     .botoesMain {
