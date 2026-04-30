@@ -10,28 +10,35 @@ import {
   Megaphone, 
   MagnifyingGlass,
   ChartBar,
-  X,
-  Keyboard
+  X
 } from 'phosphor-react';
 import { api } from '../../services/api';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { 
   BarChart as RechartsBarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+  Bar as RechartsBar, 
+  XAxis as RechartsXAxis, 
+  YAxis as RechartsYAxis, 
+  CartesianGrid as RechartsCartesianGrid, 
+  Tooltip as RechartsTooltip, 
   ResponsiveContainer as RechartsResponsiveContainer, 
   PieChart as RechartsPieChart, 
-  Pie, 
-  Cell
+  Pie as RechartsPie, 
+  Cell as RechartsCell
 } from 'recharts';
 import * as Dialog from '@radix-ui/react-dialog';
 
 const ResponsiveContainer = RechartsResponsiveContainer as any;
 const PieChart = RechartsPieChart as any;
 const BarChart = RechartsBarChart as any;
+const Pie = RechartsPie as any;
+const Cell = RechartsCell as any;
+const Bar = RechartsBar as any;
+const XAxis = RechartsXAxis as any;
+const YAxis = RechartsYAxis as any;
+const CartesianGrid = RechartsCartesianGrid as any;
+const Tooltip = RechartsTooltip as any;
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
 const PAGE_SIZE = 15;
@@ -566,7 +573,7 @@ export default function AdminOuvidoria() {
 
                 <div className={styles.modalField}>
                   <label>Data do Registro</label>
-                  <p>{format(new Date(selectedRecord.data), "dd 'de' MMMM 'de' yyyy 'às' HH:mm", { locale: require('date-fns/locale').ptBR })}</p>
+                  <p>{format(new Date(selectedRecord.data), "dd 'de' MMMM 'de' yyyy 'às' HH:mm", { locale: ptBR })}</p>
                 </div>
 
                 <div className={styles.modalField}>
