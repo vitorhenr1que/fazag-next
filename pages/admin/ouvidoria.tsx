@@ -166,7 +166,7 @@ export default function AdminOuvidoria() {
   // Intersection Observer for Infinite Scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
+      (entries: any) => {
         if (entries[0].isIntersecting && hasMore && !fetchingMore) {
           loadMore();
         }
@@ -296,7 +296,7 @@ export default function AdminOuvidoria() {
             <div className={styles.filterGroup}>
               <label>Ano</label>
               <select value={year} onChange={(e) => setYear(e.target.value)}>
-                {Array.from({ length: 5 }, (_, i) => new Date().getFullYear() - i).map(y => (
+                {Array.from({ length: 5 }, (_: any, i: number) => new Date().getFullYear() - i).map((y: any) => (
                   <option key={y} value={y}>{y}</option>
                 ))}
               </select>
@@ -387,7 +387,7 @@ export default function AdminOuvidoria() {
                         outerRadius={80}
                         paddingAngle={5}
                         dataKey="value"
-                        label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
+                        label={({ name, percent }: any) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
                       >
                         {(stats?.byMotivo || []).map((entry: any, index: number) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -413,7 +413,7 @@ export default function AdminOuvidoria() {
                         dataKey="name" 
                         stroke="#64748b" 
                         fontSize={12}
-                        tickFormatter={(val) => {
+                        tickFormatter={(val: any) => {
                           const [y, m] = val.split('-');
                           return `${m}/${y}`;
                         }}
@@ -471,7 +471,7 @@ export default function AdminOuvidoria() {
           <div className={styles.tableContainer}>
             {fetching && records.length === 0 ? (
               <div style={{ padding: '1rem' }}>
-                {[1, 2, 3, 4, 5].map(i => (
+                {[1, 2, 3, 4, 5].map((i: number) => (
                   <div key={i} className={`${styles.skeleton} ${styles.skeletonRow}`}></div>
                 ))}
               </div>
