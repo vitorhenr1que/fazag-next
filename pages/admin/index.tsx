@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from '../../styles/admin-dashboard.module.scss';
-import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText } from 'phosphor-react';
+import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText, Files } from 'phosphor-react';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -31,25 +31,32 @@ export default function AdminDashboard() {
 
   const modules = [
     {
-      title: 'Calendário Acadêmico',
+      title: 'Calendario Academico',
       description: 'Gerencie eventos, feriados e prazos do semestre letivo.',
       icon: <Calendar size={32} />,
       link: '/admin/calendario-academico',
-      color: '#3b82f6'
+      color: '#3b82f6',
     },
     {
       title: 'NUSP - Agendamentos',
       description: 'Configure dias de atendimento e visualize consultas agendadas.',
       icon: <User size={32} />,
       link: '/admin/nusp',
-      color: '#10b981'
+      color: '#10b981',
     },
     {
       title: 'Ouvidoria',
-      description: 'Acesse registros, relatórios detalhados e gráficos da ouvidoria.',
+      description: 'Acesse registros, relatorios detalhados e graficos da ouvidoria.',
       icon: <ChatCircleText size={32} />,
       link: '/admin/ouvidoria',
-      color: '#f59e0b'
+      color: '#f59e0b',
+    },
+    {
+      title: 'Publicacoes Institucionais',
+      description: 'Envie PDFs e imagens para visualizacao no site e no aplicativo.',
+      icon: <Files size={32} />,
+      link: '/admin/publicacoes-institucionais',
+      color: '#8b5cf6',
     },
   ];
 
@@ -72,11 +79,15 @@ export default function AdminDashboard() {
           </div>
           <div className={styles.navItem} onClick={() => router.push('/admin/calendario-academico')}>
             <Calendar size={20} />
-            Calendário
+            Calendario
           </div>
           <div className={styles.navItem} onClick={() => router.push('/admin/ouvidoria')}>
             <ChatCircleText size={20} />
             Ouvidoria
+          </div>
+          <div className={styles.navItem} onClick={() => router.push('/admin/publicacoes-institucionais')}>
+            <Files size={20} />
+            Publicacoes
           </div>
         </nav>
 
@@ -101,7 +112,7 @@ export default function AdminDashboard() {
         <header className={styles.header}>
           <div>
             <h1 className={styles.title}>Bem-vindo, {user.name?.split(' ')[0]}</h1>
-            <p className={styles.subtitle}>O que você deseja gerenciar hoje?</p>
+            <p className={styles.subtitle}>O que voce deseja gerenciar hoje?</p>
           </div>
           <div className={styles.date}>
             {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
@@ -110,8 +121,8 @@ export default function AdminDashboard() {
 
         <div className={styles.moduleGrid}>
           {modules.map((module, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className={styles.moduleCard}
               onClick={() => router.push(module.link)}
             >
@@ -127,14 +138,14 @@ export default function AdminDashboard() {
               </div>
             </div>
           ))}
-          
+
           <div className={`${styles.moduleCard} ${styles.disabled}`}>
             <div className={styles.moduleIcon}>
               <Layout size={32} />
             </div>
             <div className={styles.moduleInfo}>
-              <h2 className={styles.moduleTitle}>Outros Módulos</h2>
-              <p className={styles.moduleDescription}>Em breve novos recursos estarão disponíveis.</p>
+              <h2 className={styles.moduleTitle}>Outros Modulos</h2>
+              <p className={styles.moduleDescription}>Em breve novos recursos estarao disponiveis.</p>
             </div>
           </div>
         </div>

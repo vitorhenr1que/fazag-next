@@ -11,13 +11,18 @@ interface PublicacaoInstitucionalProps {
     type?: string;
 }
 export function PublicacaoInstitucional({ label, downloadName, destination, svgPath, viewBox, type}: PublicacaoInstitucionalProps){
+    const isExternalFile = destination.startsWith('http');
+    const fileLinkProps = isExternalFile
+        ? { href: destination, target: '_blank', rel: 'noreferrer' }
+        : { href: destination, download: downloadName };
+    const iconViewBox = viewBox || '0 0 40 40';
     
     switch(type) {
         case "image":
             return  (
                 <>
-                            <a className={styles.publicationItem} download={`${downloadName}`} href={`${destination}`}>
-                            <svg xmlns={"http://www.w3.org/2000/svg"} viewBox={`${viewBox}`} fill={'red'} height={"40"} width={"40"}><path d={`${svgPath}`} /></svg>
+                            <a className={styles.publicationItem} {...fileLinkProps}>
+                            <svg xmlns={"http://www.w3.org/2000/svg"} viewBox={iconViewBox} fill={'red'} height={"40"} width={"40"}><path d={`${svgPath}`} /></svg>
                                 <p>{label}</p>
                             </a>
                 </>
@@ -26,9 +31,9 @@ export function PublicacaoInstitucional({ label, downloadName, destination, svgP
         case "pdf":
            return (
                 <>
-                            <a className={styles.publicationItem} download={`${downloadName}`} href={`${destination}`}>
+                            <a className={styles.publicationItem} {...fileLinkProps}>
                                 
-                            <svg xmlns={"http://www.w3.org/2000/svg"} viewBox={`${viewBox}`} fill={'red'} height={"40"} width={"40"}><path d={`${svgPath}`} /></svg>
+                            <svg xmlns={"http://www.w3.org/2000/svg"} viewBox={iconViewBox} fill={'red'} height={"40"} width={"40"}><path d={`${svgPath}`} /></svg>
                                 <p>{label}</p>
                             </a>
                 </>
@@ -46,8 +51,8 @@ export function PublicacaoInstitucional({ label, downloadName, destination, svgP
      default: 
      return (
         <>
-                    <a className={styles.publicationItem} download={`${downloadName}`} href={`${destination}`}>
-                    <svg xmlns={"http://www.w3.org/2000/svg"} viewBox={`${viewBox}`} fill={'red'} height={"40"} width={"40"}><path d={`${svgPath}`} /></svg>
+                    <a className={styles.publicationItem} {...fileLinkProps}>
+                    <svg xmlns={"http://www.w3.org/2000/svg"} viewBox={iconViewBox} fill={'red'} height={"40"} width={"40"}><path d={`${svgPath}`} /></svg>
                         <p>{label}</p>
                     </a>
         </>
