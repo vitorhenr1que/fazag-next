@@ -94,7 +94,7 @@ export default function AdminLogin() {
         </form>
 
         <div className={styles.footer}>
-          &copy; {new Date().getFullYear()} Faculdade de Guanambi
+          &copy; {new Date().getFullYear()} Faculdade FAZAG
         </div>
       </div>
     </div>
