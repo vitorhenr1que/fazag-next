@@ -1,7 +1,14 @@
-import { PublicacaoInstitucional } from '../../components/PublicacaoInstitucional/PublicacaoInstitucional'
+import { useEffect, useMemo, useState } from 'react'
+import Head from 'next/head'
+import axios from 'axios'
+import {
+    CaretDown,
+    FilePdf,
+    Image as ImageIcon,
+    MagnifyingGlass,
+    WarningCircle,
+} from 'phosphor-react'
 import styles from '../../styles/publicInstitucionais.module.scss'
-import { GetServerSideProps } from 'next'
-import { prisma } from '../../services/prisma'
 
 type Publication = {
     id: string;
@@ -11,349 +18,222 @@ type Publication = {
     fileType: string;
 }
 
-type PublicacoesInstitucionaisProps = {
-    publications: Publication[];
-}
+const slugify = (value: string) =>
+    value
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
 
-export default function PublicacoesInstitucionais({ publications }: PublicacoesInstitucionaisProps){
-    const pdfSvg = 'M14.208 21.917h1.584V18.5h1.875q.666 0 1.125-.458.458-.459.458-1.125v-1.875q0-.667-.458-1.125-.459-.459-1.125-.459h-3.459Zm1.584-5v-1.875h1.875v1.875Zm5.25 5h3.416q.667 0 1.125-.459.459-.458.459-1.125v-5.291q0-.667-.459-1.125-.458-.459-1.125-.459h-3.416Zm1.583-1.584v-5.291h1.833v5.291Zm5.333 1.584h1.584V18.5H31.5v-1.583h-1.958v-1.875H31.5v-1.584h-3.542Zm-16.291 9.208q-1.125 0-1.959-.833-.833-.834-.833-1.959V6.125q0-1.125.833-1.958.834-.834 1.959-.834h22.208q1.125 0 1.958.834.834.833.834 1.958v22.208q0 1.125-.834 1.959-.833.833-1.958.833Zm0-2.792h22.208V6.125H11.667v22.208Zm-5.542 8.334q-1.125 0-1.958-.834-.834-.833-.834-1.958v-25h2.792v25h25v2.792Zm5.542-30.542v22.208V6.125Z'
-    const publicationsByCategory = publications.reduce<Record<string, Publication[]>>((acc, publication) => {
-        acc[publication.category] = acc[publication.category] || [];
-        acc[publication.category].push(publication);
-        return acc;
-    }, {});
-return (
-    <div className={styles.container}>
-        <h1 className={styles.title}>Publicações Institucionais</h1>
+export default function PublicacoesInstitucionais(){
+    const [publications, setPublications] = useState<Publication[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState('')
+    const [search, setSearch] = useState('')
+    const [selectedCategory, setSelectedCategory] = useState('Todas')
+    const [collapsedCategories, setCollapsedCategories] = useState<string[]>([])
 
-        <div className={styles.linksContainer}>
-        {Object.keys(publicationsByCategory).length > 0 && (
-            <>
-            {Object.entries(publicationsByCategory).map(([category, items]) => {
-                const collapseId = `r2-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+    useEffect(() => {
+        let isMounted = true
 
-                return (
-                    <div className={styles.publicacao} key={category}>
-                        <p className="d-inline-flex gap-1">
-                            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href={`#${collapseId}`} role="button" aria-expanded="false" aria-controls={collapseId}>
-                                {category}
-                            </a>
-                        </p>
-                        <div className="collapse" id={collapseId}>
-                            <div className={`card card-body ${styles.cardBody}`}>
-                                {items.map((publication, index) => (
-                                    <div key={publication.id}>
-                                        <PublicacaoInstitucional
-                                            type={publication.fileType}
-                                            downloadName={publication.title}
-                                            destination={publication.fileUrl}
-                                            label={publication.title}
-                                            svgPath={pdfSvg}
-                                        />
-                                        {index < items.length - 1 && <hr />}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+        async function fetchPublications() {
+            try {
+                const response = await axios.get<Publication[]>('/api/publicacoes-institucionais')
+
+                if (isMounted) {
+                    setPublications(response.data)
+                }
+            } catch (err) {
+                if (isMounted) {
+                    setError('Não foi possível carregar as publicações institucionais.')
+                }
+            } finally {
+                if (isMounted) {
+                    setIsLoading(false)
+                }
+            }
+        }
+
+        fetchPublications()
+
+        return () => {
+            isMounted = false
+        }
+    }, [])
+
+    const categories = useMemo(() => {
+        return Array.from(new Set(publications.map((publication) => publication.category)))
+    }, [publications])
+
+    const filteredPublications = useMemo(() => {
+        const normalizedSearch = search.trim().toLowerCase()
+
+        return publications.filter((publication) => {
+            const matchesCategory = selectedCategory === 'Todas' || publication.category === selectedCategory
+            const matchesSearch = !normalizedSearch
+                || publication.title.toLowerCase().includes(normalizedSearch)
+                || publication.category.toLowerCase().includes(normalizedSearch)
+
+            return matchesCategory && matchesSearch
+        })
+    }, [publications, search, selectedCategory])
+
+    const publicationsByCategory = useMemo(() => {
+        return filteredPublications.reduce<Record<string, Publication[]>>((acc, publication) => {
+            acc[publication.category] = acc[publication.category] || []
+            acc[publication.category].push(publication)
+            return acc
+        }, {})
+    }, [filteredPublications])
+
+    const toggleCategory = (category: string) => {
+        setCollapsedCategories((currentCategories) =>
+            currentCategories.includes(category)
+                ? currentCategories.filter((item) => item !== category)
+                : [...currentCategories, category]
+        )
+    }
+
+    const clearFilters = () => {
+        setSearch('')
+        setSelectedCategory('Todas')
+    }
+
+    return (
+        <>
+            <Head>
+                <title>Publicações Institucionais | FAZAG</title>
+                <meta
+                    name="description"
+                    content="Consulte documentos oficiais, editais, regulamentos e arquivos institucionais publicados pela FAZAG."
+                />
+            </Head>
+
+            <main className={styles.page}>
+                <section className={styles.hero}>
+                    <div>
+                        <h1>Publicações Institucionais</h1>
+                        <p>Consulte documentos oficiais, editais, regulamentos e arquivos publicados pela FAZAG.</p>
                     </div>
-                )
-            })}
-            <hr />
-            </>
-        )}
-        <hr />
-        <div className={styles.publicacao}> {/* SICFAZ */}
-            <p className="d-inline-flex gap-1">
-                <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#sicfaz" role="button" aria-expanded="false" aria-controls="sicfaz">
-                    SICFAZ 2025
-                </a>
-            </p>
 
-                <div className="collapse" id={`sicfaz`}>
-                <div className={`card card-body ${styles.cardBody}`}>
-                <PublicacaoInstitucional 
-                    downloadName='Edital de Monitoria SICFAZ 2025'
-                    destination='static/sicfaz/edital-monitoria-sicfaz.pdf' 
-                    label='Edital de Monitoria' 
-                    svgPath={pdfSvg}
-                    />
-                </div>
-                </div>
-        </div>
+                    <div className={styles.heroStats} aria-label="Resumo das publicações">
+                        <strong>{publications.length}</strong>
+                        <span>{publications.length === 1 ? 'publicação disponível' : 'publicações disponíveis'}</span>
+                    </div>
+                </section>
 
-        <div className={styles.publicacao}> {/* Regulamentos Institucionais */}
-            <p className="d-inline-flex gap-1">
-                <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#regulamentos" role="button" aria-expanded="false" aria-controls="regulamentos">
-                    Regulamentos
-                </a>
-            </p>
+                <section className={styles.toolbar} aria-label="Filtros de publicações">
+                    <label className={styles.searchBox}>
+                        <MagnifyingGlass size={20} />
+                        <input
+                            type="search"
+                            placeholder="Buscar por título ou categoria"
+                            value={search}
+                            onChange={(event) => setSearch(event.target.value)}
+                        />
+                    </label>
 
-                <div className="collapse" id={`regulamentos`}>
-                <div className={`card card-body ${styles.cardBody}`}>
-                <PublicacaoInstitucional 
-                    downloadName='Regulamento Geral'
-                    destination='static/regulamentos/regulamentogeral.pdf' 
-                    label='Regulamento Geral' 
-                    svgPath={pdfSvg}
-                    />
-                </div>
-                </div>
-        </div>
-        <div className={styles.publicacao}> {/* Calendário Acadêmico */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#calendario-academico" role="button" aria-expanded="false" aria-controls="calendario-academico">
-                Calendário Acadêmico
-            </a>
-        </p>
-            <div className="collapse" id={`calendario-academico`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-                <PublicacaoInstitucional 
-                    downloadName='Calendário Acadêmico 20261'
-                    destination='static/calendario/calendario20261.pdf' 
-                    label='Calendário Acadêmico 2026.1' 
-                    svgPath={pdfSvg}
-                    />
-                    <hr/>
-                    <PublicacaoInstitucional 
-                    downloadName='Calendário Acadêmico 20262'
-                    destination='static/calendario/calendario20262.pdf' 
-                    label='Calendário Acadêmico 2026.2' 
-                    svgPath={pdfSvg}
-                    />
-            </div>
-            </div>
-        </div>
-       
+                    <div className={styles.categoryFilters} aria-label="Categorias">
+                        {['Todas', ...categories].map((category) => (
+                            <button
+                                key={category}
+                                type="button"
+                                className={selectedCategory === category ? styles.activeFilter : ''}
+                                onClick={() => setSelectedCategory(category)}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>
+                </section>
 
-        {/* <div className={styles.publicacao}> // Curso de Férias 
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#cursoferias" role="button" aria-expanded="false" aria-controls="cursoferias">
-                Curso de Férias
-            </a>
-        </p>
+                {isLoading && (
+                    <section className={styles.stateBox}>
+                        <div className={styles.spinner} />
+                        <h2>Carregando publicações</h2>
+                        <p>Estamos buscando os arquivos publicados no painel administrativo.</p>
+                    </section>
+                )}
 
-            <div className="collapse" id={`cursoferias`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-                <PublicacaoInstitucional 
-                    downloadName='Edital Curso de Férias - 2023.1'
-                    destination='static/editalcursodeferias.pdf' 
-                    label='Edital 2023.1' 
-                    svgPath={pdfSvg}
-                    />
-            </div>
-            </div>
-        </div> */}
-        <div className={styles.publicacao}> {/* Logo Institucional */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#logo-institucional" role="button" aria-expanded="false" aria-controls="logo-institucional">
-                Logo Institucional
-            </a>
-        </p>
+                {!isLoading && error && (
+                    <section className={styles.stateBox}>
+                        <WarningCircle size={34} />
+                        <h2>Não foi possível carregar</h2>
+                        <p>{error}</p>
+                    </section>
+                )}
 
-            <div className="collapse" id={`logo-institucional`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-        <PublicacaoInstitucional 
-            type='image'
-            viewBox='0 0 15 15'
-            downloadName='FAZAG Logo Azul'
-            destination='static/logo/logo-fazag-azul.png' 
-            label='FAZAG Logo Azul' 
-            svgPath='M2.5 1H12.5C13.3284 1 14 1.67157 14 2.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V2.5C1 1.67157 1.67157 1 2.5 1ZM2.5 2C2.22386 2 2 2.22386 2 2.5V8.3636L3.6818 6.6818C3.76809 6.59551 3.88572 6.54797 4.00774 6.55007C4.12975 6.55216 4.24568 6.60372 4.32895 6.69293L7.87355 10.4901L10.6818 7.6818C10.8575 7.50607 11.1425 7.50607 11.3182 7.6818L13 9.3636V2.5C13 2.22386 12.7761 2 12.5 2H2.5ZM2 12.5V9.6364L3.98887 7.64753L7.5311 11.4421L8.94113 13H2.5C2.22386 13 2 12.7761 2 12.5ZM12.5 13H10.155L8.48336 11.153L11 8.6364L13 10.6364V12.5C13 12.7761 12.7761 13 12.5 13ZM6.64922 5.5C6.64922 5.03013 7.03013 4.64922 7.5 4.64922C7.96987 4.64922 8.35078 5.03013 8.35078 5.5C8.35078 5.96987 7.96987 6.35078 7.5 6.35078C7.03013 6.35078 6.64922 5.96987 6.64922 5.5ZM7.5 3.74922C6.53307 3.74922 5.74922 4.53307 5.74922 5.5C5.74922 6.46693 6.53307 7.25078 7.5 7.25078C8.46693 7.25078 9.25078 6.46693 9.25078 5.5C9.25078 4.53307 8.46693 3.74922 7.5 3.74922Z'
-            />
-            <hr/>
-        <PublicacaoInstitucional 
-            type='image'
-            viewBox='0 0 15 15'
-            downloadName='FAZAG Logo Branca'
-            destination='static/logo/logo-fazag-branca.png' 
-            label='FAZAG Logo Branca' 
-            svgPath='M2.5 1H12.5C13.3284 1 14 1.67157 14 2.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V2.5C1 1.67157 1.67157 1 2.5 1ZM2.5 2C2.22386 2 2 2.22386 2 2.5V8.3636L3.6818 6.6818C3.76809 6.59551 3.88572 6.54797 4.00774 6.55007C4.12975 6.55216 4.24568 6.60372 4.32895 6.69293L7.87355 10.4901L10.6818 7.6818C10.8575 7.50607 11.1425 7.50607 11.3182 7.6818L13 9.3636V2.5C13 2.22386 12.7761 2 12.5 2H2.5ZM2 12.5V9.6364L3.98887 7.64753L7.5311 11.4421L8.94113 13H2.5C2.22386 13 2 12.7761 2 12.5ZM12.5 13H10.155L8.48336 11.153L11 8.6364L13 10.6364V12.5C13 12.7761 12.7761 13 12.5 13ZM6.64922 5.5C6.64922 5.03013 7.03013 4.64922 7.5 4.64922C7.96987 4.64922 8.35078 5.03013 8.35078 5.5C8.35078 5.96987 7.96987 6.35078 7.5 6.35078C7.03013 6.35078 6.64922 5.96987 6.64922 5.5ZM7.5 3.74922C6.53307 3.74922 5.74922 4.53307 5.74922 5.5C5.74922 6.46693 6.53307 7.25078 7.5 7.25078C8.46693 7.25078 9.25078 6.46693 9.25078 5.5C9.25078 4.53307 8.46693 3.74922 7.5 3.74922Z'
-            />
-            </div>
-            </div>
-        </div>
+                {!isLoading && !error && publications.length === 0 && (
+                    <section className={styles.stateBox}>
+                        <FilePdf size={34} />
+                        <h2>Nenhuma publicação disponível</h2>
+                        <p>Assim que houver arquivos publicados, eles aparecerão nesta página.</p>
+                    </section>
+                )}
 
-        <div className={styles.publicacao}> {/* Programa de Iniciação Científica */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#iniciacao-cientifica" role="button" aria-expanded="false" aria-controls="iniciacao-cientifica">
-                Programa de Iniciação Científica
-            </a>
-        </p>
+                {!isLoading && !error && publications.length > 0 && filteredPublications.length === 0 && (
+                    <section className={styles.stateBox}>
+                        <MagnifyingGlass size={34} />
+                        <h2>Nenhum resultado encontrado</h2>
+                        <p>Tente buscar por outro termo ou selecione outra categoria.</p>
+                        <button type="button" onClick={clearFilters}>Limpar filtros</button>
+                    </section>
+                )}
 
-            <div className="collapse" id={`iniciacao-cientifica`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-        <PublicacaoInstitucional 
-            type='pdf'
-            downloadName='Edital PIC'
-            destination='static/pic/editalpic.pdf' 
-            label='Edital'
-            svgPath={pdfSvg}
-            />
-            <hr />
-            <PublicacaoInstitucional 
-            type='link'
-            destination='https://docs.google.com/forms/d/e/1FAIpQLSc10nNUaZqhRVn7t6Kh73ChnnxZ4EcdInD52b3Wu6S-5rfQ0A/viewform?usp=header' 
-            label='Formulário'
-            svgPath={'../../public/images/icons/icon-link.png'}
-            />
-            </div>
-            </div>
-        </div>
-        <div className={styles.publicacao}> {/* Seleção de Artigos Científicos para a Revista Científica */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#selecao-cientifica" role="button" aria-expanded="false" aria-controls="selecao-cientifica">
-                Seleção de Artigos Científicos para a Revista Científica
-            </a>
-        </p>
+                {!isLoading && !error && filteredPublications.length > 0 && (
+                    <section className={styles.publicationsGrid} aria-label="Lista de publicações institucionais">
+                        {Object.entries(publicationsByCategory).map(([category, items]) => {
+                            const isCollapsed = collapsedCategories.includes(category)
+                            const sectionId = `categoria-${slugify(category)}`
 
-            <div className="collapse" id={`selecao-cientifica`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-        <PublicacaoInstitucional 
+                            return (
+                                <article className={styles.categorySection} key={category}>
+                                    <button
+                                        type="button"
+                                        className={styles.categoryHeader}
+                                        onClick={() => toggleCategory(category)}
+                                        aria-expanded={!isCollapsed}
+                                        aria-controls={sectionId}
+                                    >
+                                        <span>
+                                            <strong>{category}</strong>
+                                            <small>{items.length} {items.length === 1 ? 'arquivo' : 'arquivos'}</small>
+                                        </span>
+                                        <CaretDown className={isCollapsed ? styles.collapsedIcon : ''} size={22} />
+                                    </button>
 
-            downloadName='Edital Seleção de Artigos Científicos para a Revista Científica'
-            destination='static/pic/editalselecao.pdf' 
-            label='Edital'
-            svgPath={pdfSvg}
-            />
-            </div>
-            </div>
-        </div>
+                                    <div className={`${styles.publicationList} ${isCollapsed ? styles.publicationListCollapsed : ''}`} id={sectionId}>
+                                        {items.map((publication) => {
+                                            const isImage = publication.fileType === 'image'
 
-        <div className={styles.publicacao}> {/* Monitoria */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#monitoria" role="button" aria-expanded="false" aria-controls="monitoria">
-                Monitoria
-            </a>
-        </p>
-
-            <div className="collapse" id={`monitoria`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-        <PublicacaoInstitucional 
-
-            downloadName='Edital Monitoria'
-            destination='static/monitoria/editalmonitoria.pdf' 
-            label='Edital'
-            svgPath={pdfSvg}
-            />
-            <hr />
-            <PublicacaoInstitucional 
-            downloadName='Regulamento de Monitoria'
-            destination='static/monitoria/regulamento-monitoria.pdf' 
-            label='Regulamento'
-            svgPath={pdfSvg}
-            />
-            {/* <hr />
-            <PublicacaoInstitucional 
-            downloadName='Lista de Aprovados Monitoria'
-            destination='static/monitoria/aprovados-monitoria.pdf' 
-            label='Aprovados'
-            svgPath={pdfSvg}
-            /> */}
-            </div>
-            </div>
-        </div>
-
-        <div className={styles.publicacao}> {/* NEABI */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#neabi" role="button" aria-expanded="false" aria-controls="neabi">
-                NEABI
-            </a>
-        </p>
-            <div className="collapse" id={`neabi`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-                <PublicacaoInstitucional 
-                    downloadName='Edital NEABI'
-                    destination='static/neabi/edital-neabi.pdf' 
-                    label='Edital' 
-                    svgPath={pdfSvg}
-                    />
-                    <hr/>
-                    <PublicacaoInstitucional 
-                    downloadName='Portaria NEABI'
-                    destination='static/neabi/portaria-neabi.pdf' 
-                    label='Portaria' 
-                    svgPath={pdfSvg}
-                    />
-            </div>
-            </div>
-        </div>
-       
-        <div className={styles.publicacao}> {/* FAZAÇÃO */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#fazacao" role="button" aria-expanded="false" aria-controls="fazacao">
-                FAZAÇÃO
-            </a>
-        </p>
-            <div className="collapse" id={`fazacao`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-                <PublicacaoInstitucional 
-                    downloadName='Logo PNG'
-                    destination='static/fazacao/logo-fazacao-2025.png' 
-                    label='Logo PNG' 
-                    svgPath={pdfSvg}
-                    />
-                    <hr/>
-                    <PublicacaoInstitucional 
-                    downloadName='Logo PDF'
-                    destination='static/fazacao/logo-fazacao-2025.pdf' 
-                    label='Logo PDF' 
-                    svgPath={pdfSvg}
-                    />
-            </div>
-            </div>
-        </div>
-
-        <div className={styles.publicacao}> {/* BOLSA TRANSFORMAR */}
-        <p className="d-inline-flex gap-1">
-            <a className={`btn btn-primary ${styles.btnPrimary}`} data-bs-toggle="collapse" href="#btransformar" role="button" aria-expanded="false" aria-controls="btransformar">
-                BOLSA TRANSFORMAR
-            </a>
-        </p>
-            <div className="collapse" id={`btransformar`}>
-            <div className={`card card-body ${styles.cardBody}`}>
-                <PublicacaoInstitucional 
-                    downloadName='Edital'
-                    destination='static/regulamentos/edital-bolsa-transofrmar-2025.pdf' 
-                    label='Edital' 
-                    svgPath={pdfSvg}
-                    />
-            </div>
-            </div>
-        </div>
-
-        </div>
-    </div>
-    
-)
+                                            return (
+                                                <a
+                                                    key={publication.id}
+                                                    className={styles.publicationCard}
+                                                    href={publication.fileUrl}
+                                                    target={publication.fileUrl.startsWith('http') ? '_blank' : undefined}
+                                                    rel={publication.fileUrl.startsWith('http') ? 'noreferrer' : undefined}
+                                                    download={publication.fileUrl.startsWith('http') ? undefined : publication.title}
+                                                >
+                                                    <span className={styles.fileIcon}>
+                                                        {isImage ? <ImageIcon size={24} /> : <FilePdf size={24} />}
+                                                    </span>
+                                                    <span className={styles.fileInfo}>
+                                                        <strong>{publication.title}</strong>
+                                                        <small>{isImage ? 'Imagem' : 'PDF'}</small>
+                                                    </span>
+                                                    <span className={styles.fileAction}>Abrir</span>
+                                                </a>
+                                            )
+                                        })}
+                                    </div>
+                                </article>
+                            )
+                        })}
+                    </section>
+                )}
+            </main>
+        </>
+    )
 }
-
-export const getServerSideProps: GetServerSideProps<PublicacoesInstitucionaisProps> = async () => {
-    const now = new Date();
-    const publications = await prisma.institutionalPublication.findMany({
-        where: {
-          published: true,
-          OR: [
-            { alwaysPublished: true },
-            {
-              alwaysPublished: false,
-              publishAt: { lte: now },
-              OR: [{ unpublishAt: null }, { unpublishAt: { gt: now } }],
-            },
-          ],
-        },
-        orderBy: [{ order: 'asc' }, { createdAt: 'desc' }],
-        select: {
-            id: true,
-            title: true,
-            category: true,
-            fileUrl: true,
-            fileType: true,
-        },
-    });
-
-    return {
-        props: {
-            publications,
-        },
-    };
-};
