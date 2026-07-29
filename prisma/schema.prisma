@@ -64,6 +64,9 @@ model Vagas {
   pedagogia                    Int
   psicologia                   Int
   servico_social               Int
+  odontologia                  Int    @default(0)
+  fonoaudiologia               Int    @default(0)
+  direito                      Int    @default(0)
 }
 
 model Inscricao {
@@ -75,7 +78,7 @@ model Inscricao {
   conheceu  String
   ingresso  String
   curso     String
-  bolsa String?
+  bolsa     String?
   createdAt DateTime @default(now())
 }
 
@@ -131,23 +134,23 @@ model AcademicCalendar {
 }
 
 model InstitutionalPublication {
-  id          String   @id @default(uuid())
-  title       String
-  category    String
-  fileName    String
-  fileKey     String
-  fileUrl     String
-  fileType    String
-  mimeType    String
-  size        Int
-  description String?
-  published   Boolean  @default(true)
-  order       Int      @default(0)
-  alwaysPublished Boolean @default(true)
-  publishAt   DateTime?
-  unpublishAt DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id              String    @id @default(uuid())
+  title           String
+  category        String
+  fileName        String
+  fileKey         String
+  fileUrl         String
+  fileType        String
+  mimeType        String
+  size            Int
+  description     String?
+  published       Boolean   @default(true)
+  order           Int       @default(0)
+  alwaysPublished Boolean   @default(true)
+  publishAt       DateTime?
+  unpublishAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
 
 model User {
