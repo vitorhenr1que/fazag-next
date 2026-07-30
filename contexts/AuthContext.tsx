@@ -5,7 +5,8 @@ export type AdminPermission =
   | 'academic_calendar'
   | 'nusp'
   | 'ombudsman'
-  | 'institutional_publications';
+  | 'institutional_publications'
+  | 'organization_chart';
 
 export interface User {
   id: string;

@@ -190,6 +190,24 @@ model CourseDocument {
   @@index([courseId, category, order])
 }
 
+model OrganizationNode {
+  id          String             @id @default(uuid())
+  title       String
+  personName  String?
+  description String?            @db.Text
+  type        String             @default("DEPARTMENT")
+  parentId    String?
+  parent      OrganizationNode?  @relation("OrganizationHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    OrganizationNode[] @relation("OrganizationHierarchy")
+  order       Int                @default(0)
+  active      Boolean            @default(true)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  @@index([parentId, order])
+  @@index([type, active, order])
+}
+
 model User {
   id             String   @id @default(uuid())
   email          String   @unique

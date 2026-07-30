@@ -36,6 +36,11 @@ const PERMISSIONS: Array<{ id: AdminPermission; label: string; description: stri
     label: 'Publicações institucionais',
     description: 'Arquivos, publicação e agendamento',
   },
+  {
+    id: 'organization_chart',
+    label: 'Organograma institucional',
+    description: 'Cargos, setores, vínculos e ordem da estrutura',
+  },
 ];
 
 const emptyForm = {

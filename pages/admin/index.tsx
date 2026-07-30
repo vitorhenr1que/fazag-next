@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from '../../styles/admin-dashboard.module.scss';
-import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText, Files, BookOpen, Users } from 'phosphor-react';
+import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText, Files, BookOpen, Users, TreeStructure } from 'phosphor-react';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -69,6 +69,14 @@ export default function AdminDashboard() {
       link: '/admin/publicacoes-institucionais',
       color: '#8b5cf6',
       permission: 'institutional_publications' as const,
+    },
+    {
+      title: 'Organograma Institucional',
+      description: 'Gerencie cargos, responsáveis, setores e vínculos da estrutura institucional.',
+      icon: <TreeStructure size={32} />,
+      link: '/admin/organograma',
+      color: '#0f766e',
+      permission: 'organization_chart' as const,
     },
   ].filter((module) => hasPermission(module.permission));
 

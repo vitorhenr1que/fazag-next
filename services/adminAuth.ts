@@ -8,6 +8,7 @@ export const ADMIN_PERMISSIONS = [
   'nusp',
   'ombudsman',
   'institutional_publications',
+  'organization_chart',
 ] as const;
 
 export type AdminPermission = (typeof ADMIN_PERMISSIONS)[number];
