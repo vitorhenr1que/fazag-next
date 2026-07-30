@@ -180,6 +180,20 @@
   color: #94a3b8;
 }
 
+.courseShortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 15px;
+  margin-top: 18px;
+  color: #fff;
+  background: #175cd3;
+  border: 0;
+  border-radius: 9px;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(23, 92, 211, .22);
+}
+
 .date {
   font-size: 0.875rem;
   color: #64748b;

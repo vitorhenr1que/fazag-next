@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from '../../styles/admin-dashboard.module.scss';
-import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText, Files } from 'phosphor-react';
+import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText, Files, BookOpen } from 'phosphor-react';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -30,6 +30,13 @@ export default function AdminDashboard() {
   }
 
   const modules = [
+    {
+      title: 'Cursos',
+      description: 'Gerencie informações, publicação, grades, corpo docente e matrizes curriculares.',
+      icon: <BookOpen size={32} />,
+      link: '/admin/cursos',
+      color: '#175cd3',
+    },
     {
       title: 'Calendario Academico',
       description: 'Gerencie eventos, feriados e prazos do semestre letivo.',
@@ -81,6 +88,10 @@ export default function AdminDashboard() {
             <Calendar size={20} />
             Calendario
           </div>
+          <div className={styles.navItem} onClick={() => router.push('/admin/cursos')}>
+            <BookOpen size={20} />
+            Cursos
+          </div>
           <div className={styles.navItem} onClick={() => router.push('/admin/ouvidoria')}>
             <ChatCircleText size={20} />
             Ouvidoria
@@ -113,6 +124,11 @@ export default function AdminDashboard() {
           <div>
             <h1 className={styles.title}>Bem-vindo, {user.name?.split(' ')[0]}</h1>
             <p className={styles.subtitle}>O que voce deseja gerenciar hoje?</p>
+            <button className={styles.courseShortcut} onClick={() => router.push('/admin/cursos')}>
+              <BookOpen size={20} />
+              Gerenciar informações e arquivos dos cursos
+              <ArrowRight size={18} />
+            </button>
           </div>
           <div className={styles.date}>
             {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}

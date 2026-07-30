@@ -6,12 +6,14 @@ import { useRef, useEffect } from 'react'
 import { LinkHeader } from './LinkHeader'
 import { LinkHeaderDownload } from './LinkHeaderDownload'
 import { LinkHeaderNavLink } from './LinkHeaderNavLink'
+import { usePublicCourses } from '../Cursos/usePublicCourses'
 
 export function Header(){
 
 const dropDownRef = useRef<any>(null)
+const courses = usePublicCourses()
 function closeToggle(){
-  dropDownRef.current.classList.remove('show')
+  dropDownRef.current?.classList.remove('show')
 }
     return (
         <>
@@ -48,18 +50,10 @@ function closeToggle(){
                      <a className={"nav-link dropdown-toggle"} role={"button"} data-bs-toggle={"dropdown"} aria-expanded={"false"}>Cursos de <br/><strong>Graduação</strong></a> 
                     
                     <ul className={`dropdown-menu ${styles.dropdownMenu}`}> 
-                    <LinkHeader linkName={'Administração'} url={"/cursos/administracao"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Ciências Contábeis'} url={"/cursos/ciencias-contabeis"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Educação Física'} url={"/cursos/educacao-fisica"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Engenharia Civil'} url={"/cursos/engenharia-civil"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Enfermagem'} url={"/cursos/enfermagem"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Estética'} url={"/cursos/estetica"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Farmácia'} url={"/cursos/farmacia"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Fisioterapia'} url={"/cursos/fisioterapia"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Nutrição'} url={"/cursos/nutricao"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Pedagogia'} url={"/cursos/pedagogia"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Psicologia'} url={"/cursos/psicologia"} closeToggle={closeToggle}/>
-                    <LinkHeader linkName={'Serviço Social'} url={"/cursos/servico-social"} closeToggle={closeToggle}/>
+                    <LinkHeader linkName={'Ver todos os cursos'} url={"/cursos"} closeToggle={closeToggle}/>
+                    {courses.map((course) => (
+                      <LinkHeader key={course.id} linkName={course.name} url={`/cursos/${course.slug}`} closeToggle={closeToggle}/>
+                    ))}
                     </ul>
                   </li>
 
@@ -119,4 +113,3 @@ function closeToggle(){
         </>
     )
 }
-

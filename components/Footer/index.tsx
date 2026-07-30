@@ -12,9 +12,11 @@ import querobolsa from '../../public/images/querobolsa.png'
 import motivabolsas from '../../public/images/motivabolsas.png'
 
 import Link from 'next/link'
+import { usePublicCourses } from '../Cursos/usePublicCourses'
 
 
 export default function Footer() {
+    const courses = usePublicCourses()
     return (
         <div className={styles.footerContainer}>
             <div className={`container ${styles.footerHeader}`}>
@@ -27,18 +29,10 @@ export default function Footer() {
                 </div>
                 <div className={styles.divFooter}>
                     <span>CURSOS</span>
-                    <Link href="/cursos/administracao">Administração</Link>
-                    <Link href="/cursos/ciencias-contabeis">Ciências Contábeis</Link>
-                    <Link href="/cursos/educacao-fisica">Educação Física</Link>
-                    <Link href="/cursos/enfermagem">Enfermagem</Link>
-                    <Link href="/cursos/engenharia-civil">Engenharia Civil</Link>
-                    <Link href="/cursos/estetica">Estética</Link>
-                    <Link href="/cursos/farmacia">Farmácia</Link>
-                    <Link href="/cursos/fisioterapia">Fisioterapia</Link>
-                    <Link href="/cursos/nutricao">Nutrição</Link>
-                    <Link href="/cursos/pedagogia">Pedagogia</Link>
-                    <Link href="/cursos/psicologia">Psicologia</Link>
-                    <Link href="/cursos/servico-social">Serviço Social</Link>
+                    <Link href="/cursos">Todos os cursos</Link>
+                    {courses.map((course) => (
+                        <Link href={`/cursos/${course.slug}`} key={course.id}>{course.name}</Link>
+                    ))}
                 </div>
                 <div className={styles.divFooterBlock}>
                     <div className={styles.divFooter}>
