@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAdminPermission } from '../../hooks/useAdminPermission';
 import styles from '../../styles/admin-ouvidoria.module.scss';
 import { 
   CaretLeft, 
@@ -45,7 +45,7 @@ const PAGE_SIZE = 15;
 
 export default function AdminOuvidoria() {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading, allowed } = useAdminPermission('ombudsman');
   
   const [records, setRecords] = useState<any[]>([]);
   const [stats, setStats] = useState<any>(null);
@@ -222,7 +222,7 @@ export default function AdminOuvidoria() {
   const uniqueMotivos = stats?.byMotivo?.map((m: any) => m.name) || [];
   const uniqueVinculos = stats?.byVinculo?.map((v: any) => v.name) || [];
 
-  if (loading || !user) {
+  if (loading || !user || !allowed) {
     return (
       <div style={{ 
         height: '100vh', 

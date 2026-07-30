@@ -1,23 +1,34 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-interface User {
+export type AdminPermission =
+  | 'courses'
+  | 'academic_calendar'
+  | 'nusp'
+  | 'ombudsman'
+  | 'institutional_publications';
+
+export interface User {
   id: string;
   email: string;
-  name?: string;
+  name: string | null;
+  isSuperAdmin: boolean;
+  permissions: AdminPermission[];
 }
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
   login: (user: User) => void;
-  logout: () => void;
+  logout: () => Promise<void>;
+  hasPermission: (permission: AdminPermission) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType>({ 
   user: null, 
   loading: true,
   login: () => {},
-  logout: () => {}
+  logout: async () => {},
+  hasPermission: () => false,
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -25,25 +36,34 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('@fazag:admin');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
+    fetch('/api/auth/me')
+      .then(async (response) => {
+        if (!response.ok) return null;
+        const data = await response.json();
+        return data.user as User;
+      })
+      .then(setUser)
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false));
   }, []);
 
   const login = (userData: User) => {
     setUser(userData);
-    localStorage.setItem('@fazag:admin', JSON.stringify(userData));
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('@fazag:admin');
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } finally {
+      setUser(null);
+    }
   };
+
+  const hasPermission = (permission: AdminPermission) =>
+    Boolean(user && (user.isSuperAdmin || user.permissions.includes(permission)));
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, hasPermission }}>
       {children}
     </AuthContext.Provider>
   );

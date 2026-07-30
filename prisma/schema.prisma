@@ -191,9 +191,14 @@ model CourseDocument {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  name      String?
-  createdAt DateTime @default(now())
+  id             String   @id @default(uuid())
+  email          String   @unique
+  password       String
+  name           String?
+  isSuperAdmin   Boolean  @default(false)
+  permissions    Json?
+  active         Boolean  @default(true)
+  sessionVersion Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../services/prisma";
+import { requireAdmin } from "../../../services/adminAuth";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
+  if (!(await requireAdmin(req, res, 'nusp'))) return;
   if (req.method === 'GET') {
     try {
       const appointments = await prisma.nusp.findMany({

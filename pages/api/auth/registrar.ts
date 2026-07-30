@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../services/prisma';
-import crypto from 'crypto';
+import { hashPassword } from '../../../services/adminAuth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -23,14 +23,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Email e senha são obrigatórios' });
     }
 
-    // Hash password using crypto (simple implementation)
-    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-
     const user = await prisma.user.create({
       data: {
-        email,
-        password: hashedPassword,
+        email: String(email).trim().toLowerCase(),
+        password: hashPassword(String(password)),
         name,
+        isSuperAdmin: true,
       },
     });
 

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../services/prisma';
 import { uploadToR2 } from '../../../services/r2';
+import { requireAdmin } from '../../../services/adminAuth';
 
 export const config = {
   api: {
@@ -46,6 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     try {
       const includeDrafts = req.query.admin === 'true';
+      if (includeDrafts && !(await requireAdmin(req, res, 'institutional_publications'))) return;
       const now = new Date();
 
       const publications = await prisma.institutionalPublication.findMany({
@@ -61,6 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === 'POST') {
+    if (!(await requireAdmin(req, res, 'institutional_publications'))) return;
     try {
       const { title, category, description, fileName, mimeType, fileBase64, published, order, alwaysPublished, publishAt, unpublishAt } =
         req.body;

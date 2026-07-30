@@ -3,11 +3,11 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from '../../styles/admin-dashboard.module.scss';
-import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText, Files, BookOpen } from 'phosphor-react';
+import { Calendar, SignOut, User, Layout, ArrowRight, ChatCircleText, Files, BookOpen, Users } from 'phosphor-react';
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const { user, loading, logout } = useAuth();
+  const { user, loading, logout, hasPermission } = useAuth();
 
   useEffect(() => {
     if (!loading && !user) {
@@ -15,8 +15,8 @@ export default function AdminDashboard() {
     }
   }, [user, loading, router]);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     router.push('/admin/login');
   };
 
@@ -36,6 +36,7 @@ export default function AdminDashboard() {
       icon: <BookOpen size={32} />,
       link: '/admin/cursos',
       color: '#175cd3',
+      permission: 'courses' as const,
     },
     {
       title: 'Calendario Academico',
@@ -43,6 +44,7 @@ export default function AdminDashboard() {
       icon: <Calendar size={32} />,
       link: '/admin/calendario-academico',
       color: '#3b82f6',
+      permission: 'academic_calendar' as const,
     },
     {
       title: 'NUSP - Agendamentos',
@@ -50,6 +52,7 @@ export default function AdminDashboard() {
       icon: <User size={32} />,
       link: '/admin/nusp',
       color: '#10b981',
+      permission: 'nusp' as const,
     },
     {
       title: 'Ouvidoria',
@@ -57,6 +60,7 @@ export default function AdminDashboard() {
       icon: <ChatCircleText size={32} />,
       link: '/admin/ouvidoria',
       color: '#f59e0b',
+      permission: 'ombudsman' as const,
     },
     {
       title: 'Publicacoes Institucionais',
@@ -64,8 +68,15 @@ export default function AdminDashboard() {
       icon: <Files size={32} />,
       link: '/admin/publicacoes-institucionais',
       color: '#8b5cf6',
+      permission: 'institutional_publications' as const,
     },
-  ];
+  ].filter((module) => hasPermission(module.permission));
+
+  const navItems = modules.map((module) => ({
+    label: module.title,
+    link: module.link,
+    icon: module.icon,
+  }));
 
   return (
     <div className={styles.dashboardContainer}>
@@ -84,22 +95,18 @@ export default function AdminDashboard() {
             <Layout size={20} />
             Dashboard
           </div>
-          <div className={styles.navItem} onClick={() => router.push('/admin/calendario-academico')}>
-            <Calendar size={20} />
-            Calendario
-          </div>
-          <div className={styles.navItem} onClick={() => router.push('/admin/cursos')}>
-            <BookOpen size={20} />
-            Cursos
-          </div>
-          <div className={styles.navItem} onClick={() => router.push('/admin/ouvidoria')}>
-            <ChatCircleText size={20} />
-            Ouvidoria
-          </div>
-          <div className={styles.navItem} onClick={() => router.push('/admin/publicacoes-institucionais')}>
-            <Files size={20} />
-            Publicacoes
-          </div>
+          {navItems.map((item) => (
+            <div key={item.link} className={styles.navItem} onClick={() => router.push(item.link)}>
+              {React.cloneElement(item.icon, { size: 20 })}
+              <span>{item.label}</span>
+            </div>
+          ))}
+          {user.isSuperAdmin && (
+            <div className={styles.navItem} onClick={() => router.push('/admin/usuarios')}>
+              <Users size={20} />
+              <span>Usuários</span>
+            </div>
+          )}
         </nav>
 
         <div className={styles.sidebarFooter}>
@@ -124,11 +131,13 @@ export default function AdminDashboard() {
           <div>
             <h1 className={styles.title}>Bem-vindo, {user.name?.split(' ')[0]}</h1>
             <p className={styles.subtitle}>O que voce deseja gerenciar hoje?</p>
-            <button className={styles.courseShortcut} onClick={() => router.push('/admin/cursos')}>
-              <BookOpen size={20} />
-              Gerenciar informações e arquivos dos cursos
-              <ArrowRight size={18} />
-            </button>
+            {hasPermission('courses') && (
+              <button className={styles.courseShortcut} onClick={() => router.push('/admin/cursos')}>
+                <BookOpen size={20} />
+                Gerenciar informações e arquivos dos cursos
+                <ArrowRight size={18} />
+              </button>
+            )}
           </div>
           <div className={styles.date}>
             {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
@@ -154,6 +163,19 @@ export default function AdminDashboard() {
               </div>
             </div>
           ))}
+
+          {user.isSuperAdmin && (
+            <div className={styles.moduleCard} onClick={() => router.push('/admin/usuarios')}>
+              <div className={styles.moduleIcon} style={{ color: '#ec4899' }}>
+                <Users size={32} />
+              </div>
+              <div className={styles.moduleInfo}>
+                <h2 className={styles.moduleTitle}>Usuários administrativos</h2>
+                <p className={styles.moduleDescription}>Crie usuários, defina acessos e altere senhas.</p>
+              </div>
+              <div className={styles.moduleArrow}><ArrowRight size={24} /></div>
+            </div>
+          )}
 
           <div className={`${styles.moduleCard} ${styles.disabled}`}>
             <div className={styles.moduleIcon}>

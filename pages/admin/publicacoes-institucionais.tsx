@@ -19,7 +19,7 @@ import {
   DotsSixVertical,
   UploadSimple,
 } from 'phosphor-react';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAdminPermission } from '../../hooks/useAdminPermission';
 import styles from '../../styles/admin-publicacoes.module.scss';
 
 type Publication = {
@@ -131,7 +131,7 @@ const normalizePublication = (payload: PublicationApiResponse): Publication => (
 
 export default function AdminPublicacoesInstitucionais() {
   const router = useRouter();
-  const { user, loading, logout } = useAuth();
+  const { user, loading, logout, allowed } = useAdminPermission('institutional_publications');
   const [publications, setPublications] = useState<Publication[]>([]);
   const [form, setForm] = useState(initialForm);
   const [file, setFile] = useState<File | null>(null);
@@ -451,8 +451,8 @@ export default function AdminPublicacoesInstitucionais() {
     await fetchPublications();
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     router.push('/admin/login');
   };
 
@@ -470,7 +470,7 @@ export default function AdminPublicacoesInstitucionais() {
 
   const getGlobalIndexById = (publicationId: string) => publications.findIndex((item) => item.id === publicationId);
 
-  if (loading || !user) {
+  if (loading || !user || !allowed) {
     return (
       <div className={styles.loadingScreen}>
         <div className={styles.spinner} />
@@ -946,4 +946,3 @@ export default function AdminPublicacoesInstitucionais() {
     </div>
   );
 }
-

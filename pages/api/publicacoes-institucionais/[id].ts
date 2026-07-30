@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../services/prisma';
 import { deleteFromR2 } from '../../../services/r2';
+import { requireAdmin } from '../../../services/adminAuth';
 
 const parseNullableDate = (value: any) => {
   if (value === undefined) return undefined;
@@ -20,6 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === 'PUT') {
+    if (!(await requireAdmin(req, res, 'institutional_publications'))) return;
     try {
       const { title, category, description, published, order, alwaysPublished, publishAt, unpublishAt } = req.body;
       const nextAlwaysPublished = alwaysPublished === undefined ? undefined : Boolean(alwaysPublished);
@@ -111,6 +113,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === 'DELETE') {
+    if (!(await requireAdmin(req, res, 'institutional_publications'))) return;
     try {
       const publication = await prisma.institutionalPublication.findUnique({ where: { id } });
       if (!publication) {

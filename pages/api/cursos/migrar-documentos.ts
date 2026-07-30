@@ -4,6 +4,7 @@ import path from 'path';
 import { prisma } from '../../../services/prisma';
 import { deleteFromR2, downloadFromR2, uploadToR2 } from '../../../services/r2';
 import { getCourseDocumentFolder } from '../../../services/courseDocuments';
+import { requireAdmin } from '../../../services/adminAuth';
 
 const requiredR2Variables = [
   'R2_ACCOUNT_ID',
@@ -16,6 +17,7 @@ const requiredR2Variables = [
 const isR2Configured = () => requiredR2Variables.every((name) => Boolean(process.env[name]));
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (!(await requireAdmin(req, res, 'courses'))) return;
   const allDocuments = await prisma.courseDocument.findMany({
     include: { course: { select: { slug: true } } },
     orderBy: { createdAt: 'asc' },

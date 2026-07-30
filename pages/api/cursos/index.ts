@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../services/prisma';
+import { requireAdmin } from '../../../services/adminAuth';
 
 const slugify = (value: string) =>
   value
@@ -28,6 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     try {
       const admin = req.query.admin === 'true';
+      if (admin && !(await requireAdmin(req, res, 'courses'))) return;
       const courses = await prisma.course.findMany({
         where: admin ? undefined : { active: true },
         include: { documents: { orderBy: [{ category: 'asc' }, { order: 'asc' }] } },
@@ -41,6 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === 'POST') {
+    if (!(await requireAdmin(req, res, 'courses'))) return;
     try {
       const data = courseData(req.body);
       if (!data.name || !data.slug) {

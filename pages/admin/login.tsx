@@ -16,7 +16,7 @@ export default function AdminLogin() {
 
   useEffect(() => {
     if (!authLoading && user) {
-      router.push('/admin/calendario-academico');
+      router.push('/admin');
     }
   }, [user, authLoading, router]);
 
@@ -28,7 +28,7 @@ export default function AdminLogin() {
     try {
       const response = await axios.post('/api/auth/login', { email, password });
       login(response.data.user);
-      router.push('/admin/calendario-academico');
+      router.push('/admin');
     } catch (err: any) {
       setError(err.response?.data?.error || 'Credenciais inválidas. Verifique seu e-mail e senha.');
       console.error(err);

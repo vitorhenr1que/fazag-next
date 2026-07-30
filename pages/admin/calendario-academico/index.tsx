@@ -25,7 +25,7 @@ import {
   Trash
 } from 'phosphor-react';
 import axios from 'axios';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAdminPermission } from '../../../hooks/useAdminPermission';
 import styles from '../../../styles/admin-calendario.module.scss';
 
 type EventStatus = 'normal' | 'recesso' | 'atencao' | 'letivo' | 'reuniao' | 'colacao';
@@ -55,7 +55,7 @@ export default function CalendarioAdmin() {
   const [showStatus, setShowStatus] = useState(false);
   
   const router = useRouter();
-  const { user, loading, logout } = useAuth();
+  const { user, loading, logout, allowed } = useAdminPermission('academic_calendar');
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -204,8 +204,8 @@ export default function CalendarioAdmin() {
     );
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     router.push('/admin/login');
   };
 
@@ -215,7 +215,7 @@ export default function CalendarioAdmin() {
     return months;
   }, [months, semester]);
 
-  if (loading || !user) {
+  if (loading || !user || !allowed) {
     return (
       <div className={styles.loadingScreen}>
         <div className={styles.spinner} />

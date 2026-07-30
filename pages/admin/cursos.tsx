@@ -15,7 +15,7 @@ import {
   CloudArrowUp,
   X,
 } from 'phosphor-react';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAdminPermission } from '../../hooks/useAdminPermission';
 import styles from '../../styles/admin-cursos.module.scss';
 
 type CourseDocument = {
@@ -72,7 +72,7 @@ const formatSize = (size: number) =>
 
 export default function AdminCursos() {
   const router = useRouter();
-  const { user, loading, logout } = useAuth();
+  const { user, loading, logout, allowed } = useAdminPermission('courses');
   const [courses, setCourses] = useState<Course[]>([]);
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -217,7 +217,7 @@ export default function AdminCursos() {
     if (selectedCourse) await loadCourses(selectedCourse.id);
   };
 
-  if (loading || !user) {
+  if (loading || !user || !allowed) {
     return <div className={styles.loading}>Verificando autenticação...</div>;
   }
 
@@ -230,7 +230,7 @@ export default function AdminCursos() {
           <h1>Gestão de cursos</h1>
           <p>Cadastre as páginas dos cursos e mantenha os documentos sempre atualizados.</p>
         </div>
-        <button className={styles.logout} onClick={() => { logout(); router.push('/admin/login'); }}>
+        <button className={styles.logout} onClick={async () => { await logout(); router.push('/admin/login'); }}>
           <SignOut size={19} /> Sair
         </button>
       </header>

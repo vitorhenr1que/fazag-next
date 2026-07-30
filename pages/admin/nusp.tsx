@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAdminPermission } from '../../hooks/useAdminPermission';
 import styles from '../../styles/admin-nusp.module.scss';
 import { CaretLeft, Check, Calendar, User, Clock, EnvelopeSimple, IdentificationCard, ChartBar, CalendarCheck, UsersThree } from 'phosphor-react';
 import { api } from '../../services/api';
@@ -20,7 +20,7 @@ const DAYS_OF_WEEK = [
 
 export default function AdminNusp() {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading, allowed } = useAdminPermission('nusp');
   const [appointments, setAppointments] = useState([]);
   const [availableDays, setAvailableDays] = useState<number[]>([]);
   const [saving, setSaving] = useState(false);
@@ -112,7 +112,7 @@ export default function AdminNusp() {
   const uniqueDays = Array.from(new Set(appointments.map((app: any) => app.dataAgendada))).length;
   const averageDaily = uniqueDays > 0 ? (totalAppointments / uniqueDays).toFixed(1) : 0;
 
-  if (loading || !user || fetching) {
+  if (loading || !user || !allowed || fetching) {
     return (
       <div style={{ 
         height: '100vh', 

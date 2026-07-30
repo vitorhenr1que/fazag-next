@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../../services/prisma';
 import { uploadToR2 } from '../../../../services/r2';
 import { getCourseDocumentFolder, isCourseDocumentCategory } from '../../../../services/courseDocuments';
+import { requireAdmin } from '../../../../services/adminAuth';
 
 export const config = { api: { bodyParser: { sizeLimit: '30mb' } } };
 
@@ -15,6 +16,7 @@ const slugify = (value: string) =>
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Método não permitido.' });
+  if (!(await requireAdmin(req, res, 'courses'))) return;
 
   try {
     const courseId = String(req.query.id || '');

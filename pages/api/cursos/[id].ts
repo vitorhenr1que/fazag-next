@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../services/prisma';
 import { deleteFromR2 } from '../../../services/r2';
 import { courseData } from './index';
+import { requireAdmin } from '../../../services/adminAuth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const id = String(req.query.id || '');
@@ -18,6 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === 'PUT') {
+    if (!(await requireAdmin(req, res, 'courses'))) return;
     try {
       const data = courseData(req.body);
       if (!data.name || !data.slug) {
@@ -35,6 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === 'DELETE') {
+    if (!(await requireAdmin(req, res, 'courses'))) return;
     try {
       const course = await prisma.course.findUnique({ where: { id }, include: { documents: true } });
       if (!course) return res.status(404).json({ error: 'Curso não encontrado.' });

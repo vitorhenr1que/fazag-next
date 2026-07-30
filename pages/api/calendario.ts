@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../services/prisma';
+import { requireAdmin } from '../../services/adminAuth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
@@ -38,6 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (req.method === 'POST') {
+    if (!(await requireAdmin(req, res, 'academic_calendar'))) return;
     const { calendarData, ano, year, data } = req.body;
 
     const targetYear = Number(ano || year || calendarData?.year);

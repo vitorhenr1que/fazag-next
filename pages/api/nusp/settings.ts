@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../services/prisma";
+import { requireAdmin } from "../../../services/adminAuth";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
@@ -22,6 +23,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (req.method === 'POST') {
+    if (!(await requireAdmin(req, res, 'nusp'))) return;
     const { availableDays } = req.body;
 
     try {
