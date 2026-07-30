@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../../services/prisma';
 import { uploadToR2 } from '../../../../services/r2';
+import { getCourseDocumentFolder, isCourseDocumentCategory } from '../../../../services/courseDocuments';
 
 export const config = { api: { bodyParser: { sizeLimit: '30mb' } } };
 
@@ -18,7 +19,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const courseId = String(req.query.id || '');
     const { title, category, fileName, mimeType, fileBase64, order } = req.body;
-    if (!courseId || !title || !category || !fileName || !fileBase64 || mimeType !== 'application/pdf') {
+    if (
+      !courseId ||
+      !title ||
+      !category ||
+      !isCourseDocumentCategory(String(category)) ||
+      !fileName ||
+      !fileBase64 ||
+      mimeType !== 'application/pdf'
+    ) {
       return res.status(400).json({ error: 'Informe título, categoria e um arquivo PDF.' });
     }
 
@@ -28,7 +37,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const body = Buffer.from(String(fileBase64), 'base64');
     if (!body.length) return res.status(400).json({ error: 'O arquivo está vazio.' });
 
-    const key = `cursos/${course.slug}/${Date.now()}-${slugify(String(fileName))}`;
+    const folder = getCourseDocumentFolder(String(category));
+    const key = `${folder}/${course.slug}-${Date.now()}-${slugify(String(fileName))}`;
     const fileUrl = await uploadToR2({ key, body, contentType: 'application/pdf' });
     const document = await prisma.courseDocument.create({
       data: {

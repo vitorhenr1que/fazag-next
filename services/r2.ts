@@ -38,7 +38,7 @@ const createSignedRequest = ({
   contentType,
   contentDisposition,
 }: {
-  method: 'PUT' | 'DELETE';
+  method: 'PUT' | 'DELETE' | 'GET';
   key: string;
   body?: Buffer;
   contentType?: string;
@@ -130,4 +130,18 @@ export const deleteFromR2 = async (key: string) => {
   if (!response.ok && response.status !== 404) {
     throw new Error(`Erro ao remover arquivo do R2: ${response.status} ${await response.text()}`);
   }
+};
+
+export const downloadFromR2 = async (key: string) => {
+  const signed = createSignedRequest({ method: 'GET', key });
+  const response = await fetch(signed.url, {
+    method: 'GET',
+    headers: signed.headers,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Erro ao baixar arquivo do R2: ${response.status} ${await response.text()}`);
+  }
+
+  return Buffer.from(await response.arrayBuffer());
 };

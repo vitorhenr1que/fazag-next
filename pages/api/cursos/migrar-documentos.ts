@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { readFile } from 'fs/promises';
 import path from 'path';
 import { prisma } from '../../../services/prisma';
-import { uploadToR2 } from '../../../services/r2';
+import { deleteFromR2, downloadFromR2, uploadToR2 } from '../../../services/r2';
+import { getCourseDocumentFolder } from '../../../services/courseDocuments';
 
 const requiredR2Variables = [
   'R2_ACCOUNT_ID',
@@ -15,7 +16,15 @@ const requiredR2Variables = [
 const isR2Configured = () => requiredR2Variables.every((name) => Boolean(process.env[name]));
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const pending = await prisma.courseDocument.count({ where: { fileKey: '' } });
+  const allDocuments = await prisma.courseDocument.findMany({
+    include: { course: { select: { slug: true } } },
+    orderBy: { createdAt: 'asc' },
+  });
+  const documents = allDocuments.filter((document) => {
+    const folder = getCourseDocumentFolder(document.category);
+    return !document.fileKey.startsWith(`${folder}/`);
+  });
+  const pending = documents.length;
 
   if (req.method === 'GET') {
     return res.status(200).json({ configured: isR2Configured(), pending });
@@ -32,34 +41,49 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   }
 
-  const documents = await prisma.courseDocument.findMany({
-    where: { fileKey: '' },
-    include: { course: { select: { slug: true } } },
-    orderBy: { createdAt: 'asc' },
-  });
   const publicDirectory = path.resolve(process.cwd(), 'public');
   const results: Array<{ id: string; status: 'migrated' | 'failed'; error?: string }> = [];
 
   for (const document of documents) {
     try {
-      if (!document.fileUrl.startsWith('/static/')) {
-        throw new Error('O documento legado não aponta para um arquivo local.');
-      }
+      const folder = getCourseDocumentFolder(document.category);
+      const legacyRelativePath = document.fileUrl.startsWith('/static/')
+        ? document.fileUrl.replace(/^\//, '')
+        : document.category === 'GRADE_DOCENTE'
+          ? `static/horarios/${document.fileName}`
+          : document.category === 'MATRIZ_CURRICULAR'
+            ? `static/matrizes/${document.fileName}`
+            : '';
+      if (!legacyRelativePath) throw new Error('Não foi possível localizar o arquivo original.');
 
-      const localPath = path.resolve(publicDirectory, document.fileUrl.replace(/^\//, ''));
+      const localPath = path.resolve(publicDirectory, legacyRelativePath);
       if (!localPath.startsWith(`${publicDirectory}${path.sep}`)) {
         throw new Error('Caminho de documento inválido.');
       }
 
-      const body = await readFile(localPath);
+      let body: Buffer;
+      try {
+        body = await readFile(localPath);
+      } catch (localError: any) {
+        if (!document.fileKey || localError?.code !== 'ENOENT') throw localError;
+        body = await downloadFromR2(document.fileKey);
+      }
       const safeName = document.fileName.replace(/[^a-zA-Z0-9._-]+/g, '-').toLowerCase();
-      const key = `cursos/${document.course.slug}/${Date.now()}-${document.id}-${safeName}`;
+      const key = `${folder}/${safeName}`;
       const fileUrl = await uploadToR2({ key, body, contentType: 'application/pdf' });
+      const previousKey = document.fileKey;
 
       await prisma.courseDocument.update({
         where: { id: document.id },
         data: { fileKey: key, fileUrl, size: body.length },
       });
+      if (previousKey && previousKey !== key) {
+        try {
+          await deleteFromR2(previousKey);
+        } catch (cleanupError) {
+          console.error(`Documento migrado, mas o objeto antigo ${previousKey} não pôde ser removido:`, cleanupError);
+        }
+      }
       results.push({ id: document.id, status: 'migrated' });
     } catch (error: any) {
       console.error(`Erro ao migrar o documento ${document.id}:`, error);
