@@ -10,7 +10,9 @@ export function usePublicCourses() {
     fetch('/api/cursos')
       .then((response) => response.ok ? response.json() : Promise.reject())
       .then((data) => {
-        if (active && Array.isArray(data)) setCourses(data);
+        if (active && Array.isArray(data)) {
+          setCourses([...data].sort((first, second) => first.name.localeCompare(second.name, 'pt-BR')));
+        }
       })
       .catch(() => undefined);
     return () => { active = false; };
