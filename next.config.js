@@ -33,30 +33,6 @@ const nextConfig = {
     ],
   },
 
-  async headers() {
-    // CORS com whitelist simples
-    const allowed = [
-      'https://fazag.edu.br',
-      'https://matriculas.fazag.edu.br',
-      'https://fazag-next.vercel.app',
-      'https://motivabolsas.com.br'
-    ];
-
-    return [
-      {
-        source: '/api/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Credentials', value: 'true' },
-          // Use um valor estático; a validação do Origin deve ser feita no handler/middleware:
-          { key: 'Access-Control-Allow-Origin', value: "*" },
-          { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS' },
-          { key: 'Access-Control-Allow-Headers', value: 'Origin, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization' },
-          { key: 'Access-Control-Max-Age', value: '86400' },
-        ],
-      },
-    ];
-  },
-
   async rewrites() {
     return [
       { source: '/api/posts/allposts', destination: 'https://fazag-next.vercel.app/api/posts/allposts' },
