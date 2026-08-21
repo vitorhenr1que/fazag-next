@@ -48,6 +48,23 @@ export default function ProcessoSeletivo20262() {
           </figure>
         </section>
 
+        <section className={styles.moreInfo} aria-labelledby="more-info-title">
+          <div>
+            <span>Conheça a FAZAG</span>
+            <h2 id="more-info-title">Quer mais informações sobre os cursos?</h2>
+          </div>
+          <a
+            href="https://matriculas.fazag.edu.br"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Saiba mais
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </section>
+
         <a
           className={styles.whatsappButton}
           href={whatsappLink}
