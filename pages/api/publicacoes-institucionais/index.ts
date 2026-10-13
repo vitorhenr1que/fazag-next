@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../services/prisma';
 import { uploadToR2 } from '../../../services/r2';
 import { requireAdmin } from '../../../services/adminAuth';
+import { getPublicationFileFormat, publicationFileFormatDescription } from '../../../services/institutionalPublicationFiles';
 
 export const config = {
   api: {
@@ -10,8 +11,6 @@ export const config = {
     },
   },
 };
-
-const allowedMimeTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
 
 const slugify = (value: string) =>
   value
@@ -68,21 +67,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { title, category, description, fileName, mimeType, fileBase64, published, order, alwaysPublished, publishAt, unpublishAt } =
         req.body;
 
-      if (!title || !category || !fileName || !mimeType || !fileBase64) {
+      if (!title || !category || typeof fileName !== 'string' || !fileName || typeof mimeType !== 'string' || !fileBase64) {
         return res.status(400).json({ error: 'Preencha tÃ­tulo, categoria e arquivo' });
       }
 
-      if (!allowedMimeTypes.includes(mimeType)) {
-        return res.status(400).json({ error: 'Envie apenas PDF, JPG, PNG ou WEBP' });
+      const fileFormat = getPublicationFileFormat(fileName, mimeType);
+      if (!fileFormat) {
+        return res.status(400).json({ error: `Envie apenas ${publicationFileFormatDescription}` });
       }
 
       const body = Buffer.from(String(fileBase64), 'base64');
-      const fileType = mimeType === 'application/pdf' ? 'pdf' : 'image';
+      const fileType = fileFormat.fileType;
       const key = `publicacoes-institucionais/${Date.now()}-${slugify(fileName)}`;
       const fileUrl = await uploadToR2({
         key,
         body,
-        contentType: mimeType,
+        contentType: fileFormat.mimeType,
       });
 
       const nextAlwaysPublished = alwaysPublished === undefined ? true : Boolean(alwaysPublished);
@@ -117,7 +117,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           fileKey: key,
           fileUrl,
           fileType,
-          mimeType,
+          mimeType: fileFormat.mimeType,
           size: body.length,
           published: published !== false,
           order: Number(order) || 0,

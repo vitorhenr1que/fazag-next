@@ -20,6 +20,13 @@ import {
   UploadSimple,
 } from 'phosphor-react';
 import { useAdminPermission } from '../../hooks/useAdminPermission';
+import {
+  getPublicationFileFormat,
+  publicationFileAccept,
+  publicationFileFormatDescription,
+  publicationFileTypeLabels,
+  PublicationFileType,
+} from '../../services/institutionalPublicationFiles';
 import styles from '../../styles/admin-publicacoes.module.scss';
 
 type Publication = {
@@ -28,7 +35,7 @@ type Publication = {
   category: string;
   fileName: string;
   fileUrl: string;
-  fileType: 'pdf' | 'image';
+  fileType: PublicationFileType;
   size: number;
   description?: string | null;
   published: boolean;
@@ -119,7 +126,7 @@ const normalizePublication = (payload: PublicationApiResponse): Publication => (
   category: String(payload.category || ''),
   fileName: String(payload.fileName || ''),
   fileUrl: String(payload.fileUrl || ''),
-  fileType: (payload.fileType === 'image' ? 'image' : 'pdf') as 'pdf' | 'image',
+  fileType: payload.fileType,
   size: Number(payload.size || 0),
   description: payload.description || null,
   published: Boolean(payload.published),
@@ -201,9 +208,8 @@ export default function AdminPublicacoesInstitucionais() {
   const applySelectedFile = (selectedFile?: File | null) => {
     if (!selectedFile) return;
 
-    const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
-    if (!allowedTypes.includes(selectedFile.type)) {
-      alert('Envie apenas PDF, JPG, PNG ou WEBP.');
+    if (!getPublicationFileFormat(selectedFile.name, selectedFile.type)) {
+      alert(`Envie apenas ${publicationFileFormatDescription}.`);
       return;
     }
 
@@ -238,7 +244,7 @@ export default function AdminPublicacoesInstitucionais() {
       await axios.post('/api/publicacoes-institucionais', {
         ...form,
         fileName: file.name,
-        mimeType: file.type,
+        mimeType: getPublicationFileFormat(file.name, file.type)?.mimeType,
         fileBase64,
         order: publications.length,
         publishAt: form.alwaysPublished ? null : getDateTimeForApi(form.publishAt),
@@ -576,8 +582,8 @@ export default function AdminPublicacoesInstitucionais() {
               >
                 <UploadSimple size={28} />
                 <span>{file ? file.name : 'Arraste o arquivo aqui ou clique para selecionar'}</span>
-                <small>{file ? `${file.type || 'Arquivo'} - ${formatSize(file.size)}` : 'PDF, JPG, PNG ou WEBP ate 30 MB'}</small>
-                <input type="file" accept="application/pdf,image/jpeg,image/png,image/webp" onChange={handleFileChange} />
+                <small>{file ? `${file.type || 'Arquivo'} - ${formatSize(file.size)}` : `${publicationFileFormatDescription} ate 30 MB`}</small>
+                <input type="file" accept={publicationFileAccept} onChange={handleFileChange} />
               </label>
 
               <label className={styles.checkRow}>
@@ -805,7 +811,7 @@ export default function AdminPublicacoesInstitucionais() {
                                     <strong>{publication.title}</strong>
                                     <small>{publication.fileName} - {formatSize(publication.size)}</small>
                                   </td>
-                                  <td>{publication.fileType === 'pdf' ? 'PDF' : 'Imagem'}</td>
+                                  <td>{publicationFileTypeLabels[publication.fileType] || 'Arquivo'}</td>
                                   <td>
                                     <button
                                       className={`${styles.statusBtn} ${publication.published ? styles.published : styles.draft}`}

@@ -4,18 +4,20 @@ import axios from 'axios'
 import {
     CaretDown,
     FilePdf,
+    File as FileIcon,
     Image as ImageIcon,
     MagnifyingGlass,
     WarningCircle,
 } from 'phosphor-react'
 import styles from '../../styles/publicInstitucionais.module.scss'
+import { publicationFileTypeLabels, PublicationFileType } from '../../services/institutionalPublicationFiles'
 
 type Publication = {
     id: string;
     title: string;
     category: string;
     fileUrl: string;
-    fileType: string;
+    fileType: PublicationFileType;
 }
 
 const slugify = (value: string) =>
@@ -217,11 +219,11 @@ export default function PublicacoesInstitucionais(){
                                                     download={publication.fileUrl.startsWith('http') ? undefined : publication.title}
                                                 >
                                                     <span className={styles.fileIcon}>
-                                                        {isImage ? <ImageIcon size={24} /> : <FilePdf size={24} />}
+                                                        {isImage ? <ImageIcon size={24} /> : publication.fileType === 'pdf' ? <FilePdf size={24} /> : <FileIcon size={24} />}
                                                     </span>
                                                     <span className={styles.fileInfo}>
                                                         <strong>{publication.title}</strong>
-                                                        <small>{isImage ? 'Imagem' : 'PDF'}</small>
+                                                        <small>{publicationFileTypeLabels[publication.fileType] || 'Arquivo'}</small>
                                                     </span>
                                                     <span className={styles.fileAction}>Abrir</span>
                                                 </a>
