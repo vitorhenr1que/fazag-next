@@ -15,5 +15,6 @@ export const PROCESSO_SELETIVO_2027_1_COURSES = [
   'Pedagogia',
   'Psicologia',
   'Serviço Social',
+  'Terapia Ocupacional',
 ] as const
 

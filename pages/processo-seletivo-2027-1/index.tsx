@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { FormEvent, useState } from 'react'
 import { PROCESSO_SELETIVO_2027_1_COURSES } from '../../data/processoSeletivo20271'
-import panfletoFrente from '../../public/images/processo-seletivo-2026-2/panfleto-frente.png'
-import panfletoVerso from '../../public/images/processo-seletivo-2026-2/panfleto-verso.png'
-import styles from '../../styles/processo-seletivo-2026-2.module.scss'
+import panfletoFrente from '../../public/images/processo-seletivo-2027-1/campanha-frente.png'
+import panfletoVerso from '../../public/images/processo-seletivo-2027-1/campanha-cursos.png'
+import styles from '../../styles/processo-seletivo-2027-1.module.scss'
 
 const whatsappLink =
   'https://wa.me/5575981048077?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Processo%20Seletivo%202027.1%20da%20FAZAG.'
@@ -69,44 +69,66 @@ export default function ProcessoSeletivo20271() {
         <title>Processo Seletivo 2027.1 | FAZAG</title>
         <meta
           name="description"
-          content="Conheça os cursos do Processo Seletivo 2027.1 da FAZAG e fale com nossa equipe pelo WhatsApp."
+          content="Seu futuro começa com uma escolha. Conheça os cursos de graduação da FAZAG e as formas de ingresso para o Processo Seletivo 2027.1."
         />
       </Head>
 
       <main className={styles.page}>
-        <div className={styles.glow} aria-hidden="true" />
-
         <header className={styles.intro}>
-          <span className={styles.eyebrow}>Inscrições abertas</span>
-          <h1>Processo Seletivo 2027.1</h1>
-          <p>Novos cursos. Novas oportunidades. Seu futuro começa na FAZAG.</p>
+          <div className={styles.heroCopy}>
+            <span className={styles.eyebrow}>Processo Seletivo / 2027.1</span>
+            <h1>Seu <em>futuro</em><br />começa com<br />uma escolha<span>.</span></h1>
+            <p>Escolha a sua graduação. Na FAZAG, o próximo capítulo da sua história começa agora.</p>
+            <a className={styles.primaryLink} href="#receba-informacoes">
+              Quero começar <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div className={styles.heroEdition} aria-hidden="true">
+            <span>FAZAG</span>
+            <strong>2027<span>.1</span></strong>
+            <p>Uma escolha.<br />Novas possibilidades.</p>
+          </div>
         </header>
 
-        <section className={styles.flyers} aria-label="Panfletos do Processo Seletivo 2027.1">
-          <figure className={`${styles.flyer} ${styles.front}`}>
+        <ul className={styles.metrics} aria-label="A FAZAG em números">
+          <li><strong>16</strong><span>cursos de graduação</span></li>
+          <li><strong>24</strong><span>anos de história</span></li>
+          <li><strong>+5.000</strong><span>profissionais formados</span></li>
+        </ul>
+
+        <section className={styles.campaign} aria-labelledby="campaign-title">
+          <div className={styles.sectionHeading}>
+            <div><span>O seu próximo capítulo</span><h2 id="campaign-title">Encontre o seu caminho.</h2></div>
+            <p>Conheça a campanha e descubra a graduação que combina com o seu futuro.</p>
+          </div>
+          <div className={styles.flyers}>
+          <figure className={styles.flyer}>
             <Image
               src={panfletoFrente}
-              alt="Frente do panfleto do Processo Seletivo 2027.1 da FAZAG, com destaque para os novos cursos"
+              alt="Campanha FAZAG 2027.1: seu futuro começa com uma escolha. 16 cursos de graduação, 24 anos de história e mais de 5.000 formados."
               priority
               placeholder="blur"
-              sizes="(max-width: 820px) calc(100vw - 40px), 46vw"
+              sizes="(max-width: 820px) calc(100vw - 40px), (max-width: 1440px) 46vw, 624px"
             />
+            <figcaption><span>01 / Sua escolha</span><strong>O futuro começa aqui.</strong></figcaption>
           </figure>
 
-          <figure className={`${styles.flyer} ${styles.back}`}>
+          <figure className={styles.flyer}>
             <Image
               src={panfletoVerso}
               alt="Verso do panfleto do Processo Seletivo 2027.1 da FAZAG, com a lista de cursos disponíveis"
               placeholder="blur"
-              sizes="(max-width: 820px) calc(100vw - 40px), 46vw"
+              sizes="(max-width: 820px) calc(100vw - 40px), (max-width: 1440px) 46vw, 624px"
             />
+            <figcaption><span>02 / Sua graduação</span><strong>Conheça nossos cursos.</strong></figcaption>
           </figure>
+          </div>
         </section>
 
-        <section className={styles.leadSection} aria-labelledby="lead-title">
+        <section id="receba-informacoes" className={styles.leadSection} aria-labelledby="lead-title">
           <div className={styles.leadIntro}>
-            <span>Ofertas especiais</span>
-            <h2 id="lead-title">Receba as melhores condições para começar</h2>
+            <span>Dê o primeiro passo</span>
+            <h2 id="lead-title">A sua escolha merece um novo começo.</h2>
             <p>
               Conte qual curso combina com você e receba informações sobre bolsas,
               descontos e formas de ingresso.
@@ -174,7 +196,7 @@ export default function ProcessoSeletivo20271() {
             </div>
 
             <button type="submit" disabled={formStatus === 'submitting'}>
-              {formStatus === 'submitting' ? 'Enviando...' : 'Quero receber ofertas'}
+              {formStatus === 'submitting' ? 'Enviando...' : 'Quero conhecer as condições'}
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
