@@ -37,6 +37,17 @@ model Ouvidoria {
   data          DateTime @default(now())
 }
 
+model JunteSeANos {
+  id                String   @id @default(uuid())
+  nome_aluno        String
+  cpf_aluno         String
+  numero_matricula  String
+  nome_indicado     String
+  curso_indicado    String
+  telefone_indicado String
+  data              DateTime @default(now())
+}
+
 model Post {
   id          String   @id @default(uuid())
   title       String
