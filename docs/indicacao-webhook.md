@@ -12,27 +12,25 @@ INDICACAO_WEBHOOK_TOKEN=
 Configure essas variáveis no servidor e reinicie a aplicação. Sem URL configurada,
 o envio fica desativado. As variáveis são exclusivas do servidor.
 
-Exemplo de corpo enviado:
+Os campos são enviados diretamente na raiz do JSON. Exemplo de corpo enviado:
 
 ```json
 {
-  "event": "indicacao.criada",
-  "data": {
-    "id": "uuid-da-indicacao",
-    "nome_aluno": "Maria Silva",
-    "curso_aluno": "Administração",
-    "cpf_aluno": "01234567890",
-    "numero_matricula": "000123",
-    "nome_indicado": "João Souza",
-    "curso_indicado": "Direito",
-    "telefone_indicado": "75999999999",
-    "data": "2026-10-31T12:00:00.000Z"
-  }
+  "id": "uuid-da-indicacao",
+  "nome_aluno": "Maria Silva",
+  "curso_aluno": "Administração",
+  "cpf_aluno": "01234567890",
+  "numero_matricula": "000123",
+  "nome_indicado": "João Souza",
+  "curso_indicado": "Direito",
+  "telefone_indicado": "75999999999",
+  "data": "2026-10-31T12:00:00.000Z"
 }
 ```
 
 O cabeçalho `Idempotency-Key` contém o ID da indicação e pode ser usado pelo
 destinatário para evitar processamento duplicado.
+O cabeçalho `X-Webhook-Event` identifica o evento como `indicacao.criada`.
 
 O destinatário deve responder com status 2xx em até 5 segundos. Há uma tentativa
 por indicação, sem reenvio automático. Falhas são registradas no log com ID e,

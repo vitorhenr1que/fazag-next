@@ -14,12 +14,10 @@ export async function notifyNovaIndicacao(indicacao: JunteSeANos): Promise<void>
       headers: {
         'Content-Type': 'application/json',
         'Idempotency-Key': indicacao.id,
+        'X-Webhook-Event': 'indicacao.criada',
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
-      body: JSON.stringify({
-        event: 'indicacao.criada',
-        data: indicacao,
-      }),
+      body: JSON.stringify(indicacao),
       signal: controller.signal,
       redirect: 'error',
     });
