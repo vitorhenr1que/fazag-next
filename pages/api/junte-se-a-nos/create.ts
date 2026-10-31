@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '../../../services/prisma';
+import { notifyNovaIndicacao } from '../../../services/indicacaoWebhook';
 
 const fields = [
   'nome_aluno',
@@ -39,6 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const createJunteSeANos = await prisma.junteSeANos.create({ data });
+    await notifyNovaIndicacao(createJunteSeANos);
     return res.status(201).json({ createJunteSeANos });
   } catch {
     return res.status(500).json({ error: 'Erro ao registrar indicação' });
