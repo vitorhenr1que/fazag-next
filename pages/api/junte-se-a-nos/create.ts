@@ -3,6 +3,7 @@ import { prisma } from '../../../services/prisma';
 
 const fields = [
   'nome_aluno',
+  'curso_aluno',
   'cpf_aluno',
   'numero_matricula',
   'nome_indicado',
