@@ -268,7 +268,7 @@ export default function AdminOuvidoria() {
           
           <div className={styles.filters} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', display: 'grid' }}>
             <div className={styles.filterGroup}>
-              <label>Palavra-chave (Mensagem, Nome ou E-mail)</label>
+              <label>Palavra-chave (ID, Mensagem, Nome ou E-mail)</label>
               <div style={{ position: 'relative' }}>
                 <input 
                   type="text" 

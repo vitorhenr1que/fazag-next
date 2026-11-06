@@ -30,6 +30,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
               return {
                 AND: andTerms.map(term => ({
                   OR: [
+                    { id: { contains: term } },
                     { nome: { contains: term } },
                     { email: { contains: term } },
                     { text: { contains: term } }
@@ -39,6 +40,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             } else {
               return {
                 OR: [
+                  { id: { contains: andTerms[0] } },
                   { nome: { contains: andTerms[0] } },
                   { email: { contains: andTerms[0] } },
                   { text: { contains: andTerms[0] } }
